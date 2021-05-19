@@ -7,58 +7,53 @@ public class DEBUG_ChangeManuMode : MonoBehaviour
 {
 
     [SerializeField]
-    private GameObject Mode;
-
-    private GameObject[] ModeName;
-
-    private void GetAllChildObject()
-    {
-        ModeName = new GameObject[Mode.transform.childCount];
-
-        for (int i = 0; i < Mode.transform.childCount; i++)
-        {
-            ModeName[i] = Mode.transform.GetChild(i).gameObject;
-        }
-    }
+    private GameObject Main;
+    [SerializeField]
+    private GameObject Book;
+    [SerializeField]
+    private GameObject Quest;
+    [SerializeField]
+    private GameObject Config;
 
     private void Start()
     {
-        GetAllChildObject();
-        ChildInvisible();
-        //Mainだけ表示
-        ModeName[0].SetActive(true);
+        //最初にMainを表示する。
+        ChangeMainMode();
     }
 
-    private void ChildInvisible()
+    private void Invisible()
     {
-        //子オブジェクトを全て非表示にする。
-        for (int i = 0; i < Mode.transform.childCount; i++)
-        {
-            ModeName[i].SetActive(false);
-        }
+        //全て非表示にする。
+        Main.SetActive(false);
+        Book.SetActive(false);
+        Quest.SetActive(false);
+        Config.SetActive(false);
     }
 
+    #region Change Mode
+    //冗長だとは思うけど、後でいじった時に分かりにくくならないように、関数ごとに宣言してあります。
     public void ChangeMainMode()
     {
-        ChildInvisible();
-        ModeName[0].SetActive(true);
+        Invisible();
+        Main.SetActive(true);
     }
 
     public void ChangeBookMode()
     {
-        ChildInvisible();
-        ModeName[1].SetActive(true);
+        Invisible();
+        Book.SetActive(true);
     }
 
     public void ChangeQuestMode()
     {
-        ChildInvisible();
-        ModeName[2].SetActive(true);
+        Invisible();
+        Quest.SetActive(true);
     }
     public void ChangeConfigMode()
     {
-        ChildInvisible();
-        ModeName[3].SetActive(true);
+        Invisible();
+        Config.SetActive(true);
     }
+    #endregion
 
 }

@@ -1438,7 +1438,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d7930f7088dd042a8be9ef137e15d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mode: {fileID: 1604761631}
+  Main: {fileID: 1598843203}
+  Book: {fileID: 1109846801}
+  Quest: {fileID: 55277237}
+  Config: {fileID: 1764340016}
 --- !u!1 &1639567568
 GameObject:
   m_ObjectHideFlags: 0
