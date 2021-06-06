@@ -12,77 +12,123 @@ public class HPSystem : MonoBehaviour
     [SerializeField]
     private Text TextFutureHP;
 
-    [SerializeField]
-    private float MaxHP = 100.0f;
+    
+    public float MaxHP = 100.0f;
 
-    [SerializeField]
-    private float HPChangeSpeed = 10.0f;
+    public float HPChangeSpeed = 10.0f;
 
-    private float CurrentHP;
-
-    private float FutureHP;
+    private HitPoint HP;
 
     private void Awake()
     {
-        CurrentHP   = MaxHP;
-        FutureHP = MaxHP; 
+        HP = new HitPoint(MaxHP);
     }
 
     private void Update()
     {
-        PersistentHP();
-        TextMaxHP.text = MaxHP.ToString("N0");
-        TextFutureHP.text = FutureHP.ToString("N0");
-        TextCurrentHP.text = CurrentHP.ToString("N0");
-    } 
+        HP.PersistentHP(Time.deltaTime * HPChangeSpeed);
+        TextMaxHP.text     = HP.MaxHP.ToString("N1");
+        TextFutureHP.text  = HP.FutureHP.ToString("N1");
+        TextCurrentHP.text = HP.CurrentHP.ToString("N1");
+    }
 
-    private void PersistentHP()
+    public void Damage(int damagePoint)
     {
-        // CurrentHPをFutureHPまで徐々に変化させる。
+        HP.ChangeHP(-damagePoint);
+    }
 
-        // ダメージの場合
-        if (CurrentHP > FutureHP)
+    public void Heal(int healPoint)
+    {
+        HP.ChangeHP(healPoint);
+    }
+
+    public void Won()
+    {
+        HP.HPWhenWinning();
+    }
+}
+
+public class HitPoint
+{
+    private float _currentHP;
+    public float CurrentHP {
+        get { return _currentHP; }
+    }
+
+    private float _futureHP;
+    public float FutureHP {
+        get { return _futureHP; }
+    }
+
+    private float _maxHP;
+    public float MaxHP {
+        get { return _maxHP; }
+    }
+
+
+    public HitPoint(float maxHP)
+    {
+        _maxHP = maxHP;
+        _futureHP = maxHP;
+        _currentHP = maxHP;
+    }
+
+    public void PersistentHP(float deltaHP)
+    {
+        // _currentHPを_futureHPまで徐々に変化させる。
+
+        if (_futureHP > _currentHP)
         {
-            CurrentHP -= HPChangeSpeed * Time.deltaTime;
+            _currentHP += deltaHP;
+            if (_futureHP <= _currentHP)
+            {
+                _currentHP = _futureHP;
+            }
         }
-
-        // 回復の場合
-        if (CurrentHP < FutureHP)
+        if (_futureHP < _currentHP)
         {
-            CurrentHP += HPChangeSpeed * Time.deltaTime;
+            _currentHP -= deltaHP;
+            if (_futureHP >= _currentHP)
+            {
+                _currentHP = _futureHP;
+            }
         }
+    }
 
+    public void ChangeHP(int deltaHP)
+    {
+        _futureHP += deltaHP;
+
+        if (_futureHP <= 0)
+        {
+            _futureHP = 0;
+        }
+        if (_futureHP >= _maxHP)
+        {
+            _futureHP = _maxHP;
+        }
     }
 
     public void HPWhenWinning()
     {
         // 勝利時は減っているときは今のHP
         // 増えているときはFutureHPにする。
-        if (CurrentHP > FutureHP)
+        // HPが確定したタイミングで小数点以下のHPが決まる可能性があるので、切り捨て処理を入れている。
+
+        if (_currentHP > _futureHP)
         {
-            FutureHP = CurrentHP;
+            _futureHP = Floor(_currentHP);
         }
 
-        if (CurrentHP < FutureHP)
+        if (_currentHP < _futureHP)
         {
-            CurrentHP = FutureHP;
+            _currentHP = Floor(_futureHP);
         }
-
-
     }
 
-    public void ChangeHP(int deltaHP)
+    private float Floor(float hp)
     {
-        Debug.Log("called ChangeHP func");
-        FutureHP += deltaHP;
-
-        if (FutureHP <= 0) 
-        {
-            FutureHP = 0;
-        }
-        if (FutureHP >= MaxHP) 
-        {
-            FutureHP = MaxHP;
-        }
+        // HPが小数点以下にならないことを保証したい
+        return Mathf.Floor(hp);
     }
 }

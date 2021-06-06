@@ -307,8 +307,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 13940531}
-        m_TargetAssemblyTypeName: HPSystem, Assembly-CSharp
-        m_MethodName: HPWhenWinning
+        m_TargetAssemblyTypeName: HPSystem, Scripts
+        m_MethodName: Won
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -744,8 +744,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 13940531}
-        m_TargetAssemblyTypeName: HPSystem, Assembly-CSharp
-        m_MethodName: ChangeHP
+        m_TargetAssemblyTypeName: HPSystem, Scripts
+        m_MethodName: Heal
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1300,13 +1300,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 13940531}
-        m_TargetAssemblyTypeName: HPSystem, Assembly-CSharp
-        m_MethodName: ChangeHP
+        m_TargetAssemblyTypeName: HPSystem, Scripts
+        m_MethodName: Damage
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: -100
+          m_IntArgument: 100
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
