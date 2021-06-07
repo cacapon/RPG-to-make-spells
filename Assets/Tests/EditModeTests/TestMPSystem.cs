@@ -35,7 +35,6 @@ public class TestMPSystem
     {
         // MP‚ÍŒ»İ‚ÌMP‚æ‚è‘½‚­Á”ï‚·‚é‚±‚Æ‚ªo—ˆ‚È‚¢B
 
-
         TestApp.ChangeMP(-50);
 
         Assert.That(50f, Is.EqualTo(TestApp.CurrentMP));
@@ -43,6 +42,13 @@ public class TestMPSystem
         TestApp.ChangeMP(-60);
 
         Assert.That(50f, Is.EqualTo(TestApp.CurrentMP));
+
+
+        //’š“x‚Ìê‡‚ÍÁ”ï‚Å‚«‚é
+        TestApp.ChangeMP(-50);
+
+        Assert.That(0f, Is.EqualTo(TestApp.CurrentMP));
+
     }
 
 
