@@ -3,18 +3,17 @@ using UnityEngine.EventSystems;
 
 public class TouchEvent : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    public float FlickCriteriaDistance = 20f;
-    public float FlickCriteriaDuring = 0.3f;
-    public float FlickCriteriaSpped = 300f;
+    public float FlickCriteriaDistance = 20.0f;
+    public float FlickCriteriaDuration =  0.3f;
 
     [SerializeField]
-    private Book targetBook;
+    private UniObjBook targetBook;
 
     private Touch touch;
 
     private void Awake()
     {
-        touch = new Touch(FlickCriteriaDuring, FlickCriteriaDistance);
+        touch = new Touch(FlickCriteriaDuration, FlickCriteriaDistance);
     }
     private void Update()
     {
@@ -37,10 +36,7 @@ public class TouchEvent : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         touch.position.x.end = eventData.position.x;
         touch.position.y.end = eventData.position.y;
 
-
         float distanceX = touch.position.x.distance;
-        float duration = touch.durationTimer.Timercount;
-        float speed = Mathf.Abs(distanceX) / duration;
 
         if (touch.IsTap())
         {
@@ -72,8 +68,7 @@ public class Touch
         public class Position
         {
             public float begin { set; get; } = 0f;
-            public float end { set; get; } = 0f;
-
+            public float end   { set; get; } = 0f;
             public float distance { get { return end - begin; } }
         }
 
@@ -81,26 +76,26 @@ public class Touch
         public Position y = new Position();
     }
     public PositionPropaty position = new PositionPropaty();
-    public Timer durationTimer = new Timer();
-    private float FlickCriteriaDuring;
+    public Timer durationTimer      = new Timer();
+    private float FlickCriteriaDuration;
     private float FlickCriteriaDistance;
 
-    public Touch(float flickCriteriaDuring,
+    public Touch(float flickCriteriaDuration,
                  float flickCriteriaDistance)
     {
         FlickCriteriaDistance = flickCriteriaDistance;
-        FlickCriteriaDuring = flickCriteriaDuring;
+        FlickCriteriaDuration = flickCriteriaDuration;
     }
 
     public bool IsTap()
     {
         float distanceX = Mathf.Abs(this.position.x.distance);
         float distanceY = Mathf.Abs(this.position.y.distance);
-        float duration = this.durationTimer.Timercount;
+        float duration  = this.durationTimer.Timercount;
 
         if (distanceX < FlickCriteriaDistance &&
             distanceY < FlickCriteriaDistance &&
-            duration < FlickCriteriaDuring)
+            duration  < FlickCriteriaDuration)
         {
             return true;
         }
@@ -110,23 +105,18 @@ public class Touch
 
     public bool IsFlick()
     {
-        //���󍶉E�t���b�N�̂ݎ������Ă��܂��B
         float distanceX = Mathf.Abs(this.position.x.distance);
         float distanceY = Mathf.Abs(this.position.y.distance);
-        float duration = this.durationTimer.Timercount;
+        float duration  = this.durationTimer.Timercount;
 
         if (distanceY > distanceX)
         {
-            // �㉺�̋����̕�������
-            // �����_�ł�False�Ƃ��ĕԂ�
             return false;
         }
         else
         {
-            // ���E�̋����̕�������
-
             if (distanceX >= FlickCriteriaDistance &&
-                duration < FlickCriteriaDuring)
+                duration  <  FlickCriteriaDuration)
             {
                 return true;
             }
@@ -135,35 +125,4 @@ public class Touch
         }
     }
 
-}
-
-public class Timer
-{
-    public float Timercount { get { return _timerCount; } }
-
-    private float _timerCount = 0f;
-
-    private bool isTimerRun = false;
-
-    public void Countup(float deltaTime)
-    {
-        if (isTimerRun)
-        {
-            _timerCount += deltaTime;
-        }
-    }
-
-    public void Start()
-    {
-        isTimerRun = true;
-    }
-    public void Stop()
-    {
-        isTimerRun = false;
-    }
-
-    public void Reset()
-    {
-        _timerCount = 0f;
-    }
 }
