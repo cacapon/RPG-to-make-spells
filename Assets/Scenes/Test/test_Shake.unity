@@ -183,6 +183,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d447f76dff971ac4887038747af9c4bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SmallShakeDuration: 0.2
+  SmallShakeMagnitude: 20
+  LargeShakeDuration: 1
+  LargeShakeMagnitude: 40
 --- !u!1 &187937487
 GameObject:
   m_ObjectHideFlags: 0
@@ -994,7 +998,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 176619257}
-        m_TargetAssemblyTypeName: UniObjShake, Assembly-CSharp
+        m_TargetAssemblyTypeName: UniObjShake, Scripts
         m_MethodName: SmallShake
         m_Mode: 1
         m_Arguments:

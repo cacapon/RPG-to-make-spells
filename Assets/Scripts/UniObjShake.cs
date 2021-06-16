@@ -1,12 +1,22 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UniObjShake : MonoBehaviour
 {
+    public float SmallShakeDuration  =  0.2f;
+    public float SmallShakeMagnitude = 20.0f;
+    public float LargeShakeDuration  =  1.0f;
+    public float LargeShakeMagnitude = 40.0f;
+
+    private Vector3 originalPosition;
+
+    private void Awake()
+    {
+        originalPosition = this.transform.position;
+    }
+
     public IEnumerator Shake(float duration, float magnitude)
     {
-        Vector3 originalPosition = transform.position;
         Vector3 shakePosition = originalPosition;
         float elapsed = 0f;
 
@@ -23,12 +33,12 @@ public class UniObjShake : MonoBehaviour
 
     public void SmallShake()
     {
-        StartCoroutine(Shake(0.2f, 10.0f));
+        StartCoroutine(Shake(SmallShakeDuration, SmallShakeMagnitude));
     }
 
     public void LargeShake()
     {
-        StartCoroutine(Shake(0.6f, 20.0f));
+        StartCoroutine(Shake(LargeShakeDuration, LargeShakeMagnitude));
     }
 
 }
