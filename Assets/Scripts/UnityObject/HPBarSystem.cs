@@ -17,11 +17,11 @@ public class HPBarSystem : MonoBehaviour
 
     public float HPChangeSpeed = 10.0f;
 
-    private HitPoint HP;
+    private HP HP;
 
     private void Awake()
     {
-        HP = new HitPoint(MaxHP);
+        HP = new HP(MaxHP);
         CurrentHPBar.maxValue = MaxHP;
         FutureHPBar.maxValue = MaxHP;
     }
