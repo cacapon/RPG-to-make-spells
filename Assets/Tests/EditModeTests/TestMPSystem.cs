@@ -6,12 +6,12 @@ using UnityEngine.TestTools;
 
 public class TestMPSystem
 {
-    ManaPoint TestApp;
+    MP TestApp;
 
     [SetUp]
     public void Setup()
     {
-        TestApp = new ManaPoint(100f);
+        TestApp = new MP(100f);
     }
 
     [Test]

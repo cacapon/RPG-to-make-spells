@@ -6,12 +6,12 @@ using UnityEngine.TestTools;
 
 public class TestHPSystem
 {
-    HitPoint TestApp;
+    HP TestApp;
 
     [SetUp]
     public void Setup()
     {
-        TestApp = new HitPoint(100f);
+        TestApp = new HP(100f);
     }
 
     [Test]
