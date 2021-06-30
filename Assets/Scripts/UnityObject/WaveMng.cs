@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaveMng : MonoBehaviour
 {
     public PlayerData P;
     public EnemyList EnemyList;
+
+    public UniEnemies Enemies;
     void Start()
     {
         // プレイヤーデータのロード
@@ -15,10 +18,11 @@ public class WaveMng : MonoBehaviour
 
     void WaveStart()
     {
-        List<EnemyData> AppearedEnemy = EnemyChoices(EnemyList.Enemy, Random.Range(1, 3));
+        List<EnemyData> AppearedEnemy = EnemyChoices(EnemyList.Enemy, Random.Range(1, 4));
 
         foreach (EnemyData e in AppearedEnemy)
         {
+            Enemies.SetEnemy(e);
             Debug.Log(e.name + "があらわれた！");
         }
     }

@@ -1,5 +1,18 @@
+using Random = UnityEngine.Random;
+
 public class Enemy
 {
+    public Enemy(EnemyData eData)
+    {
+        Name = eData.name;
+        _maxHP = eData.InitHP;
+        _currentHP = eData.InitHP;
+        _attackPoint = eData.Attack;
+
+        _attackInterval = eData.Duration;
+        _defaultAttackTime = eData.Duration + Random.Range(-1f,1f);
+    }
+
     public string Name { get; set; }
     private int _maxHP;
     public int MaxHP
@@ -29,19 +42,6 @@ public class Enemy
 
     private float _defaultAttackTime;
 
-    public Enemy(int maxHP, int attackPoint, float AttackInterval)
-    {
-        _maxHP = maxHP;
-        _currentHP = maxHP;
-        _attackPoint = attackPoint;
-
-        _attackInterval = AttackInterval;
-        _defaultAttackTime = AttackInterval;
-    }
-    //ŠÔŒo‰ß‚ÅUŒ‚‚·‚é
-    //“|‚³‚ê‚½‚ç’Ê’m‚·‚é
-    //ƒ_ƒ[ƒW‚ğó‚¯‚éB
-
     public void AttackIntervalCounter(float time)
     {
         _attackInterval -= time;
@@ -51,13 +51,11 @@ public class Enemy
     {
         if (_attackInterval <= 0)
         {
-            //ŠÔ‚ğ–ß‚µ‚ÄUŒ‚—Í‚ğ“n‚·
             _attackInterval = _defaultAttackTime;
             return _attackPoint;
         }
         else
         {
-            //UŒ‚‚µ‚È‚¢B
             return 0;
         }
     }
