@@ -1362,6 +1362,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d6f15b414349de9469aa3e8423716758, type: 2}
   - {fileID: 11400000, guid: c928a28963c1e984f82908bb1c65e81d, type: 2}
   - {fileID: 11400000, guid: 6791eeb389b27c04eba3312caea2ed29, type: 2}
+  - {fileID: 11400000, guid: 15dd1b3ed7c2080489f989ad90613e00, type: 2}
   Origin: {x: -7, y: 12, z: 0}
 --- !u!114 &1556824623
 MonoBehaviour:

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,12 +16,39 @@ public class SetBlockTile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SetBlocks(); // TODO:HPの増減が発生したら呼び出す形にしたい
+        SetHPBlocks(); // TODO:HPの増減が発生したら呼び出す形にしたい
+        SetMPBlocks();
     }
 
-    private void SetBlocks()
+    private void SetMPBlocks()
     {
-        //HPを10等分し、
+        //MPを10等分し、残量に応じてタイルを選択してセットします。
+        //TODO:消費量に応じた対応は未実装　現状MPの有無のみでタイルをセットしています。
+
+        bool[] CurrentMPBlocks = new bool[10];
+        float C_M = PlayerData.CurrentMP / PlayerData.MaxMP;
+
+        for (int ite = 0; ite < 10; ite++)
+        {
+            float check = ite / 10f;
+
+            if (check < C_M){ CurrentMPBlocks[ite] = true;  }
+            else            { CurrentMPBlocks[ite] = false; }
+
+            if (CurrentMPBlocks[ite])
+            {
+                this.GetComponent<Tilemap>().SetTile(Origin + new Vector3Int(ite, -2, 0), BlockType[4]);
+            }
+            else
+            {
+                this.GetComponent<Tilemap>().SetTile(Origin + new Vector3Int(ite, -2, 0), BlockType[0]);
+            }
+        }
+    }
+
+    private void SetHPBlocks()
+    {
+        //HPを10等分し、残量に応じてタイルを選択してセットします。
         bool[] CurrentHPBlocks = new bool[10];
         bool[] FutureHPBlocks = new bool[10];
         float C_M = PlayerData.CurrentHP / PlayerData.MaxHP;
