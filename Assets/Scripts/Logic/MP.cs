@@ -2,40 +2,40 @@ using UnityEngine;
 
 public class MP
 {
-    private float _currentMP;
-    public float CurrentMP
+    public PlayerData P = null;
+
+    public MP(PlayerData pData = null)
     {
-        get { return _currentMP; }
+        // PlayerDataの優先度 アタッチ > コンストラクタ
+        if (P != null)
+        {
+            InitMP();
+        }
+        else if (pData != null)
+        {
+            P = pData;
+            InitMP();
+        }
     }
-
-    private float _maxMP;
-    public float MaxMP
+    private void InitMP()
     {
-        get { return _maxMP; }
+        P.MaxMP = P.InitMP;
+        P.CurrentMP = P.InitMP;
     }
-
-
-    public MP(float maxMP)
-    {
-        _maxMP = maxMP;
-        _currentMP = maxMP;
-    }
-
-
     public void ChangeMP(float deltaMP)
     {
-        if (deltaMP < 0 && Mathf.Abs(deltaMP) > _currentMP)
+        if (deltaMP < 0 && Mathf.Abs(deltaMP) > P.CurrentMP)
         {
-            // ����̍ۂɌ��݂�MP�����Ȃ���Ό��炳�Ȃ��B
+            // 消費量が現在値より少ない場合は何もしない
             return;
         }
 
-        _currentMP += deltaMP;
+        P.CurrentMP += deltaMP;
 
 
-        if (_currentMP >= _maxMP)
+        if (P.CurrentMP >= P.MaxMP)
         {
-            _currentMP = _maxMP;
+            P.CurrentMP = P.MaxMP;
         }
     }
 }

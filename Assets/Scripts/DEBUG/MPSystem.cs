@@ -10,6 +10,7 @@ public class MPSystem : MonoBehaviour
     [SerializeField]
     private Text TextCurrentMP;
 
+    public PlayerData P;
 
     public float MaxMP = 100.0f;
 
@@ -19,14 +20,14 @@ public class MPSystem : MonoBehaviour
 
     private void Awake()
     {
-        MP = new MP(MaxMP);
+        MP = new MP(P);
     }
 
     private void Update()
     {
         MP.ChangeMP(Time.deltaTime * MPChangeSpeed);
-        TextMaxMP.text = MP.MaxMP.ToString("N1");
-        TextCurrentMP.text = MP.CurrentMP.ToString("N1");
+        TextMaxMP.text = P.MaxMP.ToString("N1");
+        TextCurrentMP.text = P.CurrentMP.ToString("N1");
     }
 
     public void SpendMP(int damagePoint)

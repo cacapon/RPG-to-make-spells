@@ -17,20 +17,32 @@ public class SetNumberTile : MonoBehaviour
     {
         SetCurrentHPTile();
         SetMaxHPTile();
+        SetCurrentMPTile();
+        SetMaxMPTile();
     }
 
     private void SetCurrentHPTile()
     {
-        SetHPTile(1,((int)PlayerData.CurrentHP));
+        SetNumTile(1,0,((int)PlayerData.CurrentHP));
     }
 
     private void SetMaxHPTile()
     {
-        SetHPTile(6, ((int)PlayerData.MaxHP));
+        SetNumTile(6,0, ((int)PlayerData.MaxHP));
+    }
+
+    private void SetCurrentMPTile()
+    {
+        SetNumTile(1, -2, ((int)PlayerData.CurrentMP));
+    }
+    private void SetMaxMPTile()
+    {
+        SetNumTile(6, -2, ((int)PlayerData.MaxMP));
     }
 
 
-    private void SetHPTile(int startXPosition, int hp)
+
+    private void SetNumTile(int startXPosition,int startYPosition, int hp)
     {
         /*
             [イメージ]
@@ -44,7 +56,7 @@ public class SetNumberTile : MonoBehaviour
         //初期化
         for(int ite=0; ite<4; ite++)
         {
-            this.GetComponent<Tilemap>().SetTile(Origin + new Vector3Int(startXPosition + ite, 0, 0), null);
+            this.GetComponent<Tilemap>().SetTile(Origin + new Vector3Int(startXPosition + ite, startYPosition, 0), null);
         }
 
         if (1 <= chnums.Length && chnums.Length <= 4)
@@ -52,7 +64,7 @@ public class SetNumberTile : MonoBehaviour
             for (int index = 0; index < chnums.Length; index++)
             {
                 int XPosition = startXPosition + 4 - chnums.Length + index;
-                this.GetComponent<Tilemap>().SetTile(Origin + new Vector3Int(XPosition, 0, 0), Numbers[(int)Char.GetNumericValue(chnums[index])]);
+                this.GetComponent<Tilemap>().SetTile(Origin + new Vector3Int(XPosition, startYPosition, 0), Numbers[(int)Char.GetNumericValue(chnums[index])]);
             }
         }
     }

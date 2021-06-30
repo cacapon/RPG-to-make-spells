@@ -8,8 +8,8 @@ public class MPBarSystem : MonoBehaviour
     [SerializeField]
     private Slider SliderCurrentMP;
 
+    public PlayerData P;
 
-    public float MaxMP = 100.0f;
 
     public float MPChangeSpeed = 5.0f;
 
@@ -17,14 +17,14 @@ public class MPBarSystem : MonoBehaviour
 
     private void Awake()
     {
-        MP = new MP(MaxMP);
-        SliderCurrentMP.maxValue = MaxMP;
+        MP = new MP(P);
+        SliderCurrentMP.maxValue = P.MaxMP;
     }
 
     private void Update()
     {
         MP.ChangeMP(Time.deltaTime * MPChangeSpeed);
-        SliderCurrentMP.value = MP.CurrentMP;
+        SliderCurrentMP.value = P.CurrentMP;
     }
 
     public void SpendMP(int damagePoint)

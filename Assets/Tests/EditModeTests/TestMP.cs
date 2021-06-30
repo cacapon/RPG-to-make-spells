@@ -1,55 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-public class TestMPSystem
+public class TestMP
 {
     MP TestApp;
 
     [SetUp]
     public void Setup()
     {
-        TestApp = new MP(100f);
+        PlayerData TestPlayerData = AssetDatabase.LoadAssetAtPath<PlayerData>("Assets/Tests/EditModeTests/TestMPData.asset");
+        TestApp = new MP(TestPlayerData);
     }
 
     [Test]
     public void TestChangeMPMaxCheck()
     {
-        // MPは最大値より超えない
-
         TestApp.ChangeMP(-20);
 
         TestApp.ChangeMP(30);
 
-        Assert.That(100f, Is.EqualTo(TestApp.CurrentMP));
+        Assert.That(100f, Is.EqualTo(TestApp.P.CurrentMP));
 
         TestApp.ChangeMP(10);
 
-        Assert.That(100f, Is.EqualTo(TestApp.CurrentMP));
+        Assert.That(100f, Is.EqualTo(TestApp.P.CurrentMP));
     }
 
     [Test]
     public void TestChangeMPSpendCheck()
     {
-        // MPは現在のMPより多く消費することが出来ない。
-
         TestApp.ChangeMP(-50);
 
-        Assert.That(50f, Is.EqualTo(TestApp.CurrentMP));
+        Assert.That(50f, Is.EqualTo(TestApp.P.CurrentMP));
 
         TestApp.ChangeMP(-60);
 
-        Assert.That(50f, Is.EqualTo(TestApp.CurrentMP));
+        Assert.That(50f, Is.EqualTo(TestApp.P.CurrentMP));
 
-
-        //丁度の場合は消費できる
         TestApp.ChangeMP(-50);
 
-        Assert.That(0f, Is.EqualTo(TestApp.CurrentMP));
+        Assert.That(0f, Is.EqualTo(TestApp.P.CurrentMP));
 
     }
-
-
 }

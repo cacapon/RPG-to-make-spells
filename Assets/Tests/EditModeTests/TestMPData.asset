@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 520ceb6d171bc76448ff397ed35a7573, type: 3}
-  m_Name: TestPlayerData
+  m_Name: TestMPData
   m_EditorClassIdentifier: 
   myName: 
-  InitHP: 200
-  InitMP: 50
+  InitHP: 0
+  InitMP: 100
   book: []
