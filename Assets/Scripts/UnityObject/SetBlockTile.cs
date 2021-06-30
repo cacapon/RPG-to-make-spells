@@ -6,7 +6,8 @@ using UnityEngine.Tilemaps;
 
 public class SetBlockTile : MonoBehaviour
 {
-    public PlayerData PlayerData;
+    [SerializeField]
+    private PlayerMng PMng;
     public TileBase[] BlockType;
 
     [SerializeField]
@@ -26,7 +27,7 @@ public class SetBlockTile : MonoBehaviour
         //TODO:消費量に応じた対応は未実装　現状MPの有無のみでタイルをセットしています。
 
         bool[] CurrentMPBlocks = new bool[10];
-        float C_M = PlayerData.CurrentMP / PlayerData.MaxMP;
+        float C_M = PMng.PData.CurrentMP / PMng.PData.MaxMP;
 
         for (int ite = 0; ite < 10; ite++)
         {
@@ -51,8 +52,8 @@ public class SetBlockTile : MonoBehaviour
         //HPを10等分し、残量に応じてタイルを選択してセットします。
         bool[] CurrentHPBlocks = new bool[10];
         bool[] FutureHPBlocks = new bool[10];
-        float C_M = PlayerData.CurrentHP / PlayerData.MaxHP;
-        float F_M = PlayerData.FutureHP  / PlayerData.MaxHP;
+        float C_M = PMng.PData.CurrentHP / PMng.PData.MaxHP;
+        float F_M = PMng.PData.FutureHP  / PMng.PData.MaxHP;
 
         for (int ite = 0; ite < 10; ite++)
         {

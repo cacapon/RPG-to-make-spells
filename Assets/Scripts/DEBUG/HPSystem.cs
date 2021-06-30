@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HPSystem : HPMng
+public class HPSystem : MonoBehaviour
 {
     [SerializeField]
     private Text TextMaxHP;
@@ -12,31 +12,13 @@ public class HPSystem : HPMng
     [SerializeField]
     private Text TextFutureHP;
 
-    public PlayerData P;
-
-    private void Awake() {
-        HP = new HP(P);
-    }
+    [SerializeField]
+    private PlayerMng PMng;
 
     private void Update()
     {
-        TextMaxHP.text     = P.MaxHP.ToString("N1");
-        TextFutureHP.text  = P.FutureHP.ToString("N1");
-        TextCurrentHP.text = P.CurrentHP.ToString("N1");
-    }
-
-    public void Damage(int damagePoint)
-    {
-        HP.ChangeHP(-damagePoint);
-    }
-
-    public void Heal(int healPoint)
-    {
-        HP.ChangeHP(healPoint);
-    }
-
-    public void Won()
-    {
-        HP.HPWhenWinning();
+        TextMaxHP.text     = PMng.PData.MaxHP.ToString("N1");
+        TextFutureHP.text  = PMng.PData.FutureHP.ToString("N1");
+        TextCurrentHP.text = PMng.PData.CurrentHP.ToString("N1");
     }
 }

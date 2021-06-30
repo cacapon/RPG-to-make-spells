@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class WaveMng : MonoBehaviour
 {
-    public PlayerData P;
     public EnemyList EnemyList;
 
     public UniEnemies Enemies;
