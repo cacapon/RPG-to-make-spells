@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Bar_1
+  m_Name: Bar_MPIcon
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: -7767105433804115491, guid: 6c0a74823b5ee9b4cbb4275d4fb12b36, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

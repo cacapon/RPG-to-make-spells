@@ -311,6 +311,7 @@ GameObject:
   - component: {fileID: 1257159571}
   - component: {fileID: 1257159570}
   - component: {fileID: 1257159572}
+  - component: {fileID: 1257159573}
   m_Layer: 0
   m_Name: Bar
   m_TagString: Untagged
@@ -493,7 +494,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 2
-      m_TileSpriteIndex: 2
+      m_TileSpriteIndex: 4
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -613,7 +614,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileSpriteIndex: 2
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -639,15 +640,19 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 285adf025e102854cae8b12a29f7d8c9, type: 2}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 51c33e4171002614c9aeb2ac9a90514a, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileSpriteArray:
-  - m_RefCount: 1
-    m_Data: {fileID: 3737897332693287829, guid: 6c0a74823b5ee9b4cbb4275d4fb12b36, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 20
     m_Data: {fileID: 7903257625544089242, guid: 6c0a74823b5ee9b4cbb4275d4fb12b36, type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: -7767105433804115491, guid: 6c0a74823b5ee9b4cbb4275d4fb12b36, type: 3}
+    m_Data: {fileID: 3737897332693287829, guid: 6c0a74823b5ee9b4cbb4275d4fb12b36, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: 8800291489874372100, guid: b25faae61aebbb344aa93082cba1dc45, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: -7767105433804115491, guid: 6c0a74823b5ee9b4cbb4275d4fb12b36, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 24
     m_Data:
@@ -719,6 +724,25 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c1f521df72117c349b559fd1bfb411cb, type: 2}
   - {fileID: 11400000, guid: 59be68e6d7d4e134c978ed929ae172de, type: 2}
   Origin: {x: -7, y: 13, z: 0}
+--- !u!114 &1257159573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257159568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b962a65e08e213c4e825bcdafdcee788, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerData: {fileID: 11400000, guid: 767c84328a1d8d24c9029c43829e4026, type: 2}
+  BlockType:
+  - {fileID: 11400000, guid: d6f15b414349de9469aa3e8423716758, type: 2}
+  - {fileID: 11400000, guid: c928a28963c1e984f82908bb1c65e81d, type: 2}
+  - {fileID: 11400000, guid: 6791eeb389b27c04eba3312caea2ed29, type: 2}
+  - {fileID: 11400000, guid: 7383bc0d445ae5148b90363150b3fd94, type: 2}
+  Origin: {x: -7, y: 12, z: 0}
 --- !u!114 &1556824623
 MonoBehaviour:
   m_ObjectHideFlags: 0

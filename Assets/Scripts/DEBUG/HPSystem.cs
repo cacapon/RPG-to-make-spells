@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HPSystem : MonoBehaviour
+public class HPSystem : HPMng
 {
     [SerializeField]
     private Text TextMaxHP;
@@ -13,8 +13,6 @@ public class HPSystem : MonoBehaviour
     private Text TextFutureHP;
 
     public PlayerData P;
-
-    private HP HP;
 
     private void Awake() {
         HP = new HP(P);
