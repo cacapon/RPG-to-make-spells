@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: TestHPData
   m_EditorClassIdentifier: 
   myName: 
-  InitHP: 0
+  InitHP: 100
   InitMP: 0
   book: []

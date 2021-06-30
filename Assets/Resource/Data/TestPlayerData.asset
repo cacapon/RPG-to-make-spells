@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 520ceb6d171bc76448ff397ed35a7573, type: 3}
   m_Name: TestPlayerData
   m_EditorClassIdentifier: 
+  myName: 
   InitHP: 100
   InitMP: 50
-  Book: []
+  book: []

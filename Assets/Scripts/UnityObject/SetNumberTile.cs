@@ -21,12 +21,12 @@ public class SetNumberTile : MonoBehaviour
 
     private void SetCurrentHPTile()
     {
-        SetHPTile(1,PlayerData.InitHP); //TODO:CurrentHPをScriptableObject化していないため、暫定でINITHPを設定しています。
+        SetHPTile(1,((int)PlayerData.CurrentHP));
     }
 
     private void SetMaxHPTile()
     {
-        SetHPTile(6, PlayerData.InitHP); //TODO:MaxHPをScriptableObject化していないため、暫定でINITHPを設定しています。
+        SetHPTile(6, ((int)PlayerData.MaxHP));
     }
 
 
