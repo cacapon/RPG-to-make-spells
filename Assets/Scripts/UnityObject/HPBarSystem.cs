@@ -11,26 +11,24 @@ public class HPBarSystem : MonoBehaviour
     private Slider FutureHPBar;
     [SerializeField]
     private GameObject BackGround;
-
-
-    public float MaxHP = 100.0f;
-
     public float HPChangeSpeed = 10.0f;
+
+    public PlayerData P;
 
     private HP HP;
 
     private void Awake()
     {
-        HP = new HP(MaxHP);
-        CurrentHPBar.maxValue = MaxHP;
-        FutureHPBar.maxValue = MaxHP;
+        HP = new HP(P);
+        CurrentHPBar.maxValue = P.MaxHP;
+        FutureHPBar.maxValue = P.MaxHP;
     }
 
     private void Update()
     {
-        if (HP.CurrentHP > HP.FutureHP)
+        if (P.CurrentHP > P.FutureHP)
         {
-            //  ƒ_ƒ[ƒW
+            //  ï¿½_ï¿½ï¿½ï¿½[ï¿½Wï¿½ï¿½
             FutureHPBar.transform.SetAsFirstSibling();
             CurrentHPBar.transform.SetAsFirstSibling();
 
@@ -38,9 +36,9 @@ public class HPBarSystem : MonoBehaviour
             CurrentHPBar.GetComponentInChildren<Image>().color = new Color(255f, 0f, 0f);
 
         }
-        else if (HP.CurrentHP < HP.FutureHP)
+        else if (P.CurrentHP < P.FutureHP)
         {
-            //  ‰ñ•œ
+            //  ï¿½ñ•œï¿½
             CurrentHPBar.transform.SetAsFirstSibling();
             FutureHPBar.transform.SetAsFirstSibling();
 
@@ -51,8 +49,8 @@ public class HPBarSystem : MonoBehaviour
 
 
         HP.PersistentHP(Time.deltaTime * HPChangeSpeed);
-        CurrentHPBar.value  = HP.CurrentHP;
-        FutureHPBar.value = HP.FutureHP;
+        CurrentHPBar.value  = P.CurrentHP;
+        FutureHPBar.value = P.FutureHP;
 
     }
 

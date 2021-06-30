@@ -12,24 +12,19 @@ public class HPSystem : MonoBehaviour
     [SerializeField]
     private Text TextFutureHP;
 
-    
-    public float MaxHP = 100.0f;
-
-    public float HPChangeSpeed = 10.0f;
+    public PlayerData P;
 
     private HP HP;
 
-    private void Awake()
-    {
-        HP = new HP(MaxHP);
+    private void Awake() {
+        HP = new HP(P);
     }
 
     private void Update()
     {
-        HP.PersistentHP(Time.deltaTime * HPChangeSpeed);
-        TextMaxHP.text     = HP.MaxHP.ToString("N1");
-        TextFutureHP.text  = HP.FutureHP.ToString("N1");
-        TextCurrentHP.text = HP.CurrentHP.ToString("N1");
+        TextMaxHP.text     = P.MaxHP.ToString("N1");
+        TextFutureHP.text  = P.FutureHP.ToString("N1");
+        TextCurrentHP.text = P.CurrentHP.ToString("N1");
     }
 
     public void Damage(int damagePoint)

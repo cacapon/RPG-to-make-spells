@@ -2,88 +2,84 @@ using UnityEngine;
 
 public class HP
 {
-    private float _currentHP;
-    public float CurrentHP
+    public PlayerData P = null;
+
+    public HP(PlayerData pData = null)
     {
-        get { return _currentHP; }
+        // PlayerDataの優先度 アタッチ > コンストラクタ
+        if (P != null)
+        {
+            InitHP();
+        }
+        else if (pData != null)
+        {
+            P = pData;
+            InitHP();
+        }
     }
 
-    private float _futureHP;
-    public float FutureHP
+    public void InitHP()
     {
-        get { return _futureHP; }
-    }
-
-    private float _maxHP;
-    public float MaxHP
-    {
-        get { return _maxHP; }
-    }
-
-
-    public HP(float maxHP)
-    {
-        _maxHP = maxHP;
-        _futureHP = maxHP;
-        _currentHP = maxHP;
+        P.CurrentHP = P.InitHP;
+        P.MaxHP = P.InitHP;
+        P.FutureHP = P.InitHP;
     }
 
     public void PersistentHP(float deltaHP)
     {
-        // _currentHP��_futureHP�܂ŏ��X�ɕω�������B
 
-        if (_futureHP > _currentHP)
+        if (P.FutureHP > P.CurrentHP)
         {
-            _currentHP += deltaHP;
-            if (_futureHP <= _currentHP)
+            P.CurrentHP += deltaHP;
+            if (P.FutureHP <= P.CurrentHP)
             {
-                _currentHP = _futureHP;
+                P.CurrentHP = P.FutureHP;
             }
         }
-        if (_futureHP < _currentHP)
+        if (P.FutureHP < P.CurrentHP)
         {
-            _currentHP -= deltaHP;
-            if (_futureHP >= _currentHP)
+            P.CurrentHP -= deltaHP;
+            if (P.FutureHP >= P.CurrentHP)
             {
-                _currentHP = _futureHP;
+                P.CurrentHP = P.FutureHP;
             }
         }
     }
 
     public void ChangeHP(int deltaHP)
     {
-        _futureHP += deltaHP;
+        P.FutureHP += deltaHP;
 
-        if (_futureHP <= 0)
+        if (P.FutureHP <= 0)
         {
-            _futureHP = 0;
+            P.FutureHP = 0;
         }
-        if (_futureHP >= _maxHP)
+        if (P.FutureHP >= P.MaxHP)
         {
-            _futureHP = _maxHP;
+            P.FutureHP = P.MaxHP;
         }
     }
 
     public void HPWhenWinning()
     {
-        // �������͌����Ă���Ƃ��͍���HP
-        // �����Ă���Ƃ���FutureHP�ɂ���B
-        // HP���m�肵���^�C�~���O�ŏ����_�ȉ���HP�����܂�\��������̂ŁA�؂�̂ď��������Ă���B
+        //勝利した際に、Futureとの差分を修正します。
 
-        if (_currentHP > _futureHP)
+        // ダメージを受けている最中はCurrentに合わせます。
+        if (P.CurrentHP > P.FutureHP)
         {
-            _futureHP = Floor(_currentHP);
+            P.FutureHP = Floor(P.CurrentHP);
         }
 
-        if (_currentHP < _futureHP)
+        // 回復中の場合はFutureに合わせます。
+        if (P.CurrentHP < P.FutureHP)
         {
-            _currentHP = Floor(_futureHP);
+            P.CurrentHP = Floor(P.FutureHP);
         }
     }
 
     private float Floor(float hp)
     {
-        // HP�������_�ȉ��ɂȂ�Ȃ����Ƃ�ۏ؂�����
+        // 小数点以下の値になるのは望ましくないのでFloorで小数点以下を切り捨てています。
         return Mathf.Floor(hp);
     }
 }
