@@ -18,6 +18,6 @@ public class WaveMng : MonoBehaviour
 
     private void WaveStart()
     {
-        EMng.SetEnemies();
+        //EMng.SetEnemies();
     }
 }

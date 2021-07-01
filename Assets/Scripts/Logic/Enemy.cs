@@ -49,20 +49,22 @@ public class Enemy
 
     public int Attack()
     {
-        if (_attackInterval <= 0)
-        {
-            _attackInterval = _defaultAttackTime;
-            return _attackPoint;
-        }
-        else
-        {
-            return 0;
-        }
+        return _attackPoint;
     }
 
     public void Damage(int damagePoint)
     {
         _currentHP -= damagePoint;
+    }
+
+    public bool IsAttackIntervalOver()
+    {
+        if (_attackInterval <= 0)
+        {
+            _attackInterval = _defaultAttackTime;
+            return true;
+        }
+        return false;
     }
 
     public bool IsDead()
