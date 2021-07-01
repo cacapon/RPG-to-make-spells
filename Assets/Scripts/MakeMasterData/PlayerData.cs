@@ -7,6 +7,8 @@ public class PlayerData : ScriptableObject
 {
     public string myName;
     public int InitHP;
+    public int InitMP;
+    public float MPSpeed;
 
     [NonSerialized]
     public float MaxHP;
@@ -15,12 +17,10 @@ public class PlayerData : ScriptableObject
     [NonSerialized]
     public float FutureHP;
 
-    public int InitMP;
 
     [NonSerialized]
     public float MaxMP;
     [NonSerialized]
     public float CurrentMP;
-
     public Magic[] book;
 }

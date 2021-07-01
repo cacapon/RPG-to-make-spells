@@ -21,8 +21,8 @@ public class PlayerMng : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HP.PersistentHP(deltaHP: GMng.GameSpeed * Time.deltaTime);
-        MP.ChangeMP(deltaMP: GMng.GameSpeed * Time.deltaTime);
+        HP.PersistentHP(deltaHP: GMng.GameSpeed * GMng.PlayerHPDefaultSpeed * Time.deltaTime);
+        MP.ChangeMP(deltaMP: GMng.GameSpeed * PData.MPSpeed * Time.deltaTime);
 
         if(PData.CurrentHP <= 0f)
         {
