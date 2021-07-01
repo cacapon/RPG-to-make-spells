@@ -4,56 +4,37 @@ using UnityEngine.UI;
 
 public class EnemyMng : MonoBehaviour
 {
-
     [SerializeField]
     private EnemyListData EListData;
 
-    public GameManager GMng;
-
+    [SerializeField]
+    private GameObject EField;
     [SerializeField]
     private GameObject EPrefub;
 
     [SerializeField]
-    private GameObject EField;
+    private GameManager GMng;
 
-    private List<UniObjEnemy> Enemies;
+    private GameObject TargetObj = null;
 
-    private UniObjEnemy target;
+    private UniObjEnemy TargetObjScript = null;
 
-    private List<EnemyData> AppearedEnemies;
+    private float eTimer;
+    public float ETimer{get{return eTimer;}}
 
-    private void Awake() {
-        // Enemyの生成
-        Enemies = new List<UniObjEnemy>();
-        SetEnemies();
-    }
-
-    private void Update() {
-        // Enemyの時間管理
-
-        foreach (UniObjEnemy Enemy in Enemies)
-        {
-            Enemy.Timer(GMng.GameSpeed * Time.deltaTime);
-
-            if(Enemy.IsAttackIntervalOver())
-            {
-                Debug.Log(Enemy.MyName + "の攻撃！");
-                Attack(Enemy.Attack());
-            }
-        }
-    }
-
-    public void SetEnemies()
+    #region 生成関連のメソッド
+    private void SetEnemyfield()
     {
-        AppearedEnemies = EnemyChoices(EListData.Enemy, Random.Range(1, 4));
+        // EnemyFieldに生成したEnemyObjectをセッティングします。
+        List<EnemyData> ChoiceEnemiesData = EnemyChoices(EListData.Enemy, Random.Range(1,4));
 
-        foreach (EnemyData e in AppearedEnemies)
+        foreach(EnemyData eData in ChoiceEnemiesData)
         {
-            Enemies.Add(SetEnemy(e));
-            Debug.Log(e.name + "があらわれた！");
+            GameObject enemy = CreateEnemy(eData);
+            enemy.transform.SetParent(EField.transform);
+            enemy.transform.localPosition = Vector3.zero;
+            enemy.transform.localScale = Vector3.one;
         }
-        target = Enemies[0];
-        SetTarget(Enemies[0]);
     }
 
     private List<EnemyData> EnemyChoices(List<EnemyData> population, int k = 1)
@@ -69,27 +50,40 @@ public class EnemyMng : MonoBehaviour
         return choices;
     }
 
-    public UniObjEnemy SetEnemy(EnemyData eData)
+    private GameObject CreateEnemy(EnemyData eData)
     {
+        //EDataを元にGameObjectを生成する。
         GameObject enemy = Instantiate(EPrefub);
-        enemy.transform.SetParent(EField.transform);
-        enemy.transform.localPosition = Vector3.zero;
-        enemy.transform.localScale = Vector3.one;
         enemy.GetComponent<Image>().sprite = eData.Graphic;
 
-        //スクリプトの初期化
+        //スクリプトの初期化を行う
         UniObjEnemy e = enemy.GetComponent<UniObjEnemy>();
         e.Init(eData, this);
 
         TouchEvent touch = enemy.GetComponent<TouchEvent>();
         touch.target = enemy;
 
-        return e;
+        return enemy;
     }
+    #endregion
 
+    #region 削除関連のメソッド
+    public void RemoveEnemy(GameObject target)
+    {
+        Destroy(target);
+    }
+    #endregion
+
+    #region 攻撃関連のメソッド
     public void Damage(int point)
     {
+        //ターゲット未設定なら自動で一番右をターゲットにする。
+        if (TargetObj == null)
+        {
+            SetTarget(GetFirstEnemy());
+        }
 
+        TargetObjScript.Damage(point);
     }
 
     public void Attack(int point)
@@ -97,11 +91,41 @@ public class EnemyMng : MonoBehaviour
         GMng.PMng.Damage(point);
     }
 
-    public void SetTarget(UniObjEnemy t)
+    #endregion
+
+    #region ターゲット設定関連のメソッド
+
+    public void SetTarget(GameObject targetObj)
     {
-        target.Icon.enabled = false;
-        target = t;
-        target.Icon.enabled = true;
-        Debug.Log(target + "にターゲットを変更しました");
+        if (TargetObj != null){
+            //変更前のターゲットアイコンを非表示にしておく。
+            TargetObjScript.Icon.enabled = false;
+        }
+
+        //ターゲットの設定
+        TargetObj = targetObj;
+        TargetObjScript = targetObj.GetComponent<UniObjEnemy>();
+
+        //ターゲットアイコンの表示
+        TargetObjScript.Icon.enabled = true;
+        Debug.Log(TargetObj + "にターゲットを変更しました");
     }
+
+    private GameObject GetFirstEnemy()
+    {
+        return EField.transform.GetChild(0).gameObject;
+    }
+    #endregion
+
+    #region Unity Function
+
+    private void Awake() {
+        SetEnemyfield();
+    }
+
+    private void Update() {
+        eTimer = GMng.EnemyAttackDefaultSpeed * Time.deltaTime;
+    }
+
+    #endregion
 }

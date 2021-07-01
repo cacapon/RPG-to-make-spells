@@ -30,9 +30,9 @@ public class PlayerMng : MonoBehaviour
         }
     }
 
-    public void Attack()
+    public void Attack(Magic magic)
     {
-        //GMng.EMng.EnemyDamage(PData.book[0].Power); // TODO:indexが0なのは暫定
+        GMng.EMng.Damage(magic.Power);
     }
 
     public void Damage(int point)

@@ -11,6 +11,7 @@ public class UniObjEnemy : MonoBehaviour,ITap
     private string myname;
     public string MyName { get => myname;}
 
+
     public Image Icon;
 
     public void Init(EnemyData eData, EnemyMng eMng)
@@ -22,12 +23,16 @@ public class UniObjEnemy : MonoBehaviour,ITap
         Icon = this.transform.GetChild(0).GetComponent<Image>();
     }
 
-    public void Timer(float time)
-    {
-        Enemy.AttackIntervalCounter(time);
+    private void Update() {
+        Enemy.AttackIntervalCounter(EMng.ETimer);
+
+        if(IsAttackIntervalOver())
+        {
+            EMng.Attack(Attack());
+        }
     }
 
-    public bool IsAttackIntervalOver()
+    private bool IsAttackIntervalOver()
     {
         return Enemy.IsAttackIntervalOver();
     }
@@ -40,10 +45,14 @@ public class UniObjEnemy : MonoBehaviour,ITap
     public void Damage(int point)
     {
         Enemy.Damage(point);
+        if (Enemy.IsDead())
+        {
+            EMng.RemoveEnemy(gameObject);
+        }
     }
 
     public void Tap()
     {
-        EMng.SetTarget(this);
+        EMng.SetTarget(gameObject);
     }
 }

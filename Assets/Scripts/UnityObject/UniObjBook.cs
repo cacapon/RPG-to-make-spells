@@ -20,7 +20,7 @@ public class UniObjBook: MonoBehaviour,ITap,IFlick
 
     private void UseMagic()
     {
-        Debug.Log(book[NowPage].name + "を唱えた");
+        PMng.Attack(book[NowPage]);
     }
 
     public void Turn(int n)
