@@ -14,4 +14,11 @@ public class GameManager : MonoBehaviour {
         Debug.Log("ゲームオーバー");
         WMng.GameOver();
     }
+
+    public void GameClear()
+    {
+        GameSpeed = 0.0f;
+        Debug.Log("ゲームクリア");
+        WMng.GameClear();
+    }
 }

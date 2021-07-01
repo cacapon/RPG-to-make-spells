@@ -31,4 +31,10 @@ public class WaveMng : MonoBehaviour
         Flows[1].SetActive(true);
     }
 
+    public void GameClear()
+    {
+        Flows[0].SetActive(false);
+        Flows[2].SetActive(true);
+    }
+
 }

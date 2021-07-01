@@ -71,6 +71,14 @@ public class EnemyMng : MonoBehaviour
     public void RemoveEnemy(GameObject target)
     {
         Destroy(target);
+
+        //MEMO:Destroyは即座に反映されない。
+        //今削除したコンポーネントが最後の一体だった場合はWaveを進める
+
+        if (EField.transform.childCount == 1)
+        {
+            GMng.GameClear(); //今は暫定でゲームクリアとしています。
+        }
     }
     #endregion
 
