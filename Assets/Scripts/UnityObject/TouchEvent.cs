@@ -3,11 +3,12 @@ using UnityEngine.EventSystems;
 
 public class TouchEvent : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
+    public bool UseTap = true;
+
+    public bool UseFlick = true;
     public float FlickCriteriaDistance = 20.0f;
     public float FlickCriteriaDuration =  0.3f;
-
-    [SerializeField]
-    private GameObject target; // bookだったりEnemyだったり
+    public GameObject target;
 
     private Touch touch;
 
@@ -53,13 +54,13 @@ public class TouchEvent : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         float distanceX = touch.position.x.distance;
 
-        if (touch.IsTap())
+        if (touch.IsTap() && UseTap)
         {
             Debug.Log("TAP");
             TapCallBack(target.GetComponent<ITap>());
         }
 
-        if (touch.IsFlick())
+        if (touch.IsFlick() && UseFlick)
         {
             if (distanceX < 0)
             {

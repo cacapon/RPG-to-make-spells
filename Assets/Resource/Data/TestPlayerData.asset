@@ -15,4 +15,14 @@ MonoBehaviour:
   myName: 
   InitHP: 200
   InitMP: 50
-  book: []
+  MPSpeed: 3
+  book:
+  - name: "\u30D5\u30A1\u30A4\u30A2\u30DC\u30FC\u30EB"
+    SpendMP: 10
+    Power: 5
+  - name: "\u30D5\u30EC\u30A4\u30E0\u30D4\u30E9\u30FC"
+    SpendMP: 20
+    Power: 25
+  - name: "\u30DC\u30EB\u30B1\u30CE\u30A6\u30A7\u30A4\u30D6"
+    SpendMP: 30
+    Power: 50

@@ -1,20 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class UniObjEnemy : MonoBehaviour
+public class UniObjEnemy : MonoBehaviour,ITap
 {
+    private EnemyMng EMng;
     private Enemy Enemy;
 
     private string myname;
-
     public string MyName { get => myname;}
 
-    public void Init(EnemyData eData)
+    public Image Icon;
+
+    public void Init(EnemyData eData, EnemyMng eMng)
     {
         //EnemyMngのAwakeで呼ばれる想定です。
         Enemy = new Enemy(eData);
         myname = Enemy.Name;
+        EMng = eMng;
+        Icon = this.transform.GetChild(0).GetComponent<Image>();
     }
 
     public void Timer(float time)
@@ -37,4 +42,8 @@ public class UniObjEnemy : MonoBehaviour
         Enemy.Damage(point);
     }
 
+    public void Tap()
+    {
+        EMng.SetTarget(this);
+    }
 }

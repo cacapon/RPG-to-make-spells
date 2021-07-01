@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,29 +16,29 @@ public class EnemyMng : MonoBehaviour
     [SerializeField]
     private GameObject EField;
 
-    private List<GameObject> Enemies;
+    private List<UniObjEnemy> Enemies;
 
+    private UniObjEnemy target;
 
     private List<EnemyData> AppearedEnemies;
 
     private void Awake() {
         // Enemyの生成
-        Enemies = new List<GameObject>();
+        Enemies = new List<UniObjEnemy>();
         SetEnemies();
     }
 
     private void Update() {
         // Enemyの時間管理
 
-        foreach (GameObject Enemy in Enemies)
+        foreach (UniObjEnemy Enemy in Enemies)
         {
-            UniObjEnemy E = Enemy.GetComponent<UniObjEnemy>();
-            E.Timer(GMng.GameSpeed * Time.deltaTime);
+            Enemy.Timer(GMng.GameSpeed * Time.deltaTime);
 
-            if(E.IsAttackIntervalOver())
+            if(Enemy.IsAttackIntervalOver())
             {
-                Debug.Log(E.MyName + "の攻撃！");
-                Attack(E.Attack());
+                Debug.Log(Enemy.MyName + "の攻撃！");
+                Attack(Enemy.Attack());
             }
         }
     }
@@ -53,6 +52,8 @@ public class EnemyMng : MonoBehaviour
             Enemies.Add(SetEnemy(e));
             Debug.Log(e.name + "があらわれた！");
         }
+        target = Enemies[0];
+        SetTarget(Enemies[0]);
     }
 
     private List<EnemyData> EnemyChoices(List<EnemyData> population, int k = 1)
@@ -68,7 +69,7 @@ public class EnemyMng : MonoBehaviour
         return choices;
     }
 
-    public GameObject SetEnemy(EnemyData eData)
+    public UniObjEnemy SetEnemy(EnemyData eData)
     {
         GameObject enemy = Instantiate(EPrefub);
         enemy.transform.SetParent(EField.transform);
@@ -78,9 +79,12 @@ public class EnemyMng : MonoBehaviour
 
         //スクリプトの初期化
         UniObjEnemy e = enemy.GetComponent<UniObjEnemy>();
-        e.Init(eData);
+        e.Init(eData, this);
 
-        return enemy;
+        TouchEvent touch = enemy.GetComponent<TouchEvent>();
+        touch.target = enemy;
+
+        return e;
     }
 
     public void Damage(int point)
@@ -91,5 +95,13 @@ public class EnemyMng : MonoBehaviour
     public void Attack(int point)
     {
         GMng.PMng.Damage(point);
+    }
+
+    public void SetTarget(UniObjEnemy t)
+    {
+        target.Icon.enabled = false;
+        target = t;
+        target.Icon.enabled = true;
+        Debug.Log(target + "にターゲットを変更しました");
     }
 }
