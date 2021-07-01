@@ -8,6 +8,9 @@ public class WaveMng : MonoBehaviour
     [SerializeField]
     private EnemyMng EMng;
 
+    [SerializeField]
+    private List<GameObject> Flows;
+
     void Start()
     {
         // プレイヤーデータのロード
@@ -18,6 +21,14 @@ public class WaveMng : MonoBehaviour
 
     private void WaveStart()
     {
-        //EMng.SetEnemies();
+        Flows[0].SetActive(true);
+        Flows[1].SetActive(false);
     }
+
+    public void GameOver()
+    {
+        Flows[0].SetActive(false);
+        Flows[1].SetActive(true);
+    }
+
 }

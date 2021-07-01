@@ -34,7 +34,7 @@ public class EnemyMng : MonoBehaviour
         foreach (GameObject Enemy in Enemies)
         {
             UniObjEnemy E = Enemy.GetComponent<UniObjEnemy>();
-            E.Timer(Time.deltaTime);
+            E.Timer(GMng.GameSpeed * Time.deltaTime);
 
             if(E.IsAttackIntervalOver())
             {

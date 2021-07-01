@@ -23,6 +23,11 @@ public class PlayerMng : MonoBehaviour
     {
         HP.PersistentHP(deltaHP: GMng.GameSpeed * Time.deltaTime);
         MP.ChangeMP(deltaMP: GMng.GameSpeed * Time.deltaTime);
+
+        if(PData.CurrentHP <= 0f)
+        {
+            GMng.GameOver();
+        }
     }
 
     public void Attack()
