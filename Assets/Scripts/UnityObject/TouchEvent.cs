@@ -7,12 +7,13 @@ public class TouchEvent : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public float FlickCriteriaDuration =  0.3f;
 
     [SerializeField]
-    private UniObjBook targetBook;
+    private GameObject target; // bookだったりEnemyだったり
 
     private Touch touch;
 
     private void Awake()
     {
+
         touch = new Touch(FlickCriteriaDuration, FlickCriteriaDistance);
     }
     private void Update()
@@ -20,6 +21,20 @@ public class TouchEvent : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         touch.durationTimer.Countup(Time.deltaTime);
     }
 
+    private void TapCallBack(ITap instance)
+    {
+        instance.Tap();
+    }
+
+    private void LeftFlickCallBack(IFlick instance)
+    {
+        instance.LeftFlick();
+    }
+
+    private void RightFlickCallBack(IFlick instance)
+    {
+        instance.RightFlick();
+    }
 
 
     public void OnPointerDown(PointerEventData eventData)
@@ -41,7 +56,7 @@ public class TouchEvent : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         if (touch.IsTap())
         {
             Debug.Log("TAP");
-            targetBook.UseMagic();
+            TapCallBack(target.GetComponent<ITap>());
         }
 
         if (touch.IsFlick())
@@ -49,13 +64,13 @@ public class TouchEvent : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             if (distanceX < 0)
             {
                 Debug.Log("Left Flick");
-                targetBook.Turn(true);
+                LeftFlickCallBack(target.GetComponent<IFlick>());
             }
 
             if (distanceX > 0)
             {
                 Debug.Log("Right Flick");
-                targetBook.Turn(false);
+                RightFlickCallBack(target.GetComponent<IFlick>());
             }
         }
         touch.durationTimer.Reset();
