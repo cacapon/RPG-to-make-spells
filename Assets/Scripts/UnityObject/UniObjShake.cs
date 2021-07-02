@@ -12,7 +12,7 @@ public class UniObjShake : MonoBehaviour
 
     private void Awake()
     {
-        originalPosition = this.transform.position;
+        originalPosition = this.transform.localPosition;
     }
 
     public IEnumerator Shake(float duration, float magnitude)
@@ -24,11 +24,11 @@ public class UniObjShake : MonoBehaviour
         {
             shakePosition.y = Random.Range(-1f, 1f) * magnitude;
 
-            transform.position = shakePosition;
+            transform.localPosition = shakePosition;
             elapsed += Time.deltaTime;
             yield return null;
         }
-        transform.position = originalPosition;
+        transform.localPosition = originalPosition;
     }
 
     public void SmallShake()
