@@ -22,6 +22,22 @@ public class MP
         P.MaxMP = P.InitMP;
         P.CurrentMP = P.InitMP;
     }
+
+    public bool SpendMP(int mp)
+    {
+        if (mp > P.CurrentMP)
+        {
+            // mpが足りない
+            return false;
+        }
+        else
+        {
+            P.CurrentMP -= mp;
+            return true;
+        }
+
+    }
+
     public void ChangeMP(float deltaMP)
     {
         if (deltaMP < 0 && Mathf.Abs(deltaMP) > P.CurrentMP)

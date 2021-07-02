@@ -32,7 +32,12 @@ public class PlayerMng : MonoBehaviour
 
     public void Attack(Magic magic)
     {
-        GMng.EMng.Damage(magic.Power);
+        if (SpendMP(magic.SpendMP)){
+            GMng.EMng.Damage(magic.Power);
+        }
+        else{
+            Debug.Log("MP タリナイ！");
+        }
     }
 
     public void Damage(int point)
@@ -45,9 +50,9 @@ public class PlayerMng : MonoBehaviour
         HP.ChangeHP(point);
     }
 
-    public void SpendMP(int point)
+    public bool SpendMP(int point)
     {
-        MP.ChangeMP(-point);
+        return MP.SpendMP(point);
     }
 
 }
