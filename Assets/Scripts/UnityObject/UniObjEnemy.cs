@@ -9,8 +9,9 @@ public class UniObjEnemy : MonoBehaviour,ITap
     private Enemy Enemy;
 
     private string myname;
-    public string MyName { get => myname;}
+    public string MyName { get => myname; }
 
+    public float AttackInterval { get => Enemy.AttackInterval; }
 
     public Image Icon;
 
