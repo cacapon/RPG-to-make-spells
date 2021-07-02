@@ -22,7 +22,7 @@ public class UniObjShake : MonoBehaviour
 
         while (elapsed < duration)
         {
-            shakePosition.y = Random.Range(0f, 1f) * magnitude;
+            shakePosition.y = Random.Range(-1f, 1f) * magnitude;
 
             transform.position = shakePosition;
             elapsed += Time.deltaTime;

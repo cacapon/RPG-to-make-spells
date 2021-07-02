@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,15 @@ public class PlayerMng : MonoBehaviour
 {
     public GameManager GMng;
     public PlayerData PData;
+
+    [SerializeField]
+    private UniObjShake UIShake;
+
+    [SerializeField]
+    private SoundEffect SE;
+
+    [SerializeField]
+    private List<AudioClip> SEList;
 
     private HP HP;
 
@@ -43,8 +53,10 @@ public class PlayerMng : MonoBehaviour
     public void Damage(int point)
     {
         HP.ChangeHP(-point);
-    }
 
+        Shake();
+        DamageSE();
+    }
     public void Heal(int point)
     {
         HP.ChangeHP(point);
@@ -55,4 +67,29 @@ public class PlayerMng : MonoBehaviour
         return MP.SpendMP(point);
     }
 
+    #region エフェクト関連
+    private void Shake()
+    {
+        if (HP.P.FutureHP <= 0)
+        {
+            UIShake.LargeShake();
+        }
+        else
+        {
+            UIShake.SmallShake();
+        }
+    }
+
+    private void DamageSE()
+    {
+        if (HP.P.FutureHP <= 0)
+        {
+            SE.PlayOneShot(SEList[1]); //被ダメ大
+        }
+        else
+        {
+            SE.PlayOneShot(SEList[0]); //被ダメ少
+        }
+    }
+    #endregion
 }
