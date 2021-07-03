@@ -44,6 +44,7 @@ public class PlayerMng : MonoBehaviour
     {
         if (SpendMP(magic.SpendMP)){
             GMng.EMng.Damage(magic.Power);
+            SpellSE();
         }
         else{
             Debug.Log("MP タリナイ！");
@@ -90,6 +91,10 @@ public class PlayerMng : MonoBehaviour
         {
             SE.PlayOneShot(SEList[0]); //被ダメ少
         }
+    }
+
+    private void SpellSE(){
+        SE.PlayOneShot(SEList[2]); //被ダメ大
     }
     #endregion
 }
