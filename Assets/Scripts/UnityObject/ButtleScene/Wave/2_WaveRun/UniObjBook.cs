@@ -32,7 +32,7 @@ public class UniObjBook: MonoBehaviour,ITap,IFlick
             PageTurn.SetTrigger("BookPrev");
             NowPage += n;
         }
-        else if (n > 0 && NowPage <= book.Length)
+        else if (n > 0 && NowPage < book.Length -1)
         {
             PageTurn.SetTrigger("BookNext");
             NowPage += n;
