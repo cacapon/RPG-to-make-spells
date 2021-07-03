@@ -13,6 +13,8 @@ public class SoundEffect : MonoBehaviour
 
     public void PlayOneShot(AudioClip SE)
     {
-        audioSource.PlayOneShot(SE);
+        audioSource.Stop();
+        audioSource.clip = SE;
+        audioSource.Play();
     }
 }

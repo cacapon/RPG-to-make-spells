@@ -47,6 +47,7 @@ public class PlayerMng : MonoBehaviour
             SpellSE();
         }
         else{
+            SpellFailedSE();
             Debug.Log("MP タリナイ！");
         }
     }
@@ -93,8 +94,15 @@ public class PlayerMng : MonoBehaviour
         }
     }
 
-    private void SpellSE(){
-        SE.PlayOneShot(SEList[2]); //被ダメ大
+    private void SpellSE()
+    {
+        SE.PlayOneShot(SEList[2]); //詠唱
     }
+
+    private void SpellFailedSE()
+    {
+        SE.PlayOneShot(SEList[3]); //詠唱失敗
+    }
+
     #endregion
 }
