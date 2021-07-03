@@ -685,7 +685,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &453833669
 RectTransform:
   m_ObjectHideFlags: 0
@@ -784,7 +784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &702863342
 Transform:
   m_ObjectHideFlags: 0
@@ -3413,6 +3413,7 @@ GameObject:
   - component: {fileID: 1267385226}
   - component: {fileID: 1267385228}
   - component: {fileID: 1267385229}
+  - component: {fileID: 1267385230}
   m_Layer: 5
   m_Name: Book
   m_TagString: Untagged
@@ -3489,6 +3490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6a59c74e399aea4091acdba6e28dc5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PageTurn: {fileID: 1267385230}
   PMng: {fileID: 2135352334}
   NowPage: 0
 --- !u!114 &1267385229
@@ -3508,6 +3510,25 @@ MonoBehaviour:
   FlickCriteriaDistance: 20
   FlickCriteriaDuration: 0.3
   target: {fileID: 1267385224}
+--- !u!95 &1267385230
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267385224}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d102606f1869b904e95ee23e5a491a68, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1277356656
 GameObject:
   m_ObjectHideFlags: 0
@@ -6070,6 +6091,7 @@ MonoBehaviour:
   SEList:
   - {fileID: 8300000, guid: ad920e60739386a47a89a31f6ef9c862, type: 3}
   - {fileID: 8300000, guid: c8edac2be13775e49b9f6e3dc7ade831, type: 3}
+  - {fileID: 8300000, guid: f7d43b313a5eeb14fa459bff1828762a, type: 3}
 --- !u!82 &2135352335
 AudioSource:
   m_ObjectHideFlags: 0

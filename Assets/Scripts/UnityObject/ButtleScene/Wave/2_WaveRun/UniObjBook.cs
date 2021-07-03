@@ -6,6 +6,9 @@ using UnityEngine;
 public class UniObjBook: MonoBehaviour,ITap,IFlick
 {
     [SerializeField]
+    private Animator PageTurn;
+
+    [SerializeField]
     private PlayerMng PMng;
 
     [SerializeField]
@@ -26,10 +29,12 @@ public class UniObjBook: MonoBehaviour,ITap,IFlick
     public void Turn(int n)
     {
         if (n < 0 && NowPage >= 1){
+            PageTurn.SetTrigger("BookPrev");
             NowPage += n;
         }
         else if (n > 0 && NowPage <= book.Length)
         {
+            PageTurn.SetTrigger("BookNext");
             NowPage += n;
         }
     }
@@ -47,5 +52,11 @@ public class UniObjBook: MonoBehaviour,ITap,IFlick
     public void RightFlick()
     {
         Turn(-1);
+    }
+
+    private void OnAnimatorMove()
+    {
+        PageTurn.ResetTrigger("BookNext");
+        PageTurn.ResetTrigger("BookPrev");
     }
 }
