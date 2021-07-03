@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerMng : MonoBehaviour
 {
-    public GameManager GMng;
+    public GameMng GMng;
     public PlayerData PData;
 
     [SerializeField]

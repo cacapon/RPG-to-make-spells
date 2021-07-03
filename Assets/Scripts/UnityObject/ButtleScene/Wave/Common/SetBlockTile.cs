@@ -13,6 +13,34 @@ public class SetBlockTile : MonoBehaviour
     [SerializeField]
     private Vector3Int Origin = new Vector3Int(7, 12, 0); //FIXME: TileMapの原点位置の調整方法が分からないので、数字で調整しています。
 
+    private Dictionary<eBlockName,TileBase> Blocks;
+
+    public enum eBlockName
+    {
+        Gray,
+        GraytoGreen,
+        GraytoRed,
+        Green,
+        Blue
+    }
+
+    private void Awake()
+    {
+        MakeDict();
+    }
+
+    private void MakeDict()
+    {
+        Blocks = new Dictionary<eBlockName, TileBase>();
+
+        int i = 0;
+
+        foreach (eBlockName key in Enum.GetValues(typeof(eBlockName)))
+        {
+            Blocks.Add(key, BlockType[i]);
+            i++;
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -38,11 +66,11 @@ public class SetBlockTile : MonoBehaviour
 
             if (CurrentMPBlocks[ite])
             {
-                this.GetComponent<Tilemap>().SetTile(Origin + new Vector3Int(ite, -2, 0), BlockType[4]);
+                this.GetComponent<Tilemap>().SetTile(Origin + new Vector3Int(ite, -2, 0), Blocks[eBlockName.Blue]);
             }
             else
             {
-                this.GetComponent<Tilemap>().SetTile(Origin + new Vector3Int(ite, -2, 0), BlockType[0]);
+                this.GetComponent<Tilemap>().SetTile(Origin + new Vector3Int(ite, -2, 0), Blocks[eBlockName.Gray]);
             }
         }
     }
@@ -68,19 +96,19 @@ public class SetBlockTile : MonoBehaviour
 
             if (CurrentHPBlocks[ite] && FutureHPBlocks[ite])
             {
-                this.GetComponent<Tilemap>().SetTile(Origin + new Vector3Int(ite, 0, 0), BlockType[3]);
+                this.GetComponent<Tilemap>().SetTile(Origin + new Vector3Int(ite, 0, 0), Blocks[eBlockName.Green]);
             }
             else if (!CurrentHPBlocks[ite] && FutureHPBlocks[ite])
             {
-                this.GetComponent<Tilemap>().SetTile(Origin + new Vector3Int(ite, 0, 0), BlockType[2]);
+                this.GetComponent<Tilemap>().SetTile(Origin + new Vector3Int(ite, 0, 0), Blocks[eBlockName.GraytoGreen]);
             }
             else if (CurrentHPBlocks[ite] && !FutureHPBlocks[ite])
             {
-                this.GetComponent<Tilemap>().SetTile(Origin + new Vector3Int(ite, 0, 0), BlockType[1]);
+                this.GetComponent<Tilemap>().SetTile(Origin + new Vector3Int(ite, 0, 0), Blocks[eBlockName.GraytoRed]);
             }
             else if (!CurrentHPBlocks[ite] && !FutureHPBlocks[ite])
             {
-                this.GetComponent<Tilemap>().SetTile(Origin + new Vector3Int(ite, 0, 0), BlockType[0]);
+                this.GetComponent<Tilemap>().SetTile(Origin + new Vector3Int(ite, 0, 0), Blocks[eBlockName.Gray]);
             }
             else
             {

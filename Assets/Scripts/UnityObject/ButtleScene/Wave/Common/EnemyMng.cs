@@ -13,7 +13,7 @@ public class EnemyMng : MonoBehaviour
     private GameObject EPrefub;
 
     [SerializeField]
-    private GameManager GMng;
+    private GameMng GMng;
 
     private GameObject TargetObj = null;
 
