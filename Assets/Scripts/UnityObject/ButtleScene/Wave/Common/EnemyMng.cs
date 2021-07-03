@@ -23,7 +23,7 @@ public class EnemyMng : MonoBehaviour
     public float ETimer{get{return eTimer;}}
 
     #region 生成関連のメソッド
-    private void SetEnemyfield()
+    public void SetEnemyfield()
     {
         // EnemyFieldに生成したEnemyObjectをセッティングします。
         List<EnemyData> ChoiceEnemiesData = EnemyChoices(EListData.RandomEnemyList, Random.Range(1,4));
@@ -77,7 +77,7 @@ public class EnemyMng : MonoBehaviour
 
         if (EField.transform.childCount == 1)
         {
-            GMng.GameClear(); //今は暫定でゲームクリアとしています。
+            GMng.WaveNext();
         }
     }
     #endregion

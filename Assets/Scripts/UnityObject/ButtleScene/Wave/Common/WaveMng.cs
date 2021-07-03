@@ -34,6 +34,12 @@ public class WaveMng : MonoBehaviour
         WaveStart();
     }
 
+    public void NextWave()
+    {
+        BSData.CurrentWaveCount++;
+        WaveStart();
+    }
+
     private void InitWaveCount()
     {
         BSData.MaxWaveCount     = BSData.WaveCount;

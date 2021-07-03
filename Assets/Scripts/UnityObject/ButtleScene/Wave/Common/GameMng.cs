@@ -7,6 +7,12 @@ public class GameMng : MonoBehaviour {
     public EnemyMng EMng;
     public WaveMng WMng;
 
+    public void WaveNext()
+    {
+        EMng.SetEnemyfield();
+        WMng.NextWave();
+    }
+
     public void GameOver()
     {
         Debug.Log("ゲームオーバー");
