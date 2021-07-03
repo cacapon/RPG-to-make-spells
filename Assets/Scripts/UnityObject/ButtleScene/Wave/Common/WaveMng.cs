@@ -9,6 +9,7 @@ public class WaveMng : MonoBehaviour
 
     public float GameSpeed { get => gameSpeed;}
 
+    public ButtleSceneData BSData;
     public List<GameObject> View;
 
     private Dictionary<eViewName,GameObject> DictView;
@@ -21,10 +22,22 @@ public class WaveMng : MonoBehaviour
         CONTINUEVIEW, //TODO
     }
 
-    private void OnEnable()
+    private void Awake()
     {
+        Initialize();
+    }
+
+    public void Initialize()
+    {
+        InitWaveCount();
         MakeDictView();
         WaveStart();
+    }
+
+    private void InitWaveCount()
+    {
+        BSData.MaxWaveCount     = BSData.WaveCount;
+        BSData.CurrentWaveCount = 1;
     }
 
     private void MakeDictView()

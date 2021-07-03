@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class EnemyMng : MonoBehaviour
 {
     [SerializeField]
-    private EnemyListData EListData;
+    private ButtleSceneData EListData;
 
     [SerializeField]
     private GameObject EField;
@@ -26,7 +26,7 @@ public class EnemyMng : MonoBehaviour
     private void SetEnemyfield()
     {
         // EnemyFieldに生成したEnemyObjectをセッティングします。
-        List<EnemyData> ChoiceEnemiesData = EnemyChoices(EListData.Enemy, Random.Range(1,4));
+        List<EnemyData> ChoiceEnemiesData = EnemyChoices(EListData.RandomEnemyList, Random.Range(1,4));
 
         foreach(EnemyData eData in ChoiceEnemiesData)
         {
@@ -132,7 +132,7 @@ public class EnemyMng : MonoBehaviour
     }
 
     private void Update() {
-        eTimer = GMng.EnemyAttackDefaultSpeed * Time.deltaTime;
+        eTimer = GMng.WMng.GameSpeed * GMng.EnemyAttackDefaultSpeed * Time.deltaTime;
     }
 
     #endregion
