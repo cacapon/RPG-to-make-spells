@@ -22,6 +22,16 @@ public class TouchEvent : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         touch.durationTimer.Countup(Time.deltaTime);
     }
 
+    public void SwitchUseTap(bool sw)
+    {
+        UseTap = sw;
+    }
+
+    public void SwitchUseFlick(bool sw)
+    {
+        UseFlick = sw;
+    }
+
     private void TapCallBack(ITap instance)
     {
         instance.Tap();
