@@ -3593,6 +3593,9 @@ MonoBehaviour:
   PageTurn: {fileID: 1267385230}
   PMng: {fileID: 2135352334}
   NowPage: 0
+  SE: {fileID: 2135352330}
+  SEList:
+  - {fileID: 8300000, guid: d38622e34805e6247a3c942efe425f8e, type: 3}
 --- !u!114 &1267385229
 MonoBehaviour:
   m_ObjectHideFlags: 0

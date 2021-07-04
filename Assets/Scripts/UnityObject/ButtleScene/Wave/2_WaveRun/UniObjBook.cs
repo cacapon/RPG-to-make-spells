@@ -16,6 +16,12 @@ public class UniObjBook: MonoBehaviour,ITap,IFlick
 
     private Magic[] book;
 
+    [SerializeField]
+    private SoundEffect SE;
+
+    [SerializeField]
+    private List<AudioClip> SEList;
+
     private void Awake()
     {
         book = PMng.PData.book;
@@ -29,14 +35,21 @@ public class UniObjBook: MonoBehaviour,ITap,IFlick
     public void Turn(int n)
     {
         if (n < 0 && NowPage >= 1){
+            PageTurnSE();
             PageTurn.SetTrigger("BookPrev");
             NowPage += n;
         }
         else if (n > 0 && NowPage < book.Length -1)
         {
+            PageTurnSE();
             PageTurn.SetTrigger("BookNext");
             NowPage += n;
         }
+    }
+
+    private void PageTurnSE()
+    {
+        SE.PlayOneShot(SEList[0]); //ページめくり
     }
 
     public void Tap()
