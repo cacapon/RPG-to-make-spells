@@ -6344,7 +6344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43709920347c06042ac25b8270a62d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EListData: {fileID: 11400000, guid: 01e8764ee79a7604185058c6764cec87, type: 2}
+  BSData: {fileID: 0}
   EField: {fileID: 1832131606}
   EPrefub: {fileID: 3161192185785127678, guid: 39e806382ac667e418e3683888123b73, type: 3}
   GMng: {fileID: 2135352333}
@@ -6560,7 +6560,8 @@ MonoBehaviour:
   - {fileID: 738015423}
   - {fileID: 453833668}
   - {fileID: 252083118}
-  - {fileID: 252083118}
+  - {fileID: 874873006}
+  - {fileID: 1574287514}
 --- !u!224 &2146606268
 RectTransform:
   m_ObjectHideFlags: 0

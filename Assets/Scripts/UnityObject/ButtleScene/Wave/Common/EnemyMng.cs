@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class EnemyMng : MonoBehaviour
 {
     [SerializeField]
-    private ButtleSceneData EListData;
+    private ButtleSceneData BSData;
 
     [SerializeField]
     private GameObject EField;
@@ -22,11 +22,21 @@ public class EnemyMng : MonoBehaviour
     private float eTimer;
     public float ETimer{get{return eTimer;}}
 
+    private List<EnemyData> ChoiceEnemiesData;
+
     #region 生成関連のメソッド
     public void SetEnemyfield()
     {
+
         // EnemyFieldに生成したEnemyObjectをセッティングします。
-        List<EnemyData> ChoiceEnemiesData = EnemyChoices(EListData.RandomEnemyList, Random.Range(1,4));
+        if (GMng.WMng.BSData.CurrentWaveCount == GMng.WMng.BSData.MaxWaveCount)
+        {
+            ChoiceEnemiesData = GMng.WMng.BSData.BossEnemyList;
+        }
+        else
+        {
+            ChoiceEnemiesData = EnemyChoices(GMng.WMng.BSData.RandomEnemyList, Random.Range(1, 4));
+        }
 
         foreach(EnemyData eData in ChoiceEnemiesData)
         {
@@ -36,7 +46,6 @@ public class EnemyMng : MonoBehaviour
             enemy.transform.localScale = Vector3.one;
         }
     }
-
     private List<EnemyData> EnemyChoices(List<EnemyData> population, int k = 1)
     {
         //指定の敵リストから,kで指定した数だけ敵を選択します。(重複あり)
@@ -77,7 +86,7 @@ public class EnemyMng : MonoBehaviour
 
         if (EField.transform.childCount == 1)
         {
-            GMng.WaveNext();
+            GMng.Next();
         }
     }
     #endregion

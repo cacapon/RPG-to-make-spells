@@ -7,21 +7,39 @@ public class GameMng : MonoBehaviour {
     public EnemyMng EMng;
     public WaveMng WMng;
 
-    public void WaveNext()
+    public void Next()
     {
-        EMng.SetEnemyfield();
-        WMng.NextWave();
+        WMng.BSData.CurrentWaveCount++;
+
+        if(WMng.BSData.CurrentWaveCount < WMng.BSData.MaxWaveCount)
+        {
+            //通常戦闘
+            EMng.SetEnemyfield();
+            WMng.NextWave();
+        }
+        else if(WMng.BSData.CurrentWaveCount == WMng.BSData.MaxWaveCount)
+        {
+            //ボス戦闘
+            //TODO:音楽を変えたい
+            EMng.SetEnemyfield();
+            WMng.NextWave();
+        }
+        else{
+            //クリア
+            GameClear();
+        }
+
     }
 
     public void GameOver()
     {
         Debug.Log("ゲームオーバー");
-        //WMng.GameOver();
+        WMng.GameOver();
     }
 
     public void GameClear()
     {
         Debug.Log("ゲームクリア");
-        //WMng.GameClear();
+        WMng.GameClear();
     }
 }

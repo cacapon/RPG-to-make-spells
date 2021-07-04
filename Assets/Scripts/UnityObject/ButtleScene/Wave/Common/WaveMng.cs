@@ -20,6 +20,19 @@ public class WaveMng : MonoBehaviour
         MAINVIEW,
         PAUSEVIEW, // TODO
         CONTINUEVIEW, //TODO
+        CLEARVIEW,
+    }
+
+    internal void GameOver()
+    {
+        DictView[eViewName.CONTINUEVIEW].SetActive(true); //現在CONTINUEVIEWはゲームオーバー画面をアタッチしています。
+        gameSpeed = 0f;
+    }
+
+    internal void GameClear()
+    {
+        DictView[eViewName.CLEARVIEW].SetActive(true);
+        gameSpeed = 0f;
     }
 
     private void Awake()
@@ -36,7 +49,6 @@ public class WaveMng : MonoBehaviour
 
     public void NextWave()
     {
-        BSData.CurrentWaveCount++;
         WaveStart();
     }
 
