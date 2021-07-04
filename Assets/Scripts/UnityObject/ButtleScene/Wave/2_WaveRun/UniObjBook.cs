@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UniObjBook: MonoBehaviour,ITap,IFlick
 {
@@ -14,6 +15,12 @@ public class UniObjBook: MonoBehaviour,ITap,IFlick
     [SerializeField]
     private int NowPage = 0;
 
+    [SerializeField]
+    private Text TMagicName;
+
+    [SerializeField]
+    private Text TSpendMP;
+
     private Magic[] book;
 
     [SerializeField]
@@ -25,6 +32,7 @@ public class UniObjBook: MonoBehaviour,ITap,IFlick
     private void Awake()
     {
         book = PMng.PData.book;
+        ShowMagicData();
     }
 
     private void UseMagic()
@@ -45,6 +53,12 @@ public class UniObjBook: MonoBehaviour,ITap,IFlick
             PageTurn.SetTrigger("BookNext");
             NowPage += n;
         }
+        ShowMagicData();
+    }
+
+    private void ShowMagicData() {
+        TMagicName.text = book[NowPage].name;
+        TSpendMP.text = "● " + book[NowPage].SpendMP.ToString();
     }
 
     private void PageTurnSE()
