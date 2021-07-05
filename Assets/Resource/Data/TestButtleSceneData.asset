@@ -16,13 +16,13 @@ MonoBehaviour:
   RandomEnemyList:
   - name: "\u30EF\u30AB\u30D0\u30B9\u30E9\u30A4\u30E0"
     Graphic: {fileID: 21300000, guid: 43d110900c3c0fc488254d9471f0fae7, type: 3}
-    InitHP: 20
+    InitHP: 15
     Attack: 10
     Duration: 3
   - name: "\u30B0\u30F3\u30B8\u30E7\u30FC\u30B9\u30E9\u30A4\u30E0"
     Graphic: {fileID: 21300000, guid: b87b7cdb6bdaa5344ada25e50b9d163b, type: 3}
-    InitHP: 10
-    Attack: 6
+    InitHP: 8
+    Attack: 3
     Duration: 1.5
   - name: "\u30AF\u30EC\u30CA\u30A4\u30B9\u30E9\u30A4\u30E0"
     Graphic: {fileID: 21300000, guid: f18a53a144792ce4db32b9c7cea3ee48, type: 3}

@@ -18,11 +18,18 @@ MonoBehaviour:
   MPSpeed: 3
   book:
   - name: "\u30D5\u30A1\u30A4\u30A2\u30DC\u30FC\u30EB"
+    Type: 1
     SpendMP: 10
-    Power: 5
+    Power: 8
   - name: "\u30D5\u30EC\u30A4\u30E0\u30D4\u30E9\u30FC"
-    SpendMP: 20
-    Power: 25
+    Type: 1
+    SpendMP: 15
+    Power: 19
   - name: "\u30DC\u30EB\u30B1\u30CE\u30A6\u30A7\u30A4\u30D6"
+    Type: 1
     SpendMP: 30
-    Power: 50
+    Power: 30
+  - name: "\u30D2\u30FC\u30EB"
+    Type: 0
+    SpendMP: 20
+    Power: 40
