@@ -7,6 +7,12 @@ public class GameMng : MonoBehaviour {
     public EnemyMng EMng;
     public WaveMng WMng;
 
+    private bool gameClearFlg;
+
+    private void Awake() {
+        gameClearFlg = false;
+    }
+
     public void Next()
     {
         WMng.BSData.CurrentWaveCount++;
@@ -33,8 +39,11 @@ public class GameMng : MonoBehaviour {
 
     public void GameOver()
     {
-        Debug.Log("ゲームオーバー");
-        WMng.GameOver();
+        if(!gameClearFlg)
+        {
+            Debug.Log("ゲームオーバー");
+            WMng.GameOver();
+        }
     }
 
     public void GameClear()

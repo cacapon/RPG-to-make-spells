@@ -31,6 +31,7 @@ public class WaveMng : MonoBehaviour
 
     internal void GameClear()
     {
+        DictView[eViewName.CONTINUEVIEW].SetActive(false); //自分、敵の同士討ちなら勝利にする為、gameOver画面を向こうにする。
         DictView[eViewName.CLEARVIEW].SetActive(true);
         gameSpeed = 0f;
     }
