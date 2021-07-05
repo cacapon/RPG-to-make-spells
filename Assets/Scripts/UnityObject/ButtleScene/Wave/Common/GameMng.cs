@@ -15,6 +15,7 @@ public class GameMng : MonoBehaviour {
 
     public void Next()
     {
+        PMng.WaveWinning();
         WMng.BSData.CurrentWaveCount++;
 
         if(WMng.BSData.CurrentWaveCount < WMng.BSData.MaxWaveCount)

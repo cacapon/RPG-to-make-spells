@@ -67,6 +67,11 @@ public class PlayerMng : MonoBehaviour
         }
     }
 
+    public void WaveWinning()
+    {
+        HP.HPWhenWinning();
+    }
+
     public void Damage(int point)
     {
         HP.ChangeHP(-point);
