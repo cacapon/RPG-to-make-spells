@@ -43,12 +43,27 @@ public class PlayerMng : MonoBehaviour
     public void Attack(Magic magic)
     {
         if (SpendMP(magic.SpendMP)){
-            GMng.EMng.Damage(magic.Power);
+            SelectSpell(magic);
             SpellSE();
         }
         else{
             SpellFailedSE();
             Debug.Log("MP タリナイ！");
+        }
+    }
+
+    private void SelectSpell(Magic magic)
+    {
+        switch(magic.Type)
+        {
+            case Magic.MagicType.HEAL:
+                Heal(magic.Power);
+                break;
+            case Magic.MagicType.DAMAGE:
+                GMng.EMng.Damage(magic.Power);
+                break;
+            default:
+                break;
         }
     }
 
