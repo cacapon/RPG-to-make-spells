@@ -6,14 +6,12 @@ public class GameMng : MonoBehaviour {
     public PlayerMng PMng;
     public EnemyMng EMng;
     public WaveMng WMng;
-
-    [SerializeField]
-    private BGM BGM;
     private bool gameClearFlg;
+
+    public BGM BGM;
 
     private void Awake() {
         gameClearFlg = false;
-        BGM.SetBGM(0); // Buttle1
     }
 
     public void Next()
@@ -29,15 +27,12 @@ public class GameMng : MonoBehaviour {
         }
         else if(WMng.BSData.CurrentWaveCount == WMng.BSData.MaxWaveCount)
         {
-            BGM.StopBGM();
             //ボス戦闘
             EMng.SetEnemyfield();
             WMng.NextWave();
-            BGM.SetBGM(1); // BOSS戦音楽
         }
         else{
             //クリア
-            BGM.StopBGM();
             GameClear();
         }
 
@@ -49,6 +44,7 @@ public class GameMng : MonoBehaviour {
         {
             Debug.Log("ゲームオーバー");
             WMng.GameOver();
+            BGM.StopBGM();
         }
     }
 
@@ -56,5 +52,6 @@ public class GameMng : MonoBehaviour {
     {
         Debug.Log("ゲームクリア");
         WMng.GameClear();
+        BGM.StopBGM();
     }
 }

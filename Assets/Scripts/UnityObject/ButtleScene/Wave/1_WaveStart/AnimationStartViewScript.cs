@@ -5,7 +5,10 @@ using UnityEngine;
 public class AnimationStartViewScript : MonoBehaviour
 {
     [SerializeField]
-    private TouchEvent Target;
+    private TouchEvent TouchTarget;
+
+    [SerializeField]
+    private BGM TargetBGM;
 
     [SerializeField]
     private Animator StartViewHideAnimation;
@@ -20,12 +23,24 @@ public class AnimationStartViewScript : MonoBehaviour
         StartViewHideAnimation.SetTrigger("BossButtle");
     }
 
-    public void EnableUseTap(){
-        Target.SwitchUseTap(true);
+    public void EnableUseTap()
+    {
+        TouchTarget.SwitchUseTap(true);
     }
 
-    public void DisableUseTap(){
-        Target.SwitchUseTap(false);
+    public void DisableUseTap()
+    {
+        TouchTarget.SwitchUseTap(false);
+    }
+
+    public void StartBGM(int i)
+    {
+        TargetBGM.SetBGM(i);
+    }
+
+    public void StopBGM()
+    {
+        TargetBGM.StopBGM();
     }
 
 }
