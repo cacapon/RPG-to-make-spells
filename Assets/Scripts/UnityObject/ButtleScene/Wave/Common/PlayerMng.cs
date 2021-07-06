@@ -14,9 +14,6 @@ public class PlayerMng : MonoBehaviour
     [SerializeField]
     private SoundEffect SE;
 
-    [SerializeField]
-    private List<AudioClip> SEList;
-
     private HP HP;
 
     private MP MP;
@@ -106,22 +103,22 @@ public class PlayerMng : MonoBehaviour
     {
         if (HP.P.FutureHP <= 0)
         {
-            SE.PlayOneShot(SEList[1]); //被ダメ大
+            SE.PlayOneShot(1); //被ダメ大
         }
         else
         {
-            SE.PlayOneShot(SEList[0]); //被ダメ少
+            SE.PlayOneShot(0); //被ダメ少
         }
     }
 
     private void SpellSE()
     {
-        SE.PlayOneShot(SEList[2]); //詠唱
+        SE.PlayOneShot(2); //詠唱
     }
 
     private void SpellFailedSE()
     {
-        SE.PlayOneShot(SEList[3]); //詠唱失敗
+        SE.PlayOneShot(3); //詠唱失敗
     }
 
     #endregion

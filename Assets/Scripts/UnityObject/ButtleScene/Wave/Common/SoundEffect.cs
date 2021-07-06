@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class SoundEffect : MonoBehaviour
 {
+    [SerializeField]
     private AudioSource audioSource;
-    // Start is called before the first frame update
-    void Awake()
-    {
-        audioSource = this.GetComponent<AudioSource>();
-    }
 
-    public void PlayOneShot(AudioClip SE)
+    [SerializeField]
+    private List<AudioClip> SEList;
+
+
+
+    public void PlayOneShot(int i)
     {
         audioSource.Stop();
-        audioSource.clip = SE;
+        audioSource.clip = SEList[i];
         audioSource.Play();
     }
 }

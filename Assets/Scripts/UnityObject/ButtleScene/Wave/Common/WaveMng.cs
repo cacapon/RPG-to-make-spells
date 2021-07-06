@@ -9,6 +9,9 @@ public class WaveMng : MonoBehaviour
 
     public float GameSpeed { get => gameSpeed;}
 
+    [SerializeField]
+    private AnimationStartViewScript Animation;
+
     public ButtleSceneData BSData;
     public List<GameObject> View;
 
@@ -83,6 +86,7 @@ public class WaveMng : MonoBehaviour
         gameSpeed = 0.0f;
 
         //START画面、MAIN画面をONにする
+        Animation.NormalButtleAnimation();
 
         DictView[eViewName.STARTVIEW].SetActive(true);
         DictView[eViewName.MAINVIEW].SetActive(true);

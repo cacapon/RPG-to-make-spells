@@ -26,9 +26,6 @@ public class UniObjBook: MonoBehaviour,ITap,IFlick
     [SerializeField]
     private SoundEffect SE;
 
-    [SerializeField]
-    private List<AudioClip> SEList;
-
     private void Awake()
     {
         book = PMng.PData.book;
@@ -63,7 +60,7 @@ public class UniObjBook: MonoBehaviour,ITap,IFlick
 
     private void PageTurnSE()
     {
-        SE.PlayOneShot(SEList[0]); //ページめくり
+        SE.PlayOneShot(0); //ページめくり
     }
 
     public void Tap()
