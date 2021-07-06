@@ -9,6 +9,9 @@ public class ShowDamagePoint : MonoBehaviour
     public List<Sprite> Numbers;
 
     [SerializeField]
+    private Animator Animator;
+
+    [SerializeField]
     private List<GameObject> DamageNumbers;
 
     private List<Image> DamageNumbersImage;
@@ -74,5 +77,7 @@ public class ShowDamagePoint : MonoBehaviour
             //1桁目を表示
             DamageNumbersImage[0].sprite = Numbers[(int)Char.GetNumericValue(chnums[0])];
         }
+
+        Animator.SetTrigger("Damaged"); //ポップするアニメーションを実行
     }
 }
