@@ -86,10 +86,11 @@ public class WaveMng : MonoBehaviour
         gameSpeed = 0.0f;
 
         //START画面、MAIN画面をONにする
-        Animation.NormalButtleAnimation();
 
         DictView[eViewName.STARTVIEW].SetActive(true);
         DictView[eViewName.MAINVIEW].SetActive(true);
+
+        Animation.NormalButtleAnimation(); //TODO:ボス戦呼び出し未対応
 
         //三秒待機　WANT:本当はAnimationにしたい
         yield return new WaitForSeconds(3f);
