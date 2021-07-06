@@ -8827,7 +8827,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 53f6c1fe150aeea46b4ee1d87a5db88d, type: 3}
-    m_FontSize: 18
+    m_FontSize: 13
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -8838,7 +8838,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: TAP ME!
+  m_Text: "\u753B\u9762\u30BF\u30C3\u30C1\u3067\n\u30BF\u30A4\u30C8\u30EB\u306B\n\u623B\u308A\u307E\u3059"
 --- !u!222 &1294414845
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13404,7 +13404,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 53f6c1fe150aeea46b4ee1d87a5db88d, type: 3}
-    m_FontSize: 18
+    m_FontSize: 13
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -13415,7 +13415,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: TAP ME!
+  m_Text: "\u753B\u9762\u30BF\u30C3\u30C1\u3067\n\u30BF\u30A4\u30C8\u30EB\u306B\n\u623B\u308A\u307E\u3059"
 --- !u!222 &1605026875
 CanvasRenderer:
   m_ObjectHideFlags: 0
