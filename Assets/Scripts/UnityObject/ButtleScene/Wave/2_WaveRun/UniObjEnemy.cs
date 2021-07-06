@@ -8,6 +8,9 @@ public class UniObjEnemy : MonoBehaviour,ITap
     private EnemyMng EMng;
     private Enemy Enemy;
 
+    [SerializeField]
+    private ShowDamagePoint ShowDamagePoint;
+
     private string myname;
     public string MyName { get => myname; }
 
@@ -45,6 +48,7 @@ public class UniObjEnemy : MonoBehaviour,ITap
 
     public void Damage(int point)
     {
+        ShowDamagePoint.SetDamagePoint(point);
         Enemy.Damage(point);
         if (Enemy.IsDead())
         {
