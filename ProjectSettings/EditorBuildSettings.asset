@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main/Buttle.unity
     guid: 12e9fe6956997694581a4e4e7a478e2b
   - enabled: 1
+    path: Assets/Scenes/Test/test_WaveGameStart.unity
+    guid: af0433909bb974a46a8cd78dca692407
+  - enabled: 1
     path: Assets/Scenes/Test/test_Wave.unity
     guid: e7235b17e92d2884da84fbba4465d1f0
   m_configObjects: {}
