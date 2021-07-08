@@ -60,7 +60,7 @@ public class UniObjBook: MonoBehaviour,ITap,IFlick
 
     private void PageTurnSE()
     {
-        SE.PlayOneShot(0); //ページめくり
+        SE.PlayOneShot(SoundEffect.eSEName.PAGETURN);
     }
 
     public void Tap()

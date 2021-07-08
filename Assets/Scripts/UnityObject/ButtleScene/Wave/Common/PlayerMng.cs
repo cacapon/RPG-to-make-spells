@@ -33,7 +33,7 @@ public class PlayerMng : MonoBehaviour
 
         if(PData.CurrentHP <= 0f)
         {
-            GMng.GameOver();
+            GMng.GameOver(); //TODO 連続で呼ばれている。
         }
     }
 
@@ -103,22 +103,22 @@ public class PlayerMng : MonoBehaviour
     {
         if (HP.P.FutureHP <= 0)
         {
-            SE.PlayOneShot(1); //被ダメ大
+            SE.PlayOneShot(SoundEffect.eSEName.DAMAGE_LARGE); //被ダメ大
         }
         else
         {
-            SE.PlayOneShot(0); //被ダメ少
+            SE.PlayOneShot(SoundEffect.eSEName.DAMAGE_SMALL); //被ダメ少
         }
     }
 
     private void SpellSE()
     {
-        SE.PlayOneShot(2); //詠唱
+        SE.PlayOneShot(SoundEffect.eSEName.SPELL); //詠唱
     }
 
     private void SpellFailedSE()
     {
-        SE.PlayOneShot(3); //詠唱失敗
+        SE.PlayOneShot(SoundEffect.eSEName.SPELL_FAILED); //詠唱失敗
     }
 
     #endregion

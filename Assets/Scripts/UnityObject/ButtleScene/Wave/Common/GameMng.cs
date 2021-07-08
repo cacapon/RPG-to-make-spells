@@ -9,9 +9,11 @@ public class GameMng : MonoBehaviour {
     private bool gameClearFlg;
 
     public BGM BGM;
+    public Jingle Jingle;
 
     private void Awake() {
         gameClearFlg = false;
+        BGM.Play(BGM.eBGMName.BUTTLE1);
     }
 
     public void Next()
@@ -44,7 +46,8 @@ public class GameMng : MonoBehaviour {
         {
             Debug.Log("ゲームオーバー");
             WMng.GameOver();
-            BGM.StopBGM();
+            BGM.Stop();
+            Jingle.Play(Jingle.eJingleName.GAMEOVER);
         }
     }
 
@@ -52,6 +55,7 @@ public class GameMng : MonoBehaviour {
     {
         Debug.Log("ゲームクリア");
         WMng.GameClear();
-        BGM.StopBGM();
+        BGM.Stop();
+        Jingle.Play(Jingle.eJingleName.GAMECLEAR);
     }
 }

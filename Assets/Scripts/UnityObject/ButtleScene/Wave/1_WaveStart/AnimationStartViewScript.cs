@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class AnimationStartViewScript : MonoBehaviour
 {
-    [SerializeField]
-    private TouchEvent TouchTarget;
+    [SerializeField] private TouchEvent TouchTarget;
 
-    [SerializeField]
-    private BGM TargetBGM;
+    [SerializeField] private BGM BGM;
 
-    [SerializeField]
-    private Animator StartViewHideAnimation;
+    [SerializeField] private SoundEffect SE;
+    [SerializeField] private Animator StartViewHideAnimation;
 
     public void NormalButtleAnimation()
     {
@@ -33,14 +31,19 @@ public class AnimationStartViewScript : MonoBehaviour
         TouchTarget.SwitchUseTap(false);
     }
 
-    public void StartBGM(int i)
+    public void StartBGM(BGM.eBGMName bgmName)
     {
-        TargetBGM.SetBGM(i);
+        BGM.Play(bgmName);
     }
 
     public void StopBGM()
     {
-        TargetBGM.StopBGM();
+        BGM.Stop();
+    }
+
+    public void PlaySE(SoundEffect.eSEName seName)
+    {
+        SE.PlayOneShot(seName);
     }
 
 }

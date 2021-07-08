@@ -1,32 +1,49 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 登録しているBGMの再生、停止を担当します。
+/// </summary>
 public class BGM : MonoBehaviour
 {
-    [SerializeField]
+    [SerializeField] private List<AudioClip> MusicList;
+    private Dictionary<eBGMName, AudioClip> MusicDict;
     private AudioSource audioSource;
 
-    [SerializeField]
-    private List<AudioClip> BGMList;
-
-    // Start is called before the first frame update
-    void Start()
+    public enum eBGMName
     {
-        SetBGM(0);
+        SELECT,
+        BUTTLE1,
+        BUTTLE2,
     }
 
-    public void StopBGM()
+    private void Awake()
+    {
+        Init();
+    }
+
+    private void Init()
+    {
+        audioSource = gameObject.GetComponent<AudioSource>();
+        MusicDict = new Dictionary<eBGMName, AudioClip>();
+        int ite = 0;
+        foreach (eBGMName key in Enum.GetValues(typeof(eBGMName)))
+        {
+            MusicDict.Add(key, MusicList[ite]);
+            ite++;
+        }
+    }
+
+    public void Stop()
     {
         audioSource.Stop();
     }
 
-
-    public void SetBGM(int i)
+    public void Play(eBGMName bgmName)
     {
         audioSource.Stop();
-        audioSource.clip = BGMList[i];
+        audioSource.clip = MusicDict[bgmName];
         audioSource.Play();
     }
-
 }

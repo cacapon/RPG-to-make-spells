@@ -529,6 +529,13 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
+    functionName: PlaySE
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 6
+    messageOptions: 0
+  - time: 0
     functionName: DisableUseTap
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -536,28 +543,21 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1
-    functionName: PlayOneShot
+    functionName: PlaySE
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 0
+    intParameter: 6
     messageOptions: 0
   - time: 2
-    functionName: PlayOneShot
+    functionName: PlaySE
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 0
+    intParameter: 6
     messageOptions: 0
   - time: 2.9666667
     functionName: EnableUseTap
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 2.9666667
-    functionName: PlayOneShot
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

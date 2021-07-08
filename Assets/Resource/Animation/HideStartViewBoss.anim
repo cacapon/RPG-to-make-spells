@@ -517,7 +517,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.016666668
+  - time: 0
     functionName: StopBGM
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -525,25 +525,25 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.016666668
-    functionName: PlayOneShot
+    functionName: PlaySE
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 1
+    intParameter: 2
     messageOptions: 0
   - time: 1
-    functionName: PlayOneShot
+    functionName: PlaySE
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 1
+    intParameter: 2
     messageOptions: 0
   - time: 2.0166667
-    functionName: PlayOneShot
+    functionName: PlaySE
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 1
+    intParameter: 2
     messageOptions: 0
   - time: 2.9833333
     functionName: EnableUseTap
@@ -557,5 +557,5 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 1
+    intParameter: 2
     messageOptions: 0

@@ -6,6 +6,8 @@ public class StageStartMng : MonoBehaviour
     [SerializeField]
     private GameObject WaveScene;
 
+    [SerializeField]
+    private Jingle Jingle;
 
     private void Awake()
     {
@@ -14,6 +16,7 @@ public class StageStartMng : MonoBehaviour
 
     private void StageStart()
     {
+        Jingle.Play(Jingle.eJingleName.GAMESTART);
         StartCoroutine(StargeStartCoroutine());
     }
 
