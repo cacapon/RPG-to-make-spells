@@ -53,9 +53,9 @@ public class ShowDamagePoint : MonoBehaviour
             DamageNumbers[0].SetActive(false);
 
             //3,2,1桁目の数字を変える
-            DamageNumbersImage[0].sprite = Numbers[(int)Char.GetNumericValue(chnums[0])];
-            DamageNumbersImage[1].sprite = Numbers[(int)Char.GetNumericValue(chnums[1])];
-            DamageNumbersImage[2].sprite = Numbers[(int)Char.GetNumericValue(chnums[2])];
+            DamageNumbersImage[1].sprite = Numbers[(int)Char.GetNumericValue(chnums[0])];
+            DamageNumbersImage[2].sprite = Numbers[(int)Char.GetNumericValue(chnums[1])];
+            DamageNumbersImage[3].sprite = Numbers[(int)Char.GetNumericValue(chnums[2])];
         }
         else if (chnums.Length == 2)
         {
@@ -64,8 +64,8 @@ public class ShowDamagePoint : MonoBehaviour
             DamageNumbers[1].SetActive(false);
 
             //2,1桁目の数字を変える
-            DamageNumbersImage[0].sprite = Numbers[(int)Char.GetNumericValue(chnums[0])];
-            DamageNumbersImage[1].sprite = Numbers[(int)Char.GetNumericValue(chnums[1])];
+            DamageNumbersImage[2].sprite = Numbers[(int)Char.GetNumericValue(chnums[0])];
+            DamageNumbersImage[3].sprite = Numbers[(int)Char.GetNumericValue(chnums[1])];
         }
         else if (chnums.Length == 1)
         {
@@ -75,7 +75,7 @@ public class ShowDamagePoint : MonoBehaviour
             DamageNumbers[2].SetActive(false);
 
             //1桁目を表示
-            DamageNumbersImage[0].sprite = Numbers[(int)Char.GetNumericValue(chnums[0])];
+            DamageNumbersImage[3].sprite = Numbers[(int)Char.GetNumericValue(chnums[0])];
         }
 
         Animator.SetTrigger("Damaged"); //ポップするアニメーションを実行
