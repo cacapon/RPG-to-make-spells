@@ -21,6 +21,7 @@ public class SoundEffect : MonoBehaviour
         SPELL,
         SPELL_FAILED,
         WALK,
+        ENEMY_DEAD,
     }
 
     private void Awake()

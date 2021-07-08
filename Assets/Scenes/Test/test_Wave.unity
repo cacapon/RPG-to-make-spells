@@ -15568,6 +15568,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3965228791370213329, guid: dcfd3159cefad2e42977ea5a339abc73, type: 3}
+      propertyPath: SEList.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3965228791370213329, guid: dcfd3159cefad2e42977ea5a339abc73, type: 3}
+      propertyPath: SEList.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: 965e43f113ed5aa41bfd0f67cce8ca74, type: 3}
     - target: {fileID: 3965228791370213331, guid: dcfd3159cefad2e42977ea5a339abc73, type: 3}
       propertyPath: m_Name
       value: SE
