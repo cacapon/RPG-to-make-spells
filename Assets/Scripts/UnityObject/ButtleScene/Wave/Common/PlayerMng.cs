@@ -18,32 +18,41 @@ public class PlayerMng : MonoBehaviour
 
     private MP MP;
 
+    private bool isArive;
+
     // Start is called before the first frame update
     void Start()
     {
         HP = new HP(PData);
         MP = new MP(PData);
+        isArive = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        HP.PersistentHP(deltaHP: GMng.WMng.GameSpeed * GMng.PlayerHPDefaultSpeed * Time.deltaTime);
-        MP.ChangeMP(deltaMP: GMng.WMng.GameSpeed * PData.MPSpeed * Time.deltaTime);
-
-        if(PData.CurrentHP <= 0f)
+        if (isArive)
         {
-            GMng.GameOver(); //TODO 連続で呼ばれている。
+            HP.PersistentHP(deltaHP: GMng.WMng.GameSpeed * GMng.PlayerHPDefaultSpeed * Time.deltaTime);
+            MP.ChangeMP(deltaMP: GMng.WMng.GameSpeed * PData.MPSpeed * Time.deltaTime);
+
+            if (PData.CurrentHP <= 0f)
+            {
+                isArive = false;
+                GMng.GameOver();
+            }
         }
     }
 
     public void Attack(Magic magic)
     {
-        if (SpendMP(magic.SpendMP)){
+        if (SpendMP(magic.SpendMP))
+        {
             SelectSpell(magic);
             SpellSE();
         }
-        else{
+        else
+        {
             SpellFailedSE();
             Debug.Log("MP タリナイ！");
         }
@@ -51,7 +60,7 @@ public class PlayerMng : MonoBehaviour
 
     private void SelectSpell(Magic magic)
     {
-        switch(magic.Type)
+        switch (magic.Type)
         {
             case Magic.MagicType.HEAL:
                 Heal(magic.Power);
