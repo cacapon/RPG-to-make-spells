@@ -7,14 +7,15 @@ using UnityEngine.UI;
 public class ShowDamagePoint : MonoBehaviour
 {
     public List<Sprite> Numbers;
+    public Animator Animator { get => animator; }
 
-    [SerializeField]
-    private Animator Animator;
+    [SerializeField] private Animator animator;
 
-    [SerializeField]
-    private List<GameObject> DamageNumbers;
+    [SerializeField] private List<GameObject> DamageNumbers;
 
     private List<Image> DamageNumbersImage;
+
+
     void Awake()
     {
         DamageNumbersImage = new List<Image>();
@@ -24,7 +25,8 @@ public class ShowDamagePoint : MonoBehaviour
         }
     }
 
-    private void ActivatedDamageNumber(){
+    private void ActivatedDamageNumber()
+    {
         // 全ての桁のイメージを有効にします。
         DamageNumbers[0].SetActive(true);
         DamageNumbers[1].SetActive(true);
@@ -78,6 +80,6 @@ public class ShowDamagePoint : MonoBehaviour
             DamageNumbersImage[3].sprite = Numbers[(int)Char.GetNumericValue(chnums[0])];
         }
 
-        Animator.SetTrigger("Damaged"); //ポップするアニメーションを実行
+        animator.SetTrigger("Damaged"); //ポップするアニメーションを実行
     }
 }

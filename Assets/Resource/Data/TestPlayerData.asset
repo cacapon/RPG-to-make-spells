@@ -17,19 +17,23 @@ MonoBehaviour:
   InitMP: 50
   MPSpeed: 3
   book:
-  - name: "\u304B\u308B\u3081\u306E\u30B8\u30E5\u30E2\u30F3"
+  - name: "PK\u30D5\u30A1\u30A4\u30A2\u03B1"
     Type: 1
-    SpendMP: 10
-    Power: 8
-  - name: "\u3075\u3064\u3046\u306E\u546A\u6587"
-    Type: 1
+    Effect: 0
     SpendMP: 15
-    Power: 19
-  - name: "\u5FC5\u6BBA\u546A\u6587"
+    Power: 28
+  - name: "\u30E1\u30E9"
     Type: 1
-    SpendMP: 50
-    Power: 100
-  - name: "\u56DE\u5FA9\u546A\u6587"
+    Effect: 0
+    SpendMP: 5
+    Power: 8
+  - name: "\u30D5\u30A1\u30A4\u30A2"
+    Type: 1
+    Effect: 0
+    SpendMP: 9
+    Power: 18
+  - name: "\u30DB\u30A4\u30DF\uFF1F"
     Type: 0
+    Effect: 1
     SpendMP: 20
     Power: 40

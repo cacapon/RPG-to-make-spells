@@ -15311,6 +15311,7 @@ MonoBehaviour:
   PData: {fileID: 11400000, guid: 767c84328a1d8d24c9029c43829e4026, type: 2}
   UIShake: {fileID: 873178000}
   SE: {fileID: 1339828202}
+  spellAnimation: {fileID: 0}
 --- !u!1 &2142299655
 GameObject:
   m_ObjectHideFlags: 0

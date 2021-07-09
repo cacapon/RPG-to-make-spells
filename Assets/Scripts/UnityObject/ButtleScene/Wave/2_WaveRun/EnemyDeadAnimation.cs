@@ -6,11 +6,14 @@ using UnityEngine.UI;
 
 public class EnemyDeadAnimation : MonoBehaviour
 {
-    [SerializeField] private Animator Animator;
+    [SerializeField] private Animator animator;
     [SerializeField] private AudioSource audioSource;
+
+    public Animator Animator { get => animator; }
+
     public void PlayAnimation()
     {
-        Animator.SetTrigger("Dead"); //ポップするアニメーションを実行
+        animator.SetTrigger("Dead"); //ポップするアニメーションを実行
     }
 
     public void PlaySE(){

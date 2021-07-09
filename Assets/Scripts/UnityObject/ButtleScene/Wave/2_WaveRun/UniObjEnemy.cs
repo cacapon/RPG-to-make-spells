@@ -10,7 +10,7 @@ public class UniObjEnemy : MonoBehaviour,ITap
 
     [SerializeField] private ShowDamagePoint ShowDamagePoint;
     [SerializeField] private EnemyDeadAnimation DeadAnimation;
-
+    [SerializeField] private SpellAnimation SpellAnimation;
 
     private string myname;
     public string MyName { get => myname; }
@@ -47,16 +47,21 @@ public class UniObjEnemy : MonoBehaviour,ITap
         return Enemy.Attack();
     }
 
-    public void Damage(int point)
+    public void Damage(Magic magic)
     {
-        StartCoroutine(DamageAnimation(point));
+        StartCoroutine(DamageAnimation(magic));
     }
 
-    IEnumerator DamageAnimation(int point)
+    IEnumerator DamageAnimation(Magic magic)
     {
-        ShowDamagePoint.SetDamagePoint(point);
-        yield return new WaitForSeconds(0.5f);
-        Enemy.Damage(point);
+        //呪文のエフェクト
+        SpellAnimation.PlaySoloAttackAnimation(magic);
+        yield return new WaitForAnimation(SpellAnimation.SpellAnimator,0);
+
+        ShowDamagePoint.SetDamagePoint(magic.Power);
+        yield return new WaitForAnimation(ShowDamagePoint.Animator,0);
+
+        Enemy.Damage(magic.Power);
         if (Enemy.IsDead())
         {
             DeadAnimation.PlayAnimation();

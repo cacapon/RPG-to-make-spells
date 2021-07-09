@@ -92,7 +92,7 @@ public class EnemyMng : MonoBehaviour
     #endregion
 
     #region 攻撃関連のメソッド
-    public void Damage(int point)
+    public void Damage(Magic magic)
     {
         //ターゲット未設定なら自動で一番右をターゲットにする。
         if (TargetObj == null)
@@ -100,7 +100,7 @@ public class EnemyMng : MonoBehaviour
             SetTarget(GetFirstEnemy());
         }
 
-        TargetObjScript.Damage(point);
+        TargetObjScript.Damage(magic);
     }
 
     public void Attack(int point)

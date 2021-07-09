@@ -8,11 +8,9 @@ public class PlayerMng : MonoBehaviour
     public GameMng GMng;
     public PlayerData PData;
 
-    [SerializeField]
-    private UniObjShake UIShake;
+    [SerializeField] private UniObjShake UIShake;
 
-    [SerializeField]
-    private SoundEffect SE;
+    [SerializeField] private SoundEffect SE;
 
     private HP HP;
 
@@ -60,17 +58,23 @@ public class PlayerMng : MonoBehaviour
 
     private void SelectSpell(Magic magic)
     {
+        StartCoroutine(SpellAnimation(magic));
+    }
+
+    IEnumerator SpellAnimation(Magic magic)
+    {
         switch (magic.Type)
         {
-            case Magic.MagicType.HEAL:
+            case Magic.eMagicType.HEAL:
                 Heal(magic.Power);
                 break;
-            case Magic.MagicType.DAMAGE:
-                GMng.EMng.Damage(magic.Power);
+            case Magic.eMagicType.DAMAGE:
+                GMng.EMng.Damage(magic);
                 break;
             default:
                 break;
         }
+        yield return null;
     }
 
     public void WaveWinning()
