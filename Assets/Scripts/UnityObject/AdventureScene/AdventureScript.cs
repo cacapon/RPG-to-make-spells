@@ -66,9 +66,14 @@ public class AdventureScript : MonoBehaviour
         AnimationTile.SetActive(true);
         Animator.SetTrigger("Encounter");
         yield return new WaitForAnimation(Animator,0);
+        SceneManager.sceneLoaded += DataSet;
         SceneManager.LoadScene("test_Wave");
     }
 
+    private void DataSet(Scene next, LoadSceneMode mode)
+    {
+        throw new NotImplementedException();
+    }
 
     private void StopBGM()
     {

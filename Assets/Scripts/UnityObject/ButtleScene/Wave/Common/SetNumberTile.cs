@@ -6,8 +6,7 @@ using UnityEngine.Tilemaps;
 
 public class SetNumberTile : MonoBehaviour
 {
-    [SerializeField]
-    private PlayerMng PMng;
+    [SerializeField] Dataset dataset;
     public TileBase[] Numbers;
 
     [SerializeField]
@@ -24,21 +23,21 @@ public class SetNumberTile : MonoBehaviour
 
     private void SetCurrentHPTile()
     {
-        SetNumTile(1,0,((int)PMng.PData.CurrentHP));
+        SetNumTile(1,0,((int)dataset.CurrentHP));
     }
 
     private void SetMaxHPTile()
     {
-        SetNumTile(6,0, ((int)PMng.PData.MaxHP));
+        SetNumTile(6,0, ((int)dataset.MaxHP));
     }
 
     private void SetCurrentMPTile()
     {
-        SetNumTile(1, -2, ((int)PMng.PData.CurrentMP));
+        SetNumTile(1, -2, ((int)dataset.CurrentMP));
     }
     private void SetMaxMPTile()
     {
-        SetNumTile(6, -2, ((int)PMng.PData.MaxMP));
+        SetNumTile(6, -2, ((int)dataset.MaxMP));
     }
 
 

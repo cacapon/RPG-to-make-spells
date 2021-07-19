@@ -5,20 +5,16 @@ using UnityEngine.UI;
 
 public class HPSystem : MonoBehaviour
 {
-    [SerializeField]
-    private Text TextMaxHP;
-    [SerializeField]
-    private Text TextCurrentHP;
-    [SerializeField]
-    private Text TextFutureHP;
+    [SerializeField] private Text TextMaxHP;
+    [SerializeField] private Text TextCurrentHP;
+    [SerializeField] private Text TextFutureHP;
 
-    [SerializeField]
-    private PlayerMng PMng;
+    [SerializeField] private Dataset dataset;
 
     private void Update()
     {
-        TextMaxHP.text     = PMng.PData.MaxHP.ToString("N1");
-        TextFutureHP.text  = PMng.PData.FutureHP.ToString("N1");
-        TextCurrentHP.text = PMng.PData.CurrentHP.ToString("N1");
+        TextMaxHP.text     = dataset.MaxHP.ToString("N1");
+        TextFutureHP.text  = dataset.FutureHP.ToString("N1");
+        TextCurrentHP.text = dataset.CurrentHP.ToString("N1");
     }
 }

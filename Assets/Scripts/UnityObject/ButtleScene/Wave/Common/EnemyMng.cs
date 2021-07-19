@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class EnemyMng : MonoBehaviour
 {
-    [SerializeField]
-    private ButtleSceneData BSData;
+    [SerializeField] Dataset dataset;
 
     [SerializeField]
     private GameObject EField;
@@ -30,13 +29,13 @@ public class EnemyMng : MonoBehaviour
     {
 
         // EnemyFieldに生成したEnemyObjectをセッティングします。
-        if (GMng.WMng.BSData.CurrentWaveCount == GMng.WMng.BSData.MaxWaveCount)
+        if (dataset.CurrentWaveCount == dataset.WaveCount)
         {
-            ChoiceEnemiesData = GMng.WMng.BSData.BossEnemyList;
+            ChoiceEnemiesData = dataset.BossEnemyList;
         }
         else
         {
-            ChoiceEnemiesData = EnemyChoices(GMng.WMng.BSData.RandomEnemyList, Random.Range(1, 4));
+            ChoiceEnemiesData = EnemyChoices(dataset.RandomEnemyList, Random.Range(1, 4));
         }
 
         foreach(EnemyData eData in ChoiceEnemiesData)

@@ -9,10 +9,9 @@ public class WaveMng : MonoBehaviour
 
     public float GameSpeed { get => gameSpeed;}
 
-    [SerializeField]
-    private AnimationStartViewScript Animation;
+    [SerializeField] private AnimationStartViewScript Animation;
 
-    public ButtleSceneData BSData;
+    [SerializeField] Dataset dataset;
     public List<GameObject> View;
 
     private Dictionary<eViewName,GameObject> DictView;
@@ -56,10 +55,23 @@ public class WaveMng : MonoBehaviour
         WaveStart();
     }
 
+    public void IncrementWaveCount()
+    {
+        dataset.CurrentWaveCount++;
+    }
+
+    public bool IsButtle()
+    {
+        if(dataset.CurrentWaveCount <= dataset.WaveCount)
+        {
+            return true;
+        }
+        return false;
+    }
+
     private void InitWaveCount()
     {
-        BSData.MaxWaveCount     = BSData.WaveCount;
-        BSData.CurrentWaveCount = 1;
+        dataset.CurrentWaveCount = 1;
     }
 
     private void MakeDictView()
@@ -90,7 +102,7 @@ public class WaveMng : MonoBehaviour
         DictView[eViewName.STARTVIEW].SetActive(true);
         DictView[eViewName.MAINVIEW].SetActive(true);
 
-        if(BSData.CurrentWaveCount != BSData.MaxWaveCount)
+        if(dataset.CurrentWaveCount != dataset.WaveCount)
         {
             Animation.NormalButtleAnimation();
         }

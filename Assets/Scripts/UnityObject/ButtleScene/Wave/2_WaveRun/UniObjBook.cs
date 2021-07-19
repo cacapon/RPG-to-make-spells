@@ -6,29 +6,19 @@ using UnityEngine.UI;
 
 public class UniObjBook: MonoBehaviour,ITap,IFlick
 {
-    [SerializeField]
-    private Animator PageTurn;
-
-    [SerializeField]
-    private PlayerMng PMng;
-
-    [SerializeField]
-    private int NowPage = 0;
-
-    [SerializeField]
-    private Text TMagicName;
-
-    [SerializeField]
-    private Text TSpendMP;
+    [SerializeField] private Animator PageTurn;
+    [SerializeField] Dataset dataset;
+    [SerializeField] private PlayerMng PMng;
+    [SerializeField] private int NowPage = 0;
+    [SerializeField] private Text TMagicName;
+    [SerializeField] private Text TSpendMP;
+    [SerializeField] private SoundEffect SE;
 
     private Magic[] book;
 
-    [SerializeField]
-    private SoundEffect SE;
-
     private void Awake()
     {
-        book = PMng.PData.book;
+        book = dataset.Book;
         ShowMagicData();
     }
 
