@@ -5375,6 +5375,7 @@ MonoBehaviour:
   PortraitImage: {fileID: 1215101200}
   Name: {fileID: 1063719983}
   Quote: {fileID: 1040782945}
+  buttleSceneData: {fileID: 11400000, guid: 160d150ddde2e1641a75a74645f286ce, type: 2}
 --- !u!4 &632986947
 Transform:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ public class UniObjBook: MonoBehaviour,ITap,IFlick
     [SerializeField] private Text TSpendMP;
     [SerializeField] private SoundEffect SE;
 
-    private Magic[] book;
+    private List<Magic> book;
 
     private void Awake()
     {
@@ -34,7 +34,7 @@ public class UniObjBook: MonoBehaviour,ITap,IFlick
             PageTurn.SetTrigger("BookPrev");
             NowPage += n;
         }
-        else if (n > 0 && NowPage < book.Length -1)
+        else if (n > 0 && NowPage < book.Count -1)
         {
             PageTurnSE();
             PageTurn.SetTrigger("BookNext");

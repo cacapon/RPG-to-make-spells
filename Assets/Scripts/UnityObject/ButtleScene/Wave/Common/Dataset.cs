@@ -23,8 +23,14 @@ public class Dataset : MonoBehaviour
     public float FutureHP { get => PlayerData.FutureHP; set => PlayerData.FutureHP = value; }
     public float MaxMP { get => PlayerData.MaxMP; }
     public float CurrentMP { get => PlayerData.CurrentMP; set => PlayerData.CurrentMP = value; }
-    public Magic[] Book { get => PlayerData.book; }
+    public List<Magic> Book { get => PlayerData.book; }
     public PlayerData PlayerData { get => playerData;}
     #endregion
+
+    public void Initialize(PlayerData pData, ButtleSceneData bsData)
+    {
+        playerData = pData;
+        buttleSceneData = bsData;
+    }
 
 }

@@ -27,9 +27,13 @@ public class AdventureScript : MonoBehaviour
     private List<(Sprite, string, string)> data;
     private int count = 0;
 
+    [SerializeField] ButtleSceneData buttleSceneData;
+    private PlayerData playerData;
+
     private void Start()
     {
         SetData();
+        MakePlayerData();
         Next();
     }
 
@@ -56,6 +60,27 @@ public class AdventureScript : MonoBehaviour
         count++;
     }
 
+    public void MakePlayerData()
+    {
+        playerData = new PlayerData();
+
+        //ここで設定しているのは仮のデータです　後ほど変更予定。
+        playerData.book = new List<Magic>(){
+            new Magic(){
+                name = "サンダー",
+                Type = Magic.eMagicType.DAMAGE,
+                Target = Magic.eMagicTarget.SINGLE_ENEMY,
+                Power = 5,
+                SpendMP = 5,
+                Effect = Magic.eMagicEffect.FIRE_1
+            }
+        };
+
+        playerData.InitHP = 100;
+        playerData.InitMP = 50;
+        playerData.MPSpeed = 3;
+    }
+
     public void SendNextScene()
     {
         StartCoroutine(Encounter());
@@ -67,12 +92,13 @@ public class AdventureScript : MonoBehaviour
         Animator.SetTrigger("Encounter");
         yield return new WaitForAnimation(Animator,0);
         SceneManager.sceneLoaded += DataSet;
-        SceneManager.LoadScene("test_Wave");
+        SceneManager.LoadScene("Wave");
     }
 
     private void DataSet(Scene next, LoadSceneMode mode)
     {
-        throw new NotImplementedException();
+        var dataSet = GameObject.FindWithTag("DataSet").GetComponent<Dataset>();
+        dataSet.Initialize(playerData,buttleSceneData);
     }
 
     private void StopBGM()
