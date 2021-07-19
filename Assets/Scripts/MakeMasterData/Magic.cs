@@ -7,6 +7,13 @@ public class Magic
         DAMAGE,
     }
 
+    public enum eMagicTarget
+    {
+        SELF,
+        SINGLE_ENEMY,
+        ALL_ENEMY,
+    }
+
     public enum eMagicEffect
     {
         FIRE_1,
@@ -16,6 +23,8 @@ public class Magic
     public string name; //全角8文字まで
 
     public eMagicType Type;
+
+    public eMagicTarget Target;
 
     public eMagicEffect Effect;
 

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -79,12 +80,15 @@ public class EnemyMng : MonoBehaviour
     #region 削除関連のメソッド
     public void RemoveEnemy(GameObject target)
     {
+        StartCoroutine(DestroyWait(target));
+    }
+    IEnumerator DestroyWait(GameObject target)
+    {
         Destroy(target);
 
-        //MEMO:Destroyは即座に反映されない。
-        //今削除したコンポーネントが最後の一体だった場合はWaveを進める
+        yield return null;
 
-        if (EField.transform.childCount == 1)
+        if (EField.transform.childCount == 0)
         {
             GMng.Next();
         }
@@ -94,13 +98,26 @@ public class EnemyMng : MonoBehaviour
     #region 攻撃関連のメソッド
     public void Damage(Magic magic)
     {
-        //ターゲット未設定なら自動で一番右をターゲットにする。
-        if (TargetObj == null)
+        if (magic.Target == Magic.eMagicTarget.SINGLE_ENEMY)
         {
+            //ターゲット未設定なら自動で一番右をターゲットにする。
+            if (TargetObj == null)
+            {
+                SetTarget(GetFirstEnemy());
+            }
+
+            TargetObjScript.Damage(magic);
+        }
+        else if(magic.Target == Magic.eMagicTarget.ALL_ENEMY)
+        {
+            foreach (Transform enemy in EField.transform)
+            {
+                Debug.Log(enemy);
+                SetTarget(enemy.gameObject);
+                TargetObjScript.Damage(magic);
+            }
             SetTarget(GetFirstEnemy());
         }
-
-        TargetObjScript.Damage(magic);
     }
 
     public void Attack(int point)
