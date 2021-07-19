@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class AdventureScript : MonoBehaviour
@@ -14,6 +15,8 @@ public class AdventureScript : MonoBehaviour
     [SerializeField] private List<AudioClip> BGMList;
     [SerializeField] private List<AudioClip> SEList;
 
+    [SerializeField] private GameObject AnimationTile;
+    [SerializeField] private Animator Animator;
     [SerializeField] private AudioSource BGM;
     [SerializeField] private AudioSource SE;
 
@@ -26,11 +29,6 @@ public class AdventureScript : MonoBehaviour
 
     private void Start()
     {
-        //　自分　  こんにちは
-        //　先生　  おはようじゃの
-        //　アニキ  おっす
-        //　じぶん　終わり
-        //とやる場合には？
         SetData();
         Next();
     }
@@ -41,14 +39,14 @@ public class AdventureScript : MonoBehaviour
 
         data.Add((PortraitImages[0], Names[0], Quotes[0]));
         data.Add((PortraitImages[1], Names[1], Quotes[1]));
-        data.Add((PortraitImages[2], Names[2], Quotes[2]));
-        data.Add((PortraitImages[0], Names[0], Quotes[3]));
+        data.Add((PortraitImages[0], Names[0], Quotes[2]));
     }
 
     public void Next()
     {
         if(count >= data.Count)
         {
+            SendNextScene();
             return;
         }
 
@@ -57,4 +55,30 @@ public class AdventureScript : MonoBehaviour
         Quote.text              = data[count].Item3;
         count++;
     }
+
+    public void SendNextScene()
+    {
+        StartCoroutine(Encounter());
+    }
+
+    private IEnumerator Encounter()
+    {
+        AnimationTile.SetActive(true);
+        Animator.SetTrigger("Encounter");
+        yield return new WaitForAnimation(Animator,0);
+        SceneManager.LoadScene("test_Wave");
+    }
+
+
+    private void StopBGM()
+    {
+        BGM.Stop();
+    }
+
+    private void SEPlay()
+    {
+        SE.PlayOneShot(SEList[0]);
+    }
+
+
 }
