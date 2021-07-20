@@ -12,6 +12,8 @@ public class PlayerMng : MonoBehaviour
 
     [SerializeField] private SoundEffect SE;
 
+    [SerializeField] private SpellAnimation spellAnimation;
+
     private HP HP;
 
     private MP MP;
@@ -66,6 +68,7 @@ public class PlayerMng : MonoBehaviour
         switch (magic.Type)
         {
             case Magic.eMagicType.HEAL:
+                spellAnimation.PlayAnimation(magic);
                 Heal(magic.Power);
                 break;
             case Magic.eMagicType.DAMAGE:
