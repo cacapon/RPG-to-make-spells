@@ -17,6 +17,12 @@ MonoBehaviour:
   InitMP: 50
   MPSpeed: 3
   book:
+  - name: "\u30D5\u30EA\u30FC\u30BA"
+    Type: 1
+    Target: 1
+    Effect: 2
+    SpendMP: 7
+    Power: 7
   - name: "\u30AF\u30A4\u30C3\u30AF\u30D5\u30A1\u30A4\u30A2"
     Type: 1
     Target: 1

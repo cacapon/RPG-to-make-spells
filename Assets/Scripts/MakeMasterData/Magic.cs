@@ -18,6 +18,7 @@ public class Magic
     {
         FIRE_1,
         HEAL,
+        Ice,
         None,
     }
 
@@ -39,6 +40,8 @@ public class Magic
                 return "Fire_1";
             case eMagicEffect.HEAL:
                 return "Heal";
+            case eMagicEffect.Ice:
+                return "Ice";
             default:
                 return "None";
         }
