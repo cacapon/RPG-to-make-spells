@@ -8,7 +8,7 @@ public class SpellAnimation : MonoBehaviour
     [SerializeField] private Animator spellAnimator;
 
 
-    public void PlaySoloAttackAnimation(Magic magic)
+    public void PlayAnimation(Magic magic)
     {
         StartCoroutine(AnimationCroutine(magic));
     }
@@ -18,6 +18,4 @@ public class SpellAnimation : MonoBehaviour
         spellAnimator.SetTrigger(magic.EffectToString(magic.Effect));
         yield return new WaitForAnimation(spellAnimator, 0);
     }
-
-
 }
