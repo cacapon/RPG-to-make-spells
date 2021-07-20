@@ -17,6 +17,9 @@ public class Magic
     public enum eMagicEffect
     {
         FIRE_1,
+        HEAL,
+        Ice,
+        Thunder,
         None,
     }
 
@@ -36,6 +39,12 @@ public class Magic
         {
             case eMagicEffect.FIRE_1:
                 return "Fire_1";
+            case eMagicEffect.HEAL:
+                return "Heal";
+            case eMagicEffect.Ice:
+                return "Ice";
+            case eMagicEffect.Thunder:
+                return "Thunder";
             default:
                 return "None";
         }

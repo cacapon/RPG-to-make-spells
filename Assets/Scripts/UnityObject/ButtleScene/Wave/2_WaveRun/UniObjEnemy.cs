@@ -55,7 +55,7 @@ public class UniObjEnemy : MonoBehaviour,ITap
     IEnumerator DamageAnimation(Magic magic)
     {
         //呪文のエフェクト
-        SpellAnimation.PlaySoloAttackAnimation(magic);
+        SpellAnimation.PlayAnimation(magic);
         yield return new WaitForAnimation(SpellAnimation.SpellAnimator,0);
 
         ShowDamagePoint.SetDamagePoint(magic.Power);
