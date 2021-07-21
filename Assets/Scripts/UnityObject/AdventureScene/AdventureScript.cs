@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -20,6 +21,8 @@ public class AdventureScript : MonoBehaviour
     [SerializeField] private AudioSource BGM;
     [SerializeField] private AudioSource SE;
 
+
+    [SerializeField] GameObject YesNoDialog;
     [SerializeField] private Image PortraitImage;
     [SerializeField] private Text Name;
     [SerializeField] private Text Quote;
@@ -30,13 +33,19 @@ public class AdventureScript : MonoBehaviour
     [SerializeField] ButtleSceneData buttleSceneData;
     private PlayerData playerData;
 
+    private enum BookType
+    {
+        Fire,
+        Ice,
+        Thunder,
+    }
+
     private void Start()
     {
         SetData();
         MakePlayerData();
         Next();
     }
-
     private void SetData()
     {
         data = new List<(Sprite, string, string)>();
@@ -48,16 +57,22 @@ public class AdventureScript : MonoBehaviour
 
     public void Next()
     {
-        if(count >= data.Count)
+        if (count >= data.Count)
         {
-            SendNextScene();
+            ShowYesNoDialog();
             return;
         }
 
-        PortraitImage.sprite    = data[count].Item1;
-        Name.text               = data[count].Item2;
-        Quote.text              = data[count].Item3;
+        SetConvesation(data[count].Item1, data[count].Item2, data[count].Item3);
         count++;
+
+    }
+
+    private void SetConvesation(Sprite portraitImage, string name, string quote)
+    {
+        PortraitImage.sprite = portraitImage;
+        Name.text = name;
+        Quote.text = quote;
     }
 
     public void MakePlayerData()
@@ -65,20 +80,102 @@ public class AdventureScript : MonoBehaviour
         playerData = new PlayerData();
 
         //ここで設定しているのは仮のデータです　後ほど変更予定。
-        playerData.book = new List<Magic>(){
-            new Magic(){
-                name = "サンダー",
-                Type = Magic.eMagicType.DAMAGE,
-                Target = Magic.eMagicTarget.SINGLE_ENEMY,
-                Power = 5,
-                SpendMP = 5,
-                Effect = Magic.eMagicEffect.FIRE_1
-            }
-        };
+        SetDefaultBook(BookType.Ice);
 
         playerData.InitHP = 100;
         playerData.InitMP = 50;
         playerData.MPSpeed = 3;
+    }
+
+    private void SetDefaultBook(BookType type)
+    {
+        switch (type)
+        {
+            case BookType.Thunder:
+                playerData.book = new List<Magic>(){
+                    new Magic(){
+                        name = "雷おこし",
+                        Type = Magic.eMagicType.DAMAGE,
+                        Target = Magic.eMagicTarget.SINGLE_ENEMY,
+                        Power = 30,
+                        SpendMP = 20,
+                        Effect = Magic.eMagicEffect.Thunder
+                    },
+                    new Magic(){
+                        name = "裁きの雷",
+                        Type = Magic.eMagicType.DAMAGE,
+                        Target = Magic.eMagicTarget.ALL_ENEMY,
+                        Power = 80,
+                        SpendMP = 50,
+                        Effect = Magic.eMagicEffect.Thunder
+                    },
+                    new Magic(){
+                        name = "ヒール",
+                        Type = Magic.eMagicType.HEAL,
+                        Target = Magic.eMagicTarget.SELF,
+                        Power = 50,
+                        SpendMP = 10,
+                        Effect = Magic.eMagicEffect.HEAL
+                    },
+                };
+                break;
+            case BookType.Fire:
+                playerData.book = new List<Magic>(){
+                    new Magic(){
+                        name = "ファイアバレット",
+                        Type = Magic.eMagicType.DAMAGE,
+                        Target = Magic.eMagicTarget.SINGLE_ENEMY,
+                        Power = 15,
+                        SpendMP = 10,
+                        Effect = Magic.eMagicEffect.FIRE_1
+                    },
+                    new Magic(){
+                        name = "バーン　ライン",
+                        Type = Magic.eMagicType.DAMAGE,
+                        Target = Magic.eMagicTarget.ALL_ENEMY,
+                        Power = 35,
+                        SpendMP = 30,
+                        Effect = Magic.eMagicEffect.FIRE_1
+                    },
+                    new Magic(){
+                        name = "ヒール",
+                        Type = Magic.eMagicType.HEAL,
+                        Target = Magic.eMagicTarget.SELF,
+                        Power = 50,
+                        SpendMP = 10,
+                        Effect = Magic.eMagicEffect.HEAL
+                    },
+                };
+                break;
+            case BookType.Ice:
+                playerData.book = new List<Magic>(){
+                    new Magic(){
+                        name = "つらら　くずし",
+                        Type = Magic.eMagicType.DAMAGE,
+                        Target = Magic.eMagicTarget.SINGLE_ENEMY,
+                        Power = 7,
+                        SpendMP = 5,
+                        Effect = Magic.eMagicEffect.Ice
+                    },
+                    new Magic(){
+                        name = "ふぶき",
+                        Type = Magic.eMagicType.DAMAGE,
+                        Target = Magic.eMagicTarget.ALL_ENEMY,
+                        Power = 10,
+                        SpendMP = 15,
+                        Effect = Magic.eMagicEffect.Ice
+                    },
+                    new Magic(){
+                        name = "ヒール",
+                        Type = Magic.eMagicType.HEAL,
+                        Target = Magic.eMagicTarget.SELF,
+                        Power = 50,
+                        SpendMP = 10,
+                        Effect = Magic.eMagicEffect.HEAL
+                    },
+                };
+                break;
+        }
     }
 
     public void SendNextScene()
@@ -90,7 +187,7 @@ public class AdventureScript : MonoBehaviour
     {
         AnimationTile.SetActive(true);
         Animator.SetTrigger("Encounter");
-        yield return new WaitForAnimation(Animator,0);
+        yield return new WaitForAnimation(Animator, 0);
         SceneManager.sceneLoaded += DataSet;
         SceneManager.LoadScene("Wave");
     }
@@ -98,7 +195,7 @@ public class AdventureScript : MonoBehaviour
     private void DataSet(Scene next, LoadSceneMode mode)
     {
         var dataSet = GameObject.FindWithTag("DataSet").GetComponent<Dataset>();
-        dataSet.Initialize(playerData,buttleSceneData);
+        dataSet.Initialize(playerData, buttleSceneData);
     }
 
     private void StopBGM()
@@ -112,4 +209,20 @@ public class AdventureScript : MonoBehaviour
     }
 
 
+    private void ShowYesNoDialog()
+    {
+        YesNoDialog.SetActive(true);
+    }
+    public void YesClick()
+    {
+        SendNextScene();
+        YesNoDialog.SetActive(false);
+    }
+
+    public void NoClick()
+    {
+        count=0;
+        Next();
+        YesNoDialog.SetActive(false);
+    }
 }
