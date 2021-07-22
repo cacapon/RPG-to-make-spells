@@ -28,7 +28,7 @@ MonoBehaviour:
     Graphic: {fileID: 21300000, guid: b87b7cdb6bdaa5344ada25e50b9d163b, type: 3}
     InitHP: 10
     Attack: 3
-    Duration: 1
+    Duration: 1.5
   BossEnemyList:
   - name: "\u30AA\u30C8\u30E2\u30B9\u30E9\u30A4\u30E0"
     Graphic: {fileID: 21300000, guid: 43d110900c3c0fc488254d9471f0fae7, type: 3}

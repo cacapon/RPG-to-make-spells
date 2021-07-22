@@ -6,7 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class AdventureScript : MonoBehaviour,IFlick,ITap
+public class AdventureScript : MonoBehaviour, IFlick, ITap
 {
     [Multiline(8)] [SerializeField] private List<string> Quotes;
     [SerializeField] private List<Sprite> PortraitImages;
@@ -25,6 +25,7 @@ public class AdventureScript : MonoBehaviour,IFlick,ITap
     [SerializeField] private GameObject YesNoDialog;
     private UnityAction OkAction { get; set; }
     private UnityAction NoAction { get; set; }
+    public int Count { get => count; set => count = value; }
 
     [SerializeField] private GameObject SelectDialog;
 
@@ -39,6 +40,8 @@ public class AdventureScript : MonoBehaviour,IFlick,ITap
     private int flickcount = 0;
 
     [SerializeField] ButtleSceneData buttleSceneData;
+
+    [SerializeField] GameObject TapErea;
     private PlayerData playerData;
 
     private enum BookType
@@ -55,6 +58,11 @@ public class AdventureScript : MonoBehaviour,IFlick,ITap
         Ice,
         Fire,
         Thunder,
+        ButtleViewAll,
+        ButtleViewUI,
+        ButtleViewEnemy,
+        ButtleViewBook,
+        None,
     }
 
     private enum eCharactor
@@ -65,8 +73,8 @@ public class AdventureScript : MonoBehaviour,IFlick,ITap
         AnikinoOtomo,
     }
 
-    private Dictionary<eBackGround,Sprite> DBackGround;
-    private Dictionary<eCharactor, (Sprite,string)> DCharactor;
+    private Dictionary<eBackGround, Sprite> DBackGround;
+    private Dictionary<eCharactor, (Sprite, string)> DCharactor;
 
     private void Start()
     {
@@ -78,11 +86,16 @@ public class AdventureScript : MonoBehaviour,IFlick,ITap
     {
         DBackGround = new Dictionary<eBackGround, Sprite>()
         {
-            {eBackGround.Classroom, BackGrounds[0]},
-            {eBackGround.Ground,    BackGrounds[1]},
-            {eBackGround.Ice,       BackGrounds[2]},
-            {eBackGround.Fire,      BackGrounds[3]},
-            {eBackGround.Thunder,   BackGrounds[4]},
+            {eBackGround.Classroom,         BackGrounds[0]},
+            {eBackGround.Ground,            BackGrounds[1]},
+            {eBackGround.Ice,               BackGrounds[2]},
+            {eBackGround.Fire,              BackGrounds[3]},
+            {eBackGround.Thunder,           BackGrounds[4]},
+            {eBackGround.ButtleViewAll,     BackGrounds[5]},
+            {eBackGround.ButtleViewUI,      BackGrounds[6]},
+            {eBackGround.ButtleViewEnemy,   BackGrounds[7]},
+            {eBackGround.ButtleViewBook,    BackGrounds[8]},
+            {eBackGround.None,              BackGrounds[9]},
         };
 
         DCharactor = new Dictionary<eCharactor, (Sprite, string)>()
@@ -94,243 +107,327 @@ public class AdventureScript : MonoBehaviour,IFlick,ITap
         };
     }
 
-    private void SetData()
-    {
-        data = new List<(Sprite, string, string)>();
-
-        data.Add((PortraitImages[0], Names[0], Quotes[0]));
-        data.Add((PortraitImages[1], Names[1], Quotes[1]));
-        data.Add((PortraitImages[0], Names[0], Quotes[2]));
-    }
-
     public void Next()
     {
-        switch(count)
+        switch (Count)
         {
             case 0:
-                BackGround.sprite = DBackGround[eBackGround.Ground];
-                SetConvesation( DCharactor[eCharactor.Narrator].Item1,
+                SetConvesation(DCharactor[eCharactor.Narrator].Item1,
                                 DCharactor[eCharactor.Narrator].Item2,
-                                Quotes[count]);
+                                Quotes[Count]);
                 break;
             case 1:
-                SetConvesation( DCharactor[eCharactor.Narrator].Item1,
+                SetConvesation(DCharactor[eCharactor.Narrator].Item1,
                                 DCharactor[eCharactor.Narrator].Item2,
-                                Quotes[count]);
+                                Quotes[Count]);
                 break;
+
             case 2:
-                SetConvesation( DCharactor[eCharactor.Teacher].Item1,
-                                DCharactor[eCharactor.Teacher].Item2,
-                                Quotes[count]);
+                BackGround.sprite = DBackGround[eBackGround.Ground];
+                SetConvesation(DCharactor[eCharactor.Narrator].Item1,
+                                DCharactor[eCharactor.Narrator].Item2,
+                                Quotes[Count]);
                 break;
             case 3:
-                SetConvesation( DCharactor[eCharactor.Teacher].Item1,
-                                DCharactor[eCharactor.Teacher].Item2,
-                                Quotes[count]);
+                SetConvesation(DCharactor[eCharactor.Narrator].Item1,
+                                DCharactor[eCharactor.Narrator].Item2,
+                                Quotes[Count]);
                 break;
             case 4:
-                SetConvesation( DCharactor[eCharactor.Narrator].Item1,
-                                DCharactor[eCharactor.Narrator].Item2,
-                                Quotes[count]);
+                SetConvesation(DCharactor[eCharactor.Teacher].Item1,
+                                DCharactor[eCharactor.Teacher].Item2,
+                                Quotes[Count]);
                 break;
             case 5:
-                BackGround.sprite = DBackGround[eBackGround.Ice];
-                SetConvesation( DCharactor[eCharactor.Narrator].Item1,
-                                DCharactor[eCharactor.Narrator].Item2,
-                                Quotes[count]);
-                ShowSelectDialog();
+                SetConvesation(DCharactor[eCharactor.Teacher].Item1,
+                                DCharactor[eCharactor.Teacher].Item2,
+                                Quotes[Count]);
                 break;
             case 6:
-                BackGround.sprite = DBackGround[eBackGround.Fire];
-                SetConvesation( DCharactor[eCharactor.Narrator].Item1,
+                SetConvesation(DCharactor[eCharactor.Narrator].Item1,
                                 DCharactor[eCharactor.Narrator].Item2,
-                                Quotes[count]);
+                                Quotes[Count]);
                 break;
             case 7:
-                BackGround.sprite = DBackGround[eBackGround.Thunder];
-                SetConvesation( DCharactor[eCharactor.Narrator].Item1,
+                BackGround.sprite = DBackGround[eBackGround.Ice];
+                SetConvesation(DCharactor[eCharactor.Narrator].Item1,
                                 DCharactor[eCharactor.Narrator].Item2,
-                                Quotes[count]);
+                                Quotes[Count]);
+                ShowSelectDialog();
                 break;
             case 8:
-                SetConvesation( DCharactor[eCharactor.Narrator].Item1,
+                BackGround.sprite = DBackGround[eBackGround.Fire];
+                SetConvesation(DCharactor[eCharactor.Narrator].Item1,
                                 DCharactor[eCharactor.Narrator].Item2,
-                                Quotes[count]);
-                YesNoSetup(() => {count++; Next();},()=>{count = 4; Next();});
-                ShowYesNoDialog();
+                                Quotes[Count]);
                 break;
             case 9:
-                BackGround.sprite = DBackGround[eBackGround.Ground];
-                SetConvesation( DCharactor[eCharactor.Teacher].Item1,
-                                DCharactor[eCharactor.Teacher].Item2,
-                                Quotes[count]);
+                BackGround.sprite = DBackGround[eBackGround.Thunder];
+                SetConvesation(DCharactor[eCharactor.Narrator].Item1,
+                                DCharactor[eCharactor.Narrator].Item2,
+                                Quotes[Count]);
                 break;
             case 10:
-                SetConvesation( DCharactor[eCharactor.Narrator].Item1,
+                SetConvesation(DCharactor[eCharactor.Narrator].Item1,
                                 DCharactor[eCharactor.Narrator].Item2,
-                                Quotes[count]);
-                break;
-            case 11:
-                SetConvesation( DCharactor[eCharactor.Narrator].Item1,
-                                DCharactor[eCharactor.Narrator].Item2,
-                                Quotes[count]);
-                break;
-            case 12:
-                SetConvesation( DCharactor[eCharactor.Aniki].Item1,
-                                DCharactor[eCharactor.Aniki].Item2,
-                                Quotes[count]);
-                break;
-            case 13:
-                SetConvesation( DCharactor[eCharactor.Teacher].Item1,
-                                DCharactor[eCharactor.Teacher].Item2,
-                                Quotes[count]);
-                break;
-            case 14:
-                SetConvesation( DCharactor[eCharactor.Aniki].Item1,
-                                DCharactor[eCharactor.Aniki].Item2,
-                                Quotes[count]);
-                break;
-            case 15:
-                SetConvesation( DCharactor[eCharactor.Narrator].Item1,
-                                DCharactor[eCharactor.Narrator].Item2,
-                                Quotes[count]);
-                break;
-            case 16:
-                SetConvesation( DCharactor[eCharactor.Narrator].Item1,
-                                DCharactor[eCharactor.Narrator].Item2,
-                                Quotes[count]);
-                break;
-            case 17:
-                SetConvesation( DCharactor[eCharactor.Aniki].Item1,
-                                DCharactor[eCharactor.Aniki].Item2,
-                                Quotes[count]);
-                break;
-            case 18:
-                SetConvesation( DCharactor[eCharactor.Aniki].Item1,
-                                DCharactor[eCharactor.Aniki].Item2,
-                                Quotes[count]);
-                break;
-            case 19:
-                SetConvesation( DCharactor[eCharactor.AnikinoOtomo].Item1,
-                                DCharactor[eCharactor.AnikinoOtomo].Item2,
-                                Quotes[count]);
-                break;
-            case 20:
-                SetConvesation( DCharactor[eCharactor.Narrator].Item1,
-                                DCharactor[eCharactor.Narrator].Item2,
-                                Quotes[count]);
-                break;
-            case 21:
-                SetConvesation( DCharactor[eCharactor.Narrator].Item1,
-                                DCharactor[eCharactor.Narrator].Item2,
-                                Quotes[count]);
-                break;
-            case 22:
-                SetConvesation( DCharactor[eCharactor.Aniki].Item1,
-                                DCharactor[eCharactor.Aniki].Item2,
-                                Quotes[count]);
-                break;
-            case 23:
-                SetConvesation( DCharactor[eCharactor.Aniki].Item1,
-                                DCharactor[eCharactor.Aniki].Item2,
-                                Quotes[count]);
-                break;
-            case 24:
-                SetConvesation( DCharactor[eCharactor.Teacher].Item1,
-                                DCharactor[eCharactor.Teacher].Item2,
-                                Quotes[count]);
-                break;
-            case 25:
-                SetConvesation( DCharactor[eCharactor.Teacher].Item1,
-                                DCharactor[eCharactor.Teacher].Item2,
-                                Quotes[count]);
-                break;
-            case 26:
-            //  BackGroundにバトル画面を表示
-                SetConvesation( DCharactor[eCharactor.Narrator].Item1,
-                                DCharactor[eCharactor.Narrator].Item2,
-                                Quotes[count]);
-                break;
-            case 27:
-                SetConvesation( DCharactor[eCharactor.Narrator].Item1,
-                                DCharactor[eCharactor.Narrator].Item2,
-                                Quotes[count]);
-                break;
-            case 28:
-                SetConvesation( DCharactor[eCharactor.Narrator].Item1,
-                                DCharactor[eCharactor.Narrator].Item2,
-                                Quotes[count]);
-                break;
-            case 29:
-                SetConvesation( DCharactor[eCharactor.Narrator].Item1,
-                                DCharactor[eCharactor.Narrator].Item2,
-                                Quotes[count]);
-                break;
-            case 30:
-                SetConvesation( DCharactor[eCharactor.Narrator].Item1,
-                                DCharactor[eCharactor.Narrator].Item2,
-                                Quotes[count]);
-                break;
-            case 31:
-                SetConvesation( DCharactor[eCharactor.Narrator].Item1,
-                                DCharactor[eCharactor.Narrator].Item2,
-                                Quotes[count]);
-                break;
-            case 32:
-                SetConvesation( DCharactor[eCharactor.Narrator].Item1,
-                                DCharactor[eCharactor.Narrator].Item2,
-                                Quotes[count]);
-                break;
-            case 33:
-                SetConvesation( DCharactor[eCharactor.Narrator].Item1,
-                                DCharactor[eCharactor.Narrator].Item2,
-                                Quotes[count]);
-                break;
-            case 34:
-                SetConvesation( DCharactor[eCharactor.Teacher].Item1,
-                                DCharactor[eCharactor.Teacher].Item2,
-                                Quotes[count]);
-                YesNoSetup(() => {count = 36; Next();},()=>
+                                Quotes[Count]);
+                YesNoSetup(
+                    () =>
                     {
-                        SetConvesation( DCharactor[eCharactor.Teacher].Item1,
-                                DCharactor[eCharactor.Teacher].Item2,
-                                Quotes[35]);
+                        Count++;
+                        MakePlayerData();
+                        Next();
+                    },
+                    () =>
+                    {
+                        Count = 6;
+                        Next();
                     }
                 );
                 ShowYesNoDialog();
                 break;
+            case 11:
+                BackGround.sprite = DBackGround[eBackGround.Ground];
+                SetConvesation(DCharactor[eCharactor.Teacher].Item1,
+                                DCharactor[eCharactor.Teacher].Item2,
+                                Quotes[Count]);
+                break;
+            case 12:
+                SetConvesation(DCharactor[eCharactor.Narrator].Item1,
+                                DCharactor[eCharactor.Narrator].Item2,
+                                Quotes[Count]);
+                break;
+            case 13:
+                SetConvesation(DCharactor[eCharactor.Narrator].Item1,
+                                DCharactor[eCharactor.Narrator].Item2,
+                                Quotes[Count]);
+                break;
+            case 14:
+                SetConvesation(DCharactor[eCharactor.Aniki].Item1,
+                                DCharactor[eCharactor.Aniki].Item2,
+                                Quotes[Count]);
+                break;
+            case 15:
+                SetConvesation(DCharactor[eCharactor.Teacher].Item1,
+                                DCharactor[eCharactor.Teacher].Item2,
+                                Quotes[Count]);
+                break;
+            case 16:
+                SetConvesation(DCharactor[eCharactor.Aniki].Item1,
+                                DCharactor[eCharactor.Aniki].Item2,
+                                Quotes[Count]);
+                break;
+            case 17:
+                SetConvesation(DCharactor[eCharactor.Narrator].Item1,
+                                DCharactor[eCharactor.Narrator].Item2,
+                                Quotes[Count]);
+                break;
+            case 18:
+                SetConvesation(DCharactor[eCharactor.Narrator].Item1,
+                                DCharactor[eCharactor.Narrator].Item2,
+                                Quotes[Count]);
+                break;
+            case 19:
+                SetConvesation(DCharactor[eCharactor.Aniki].Item1,
+                                DCharactor[eCharactor.Aniki].Item2,
+                                Quotes[Count]);
+                break;
+            case 20:
+                SetConvesation(DCharactor[eCharactor.Aniki].Item1,
+                                DCharactor[eCharactor.Aniki].Item2,
+                                Quotes[Count]);
+                break;
+            case 21:
+                SetConvesation(DCharactor[eCharactor.AnikinoOtomo].Item1,
+                                DCharactor[eCharactor.AnikinoOtomo].Item2,
+                                Quotes[Count]);
+                break;
+            case 22:
+                SetConvesation(DCharactor[eCharactor.Narrator].Item1,
+                                DCharactor[eCharactor.Narrator].Item2,
+                                Quotes[Count]);
+                break;
+            case 23:
+                SetConvesation(DCharactor[eCharactor.Narrator].Item1,
+                                DCharactor[eCharactor.Narrator].Item2,
+                                Quotes[Count]);
+                break;
+            case 24:
+                SetConvesation(DCharactor[eCharactor.Aniki].Item1,
+                                DCharactor[eCharactor.Aniki].Item2,
+                                Quotes[Count]);
+                break;
+            case 25:
+                SetConvesation(DCharactor[eCharactor.Aniki].Item1,
+                                DCharactor[eCharactor.Aniki].Item2,
+                                Quotes[Count]);
+                break;
+            case 26:
+                SetConvesation(DCharactor[eCharactor.Teacher].Item1,
+                                DCharactor[eCharactor.Teacher].Item2,
+                                Quotes[Count]);
+                break;
+            case 27:
+                SetConvesation(DCharactor[eCharactor.Teacher].Item1,
+                                DCharactor[eCharactor.Teacher].Item2,
+                                Quotes[Count]);
+                break;
+            case 28:
+                BackGround.sprite = DBackGround[eBackGround.ButtleViewAll];
+                SetConvesation(DCharactor[eCharactor.Narrator].Item1,
+                                DCharactor[eCharactor.Narrator].Item2,
+                                Quotes[Count]);
+                break;
+            case 29:
+                BackGround.sprite = DBackGround[eBackGround.ButtleViewUI];
+                SetConvesation(DCharactor[eCharactor.Narrator].Item1,
+                                DCharactor[eCharactor.Narrator].Item2,
+                                Quotes[Count]);
+                break;
+            case 30:
+                SetConvesation(DCharactor[eCharactor.Narrator].Item1,
+                                DCharactor[eCharactor.Narrator].Item2,
+                                Quotes[Count]);
+                break;
+            case 31:
+                BackGround.sprite = DBackGround[eBackGround.ButtleViewEnemy];
+                SetConvesation(DCharactor[eCharactor.Narrator].Item1,
+                                DCharactor[eCharactor.Narrator].Item2,
+                                Quotes[Count]);
+                break;
+            case 32:
+                SetConvesation(DCharactor[eCharactor.Narrator].Item1,
+                                DCharactor[eCharactor.Narrator].Item2,
+                                Quotes[Count]);
+                break;
+            case 33:
+                BackGround.sprite = DBackGround[eBackGround.ButtleViewBook];
+                SetConvesation(DCharactor[eCharactor.Narrator].Item1,
+                                DCharactor[eCharactor.Narrator].Item2,
+                                Quotes[Count]);
+                break;
+            case 34:
+                SetConvesation(DCharactor[eCharactor.Narrator].Item1,
+                                DCharactor[eCharactor.Narrator].Item2,
+                                Quotes[Count]);
+                break;
             case 35:
+                SetConvesation(DCharactor[eCharactor.Narrator].Item1,
+                                DCharactor[eCharactor.Narrator].Item2,
+                                Quotes[Count]);
+                break;
+            case 36:
+                BackGround.sprite = DBackGround[eBackGround.Ground];
+                SetConvesation(DCharactor[eCharactor.Teacher].Item1,
+                                DCharactor[eCharactor.Teacher].Item2,
+                                Quotes[Count]);
+                YesNoSetup(() => { Count = 38; Next(); }, () =>
+                       {
+                           SetConvesation(DCharactor[eCharactor.Teacher].Item1,
+                                   DCharactor[eCharactor.Teacher].Item2,
+                                   Quotes[37]);
+                       }
+                );
+                ShowYesNoDialog();
+                break;
+            case 37:
                 // 説明をし直す
-                count = 26;
+                Count = 28;
                 Next();
                 break;
 
-            case 36:
-                SetConvesation( DCharactor[eCharactor.Teacher].Item1,
+            case 38:
+                SetConvesation(DCharactor[eCharactor.Teacher].Item1,
                                 DCharactor[eCharactor.Teacher].Item2,
-                                Quotes[count]);
+                                Quotes[Count]);
                 break;
 
-            case 37:
-                SetConvesation( DCharactor[eCharactor.Aniki].Item1,
-                                DCharactor[eCharactor.Aniki].Item2,
-                                Quotes[count]);
-                break;
-            case 38:
-                SetConvesation( DCharactor[eCharactor.Aniki].Item1,
-                                DCharactor[eCharactor.Aniki].Item2,
-                                Quotes[count]);
-                break;
             case 39:
-                SetConvesation( DCharactor[eCharactor.Aniki].Item1,
+                SetConvesation(DCharactor[eCharactor.Aniki].Item1,
                                 DCharactor[eCharactor.Aniki].Item2,
-                                Quotes[count]);
+                                Quotes[Count]);
                 break;
             case 40:
+                SetConvesation(DCharactor[eCharactor.Aniki].Item1,
+                                DCharactor[eCharactor.Aniki].Item2,
+                                Quotes[Count]);
+                break;
+            case 41:
+                SetConvesation(DCharactor[eCharactor.Aniki].Item1,
+                                DCharactor[eCharactor.Aniki].Item2,
+                                Quotes[Count]);
+                TapSwitch(false);
                 SendNextScene();
                 break;
+            case 42:
+                //勝利時のセリフ
+                BackGround.sprite = DBackGround[eBackGround.Ground];
+                SetConvesation(DCharactor[eCharactor.Aniki].Item1,
+                                DCharactor[eCharactor.Aniki].Item2,
+                                Quotes[Count]);
+                Count = 43;
+                break;
+            case 43:
+                //敗北時のセリフ
+                BackGround.sprite = DBackGround[eBackGround.Ground];
+                SetConvesation(DCharactor[eCharactor.Aniki].Item1,
+                                DCharactor[eCharactor.Aniki].Item2,
+                                Quotes[Count]);
+                break;
+            case 44:
+                SetConvesation(DCharactor[eCharactor.Teacher].Item1,
+                                DCharactor[eCharactor.Teacher].Item2,
+                                Quotes[Count]);
+                break;
+            case 45:
+                SetConvesation(DCharactor[eCharactor.Teacher].Item1,
+                                DCharactor[eCharactor.Teacher].Item2,
+                                Quotes[Count]);
+                break;
+            case 46:
+                SetConvesation(DCharactor[eCharactor.Aniki].Item1,
+                                DCharactor[eCharactor.Aniki].Item2,
+                                Quotes[Count]);
+                break;
+            case 47:
+                SetConvesation(DCharactor[eCharactor.Teacher].Item1,
+                                DCharactor[eCharactor.Teacher].Item2,
+                                Quotes[Count]);
+                break;
+            case 48:
+                SetConvesation(DCharactor[eCharactor.Teacher].Item1,
+                                DCharactor[eCharactor.Teacher].Item2,
+                                Quotes[Count]);
+                break;
+            case 49:
+                SetConvesation(DCharactor[eCharactor.Teacher].Item1,
+                                DCharactor[eCharactor.Teacher].Item2,
+                                Quotes[Count]);
+                break;
+            case 50:
+                BackGround.sprite = DBackGround[eBackGround.None];
+                SetConvesation(DCharactor[eCharactor.Narrator].Item1,
+                                DCharactor[eCharactor.Narrator].Item2,
+                                Quotes[Count]);
+                break;
+            case 51:
+                SetConvesation(DCharactor[eCharactor.Narrator].Item1,
+                                DCharactor[eCharactor.Narrator].Item2,
+                                Quotes[Count]);
+                break;
+            case 52:
+                SetConvesation(DCharactor[eCharactor.Narrator].Item1,
+                                DCharactor[eCharactor.Narrator].Item2,
+                                Quotes[Count]);
+                break;
+            case 53:
+                SetConvesation(DCharactor[eCharactor.Narrator].Item1,
+                                DCharactor[eCharactor.Narrator].Item2,
+                                Quotes[Count]);
+                break;
             default:
-                throw new ArgumentException();
+                //タイトルに戻る
+                break;
         }
     }
 
@@ -345,8 +442,20 @@ public class AdventureScript : MonoBehaviour,IFlick,ITap
     {
         playerData = new PlayerData();
 
+        switch (flickcount % 3)
+        {
+            case 0:
+                SetDefaultBook(BookType.Ice);
+                break;
+            case 1:
+                SetDefaultBook(BookType.Fire);
+                break;
+            case 2:
+                SetDefaultBook(BookType.Thunder);
+                break;
+        }
+
         //ここで設定しているのは仮のデータです　後ほど変更予定。
-        SetDefaultBook(BookType.Ice);
 
         playerData.InitHP = 100;
         playerData.InitMP = 50;
@@ -444,6 +553,10 @@ public class AdventureScript : MonoBehaviour,IFlick,ITap
         }
     }
 
+    public void TapSwitch(bool sw)
+    {
+        TapErea.SetActive(sw);
+    }
     public void SendNextScene()
     {
         StartCoroutine(Encounter());
@@ -451,6 +564,7 @@ public class AdventureScript : MonoBehaviour,IFlick,ITap
 
     private IEnumerator Encounter()
     {
+        yield return new WaitForSeconds(1.0f);
         AnimationTile.SetActive(true);
         Animator.SetTrigger("Encounter");
         yield return new WaitForAnimation(Animator, 0);
@@ -462,6 +576,7 @@ public class AdventureScript : MonoBehaviour,IFlick,ITap
     {
         var dataSet = GameObject.FindWithTag("DataSet").GetComponent<Dataset>();
         dataSet.Initialize(playerData, buttleSceneData);
+        SceneManager.sceneLoaded -= DataSet;
     }
 
     private void StopBGM()
@@ -493,7 +608,7 @@ public class AdventureScript : MonoBehaviour,IFlick,ITap
 
     public void IncrimentCount()
     {
-        count++;
+        Count++;
     }
     public void YesClick()
     {
@@ -510,21 +625,21 @@ public class AdventureScript : MonoBehaviour,IFlick,ITap
     public void LeftFlick()
     {
         flickcount++;
-        count = 5 + (flickcount % 3);
+        Count = 7 + (flickcount % 3);
         Next();
     }
 
     public void RightFlick()
     {
         flickcount--;
-        count = 5 + (flickcount % 3);
+        Count = 7 + (flickcount % 3);
         Next();
     }
 
     public void Tap()
     {
         SelectDialog.SetActive(false);
-        count = 8;
+        Count = 10;
         Next();
     }
 }
