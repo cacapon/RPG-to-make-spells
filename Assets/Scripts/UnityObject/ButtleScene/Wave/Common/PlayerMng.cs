@@ -9,6 +9,8 @@ public class PlayerMng : MonoBehaviour
 
     [SerializeField] Dataset dataset;
 
+    [SerializeField] GameObject MPNotEnoughMessage;
+
     [SerializeField] private UniObjShake UIShake;
 
     [SerializeField] private SoundEffect SE;
@@ -55,8 +57,16 @@ public class PlayerMng : MonoBehaviour
         else
         {
             SpellFailedSE();
+            StartCoroutine(ShowMPNotEnoughMessage());
             Debug.Log("MP タリナイ！");
         }
+    }
+
+    private IEnumerator ShowMPNotEnoughMessage()
+    {
+        MPNotEnoughMessage.SetActive(true);
+        yield return new WaitForSeconds(1.0f);
+        MPNotEnoughMessage.SetActive(false);
     }
 
     private void SelectSpell(Magic magic)
