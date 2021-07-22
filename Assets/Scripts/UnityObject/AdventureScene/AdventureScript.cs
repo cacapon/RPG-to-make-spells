@@ -426,7 +426,7 @@ public class AdventureScript : MonoBehaviour, IFlick, ITap
                                 Quotes[Count]);
                 break;
             default:
-                //タイトルに戻る
+                SceneManager.LoadScene("Title");
                 break;
         }
     }

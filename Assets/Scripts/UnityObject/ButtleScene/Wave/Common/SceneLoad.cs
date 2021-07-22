@@ -7,6 +7,12 @@ public class SceneLoad : MonoBehaviour
 
     [SerializeField] private string NextSceneName;
 
+
+    public void Load()
+    {
+        TxNowLoading.SetActive(true);
+        SceneManager.LoadScene(NextSceneName);
+    }
     public void LoadNextSceneWin()
     {
         TxNowLoading.SetActive(true);
