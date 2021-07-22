@@ -33,15 +33,15 @@ MonoBehaviour:
   - name: "\u30AA\u30C8\u30E2\u30B9\u30E9\u30A4\u30E0"
     Graphic: {fileID: 21300000, guid: 43d110900c3c0fc488254d9471f0fae7, type: 3}
     InitHP: 25
-    Attack: 10
-    Duration: 5
+    Attack: 7
+    Duration: 2.5
   - name: "\u30A2\u30CB\u30AD\u30B9\u30E9\u30A4\u30E0"
-    Graphic: {fileID: 21300000, guid: f18a53a144792ce4db32b9c7cea3ee48, type: 3}
-    InitHP: 80
-    Attack: 20
-    Duration: 4
+    Graphic: {fileID: 21300000, guid: c207a19176968c9428749ee77d210792, type: 3}
+    InitHP: 50
+    Attack: 15
+    Duration: 6
   - name: "\u30AA\u30C8\u30E2\u30B9\u30E9\u30A4\u30E0"
     Graphic: {fileID: 21300000, guid: 43d110900c3c0fc488254d9471f0fae7, type: 3}
     InitHP: 25
-    Attack: 10
-    Duration: 5
+    Attack: 7
+    Duration: 2.5

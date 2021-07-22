@@ -3,6 +3,8 @@ using UnityEngine;
 public class GameMng : MonoBehaviour {
     public float PlayerHPDefaultSpeed = 10.0f;
     public float EnemyAttackDefaultSpeed = 1.0f;
+
+    [SerializeField] private Dataset dataset;
     public PlayerMng PMng;
     public EnemyMng EMng;
     public WaveMng WMng;
@@ -14,22 +16,17 @@ public class GameMng : MonoBehaviour {
     private void Awake() {
         gameClearFlg = false;
         BGM.Play(BGM.eBGMName.BUTTLE1);
+
     }
 
     public void Next()
     {
         PMng.WaveWinning();
-        WMng.BSData.CurrentWaveCount++;
+        WMng.IncrementWaveCount();
 
-        if(WMng.BSData.CurrentWaveCount < WMng.BSData.MaxWaveCount)
+        if(WMng.IsButtle())
         {
-            //通常戦闘
-            EMng.SetEnemyfield();
-            WMng.NextWave();
-        }
-        else if(WMng.BSData.CurrentWaveCount == WMng.BSData.MaxWaveCount)
-        {
-            //ボス戦闘
+            //戦闘
             EMng.SetEnemyfield();
             WMng.NextWave();
         }
@@ -37,7 +34,6 @@ public class GameMng : MonoBehaviour {
             //クリア
             GameClear();
         }
-
     }
 
     public void GameOver()

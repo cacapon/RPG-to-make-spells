@@ -6,7 +6,10 @@ using UnityEngine;
 public class PlayerMng : MonoBehaviour
 {
     public GameMng GMng;
-    public PlayerData PData;
+
+    [SerializeField] Dataset dataset;
+
+    [SerializeField] GameObject MPNotEnoughMessage;
 
     [SerializeField] private UniObjShake UIShake;
 
@@ -23,8 +26,8 @@ public class PlayerMng : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        HP = new HP(PData);
-        MP = new MP(PData);
+        HP = new HP(dataset.PlayerData);
+        MP = new MP(dataset.PlayerData);
         isArive = true;
     }
 
@@ -34,9 +37,9 @@ public class PlayerMng : MonoBehaviour
         if (isArive)
         {
             HP.PersistentHP(deltaHP: GMng.WMng.GameSpeed * GMng.PlayerHPDefaultSpeed * Time.deltaTime);
-            MP.ChangeMP(deltaMP: GMng.WMng.GameSpeed * PData.MPSpeed * Time.deltaTime);
+            MP.ChangeMP(deltaMP: GMng.WMng.GameSpeed * dataset.MPSpeed * Time.deltaTime);
 
-            if (PData.CurrentHP <= 0f)
+            if (dataset.CurrentHP <= 0f)
             {
                 isArive = false;
                 GMng.GameOver();
@@ -54,8 +57,16 @@ public class PlayerMng : MonoBehaviour
         else
         {
             SpellFailedSE();
+            StartCoroutine(ShowMPNotEnoughMessage());
             Debug.Log("MP タリナイ！");
         }
+    }
+
+    private IEnumerator ShowMPNotEnoughMessage()
+    {
+        MPNotEnoughMessage.SetActive(true);
+        yield return new WaitForSeconds(1.0f);
+        MPNotEnoughMessage.SetActive(false);
     }
 
     private void SelectSpell(Magic magic)

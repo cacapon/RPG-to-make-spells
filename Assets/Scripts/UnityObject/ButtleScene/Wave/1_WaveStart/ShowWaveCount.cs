@@ -5,14 +5,13 @@ using UnityEngine.UI;
 
 public class ShowWaveCount : MonoBehaviour
 {
-    [SerializeField]
-    private WaveMng waveMng;
+    [SerializeField] private Dataset dataset;
     private Text text;
     // Start is called before the first frame update
     private void OnEnable()
     {
         text = gameObject.GetComponent<Text>();
-        text.text = $"WAVE {waveMng.BSData.CurrentWaveCount} / {waveMng.BSData.MaxWaveCount}";
+        text.text = $"WAVE {dataset.CurrentWaveCount} / {dataset.WaveCount}";
     }
 
 }
