@@ -30,7 +30,7 @@ public class SceneLoad : MonoBehaviour
     {
         //勝った場合
         var Count = GameObject.FindWithTag("GameController").GetComponent<AdventureScript>();
-        Count.Count = 42;
+        Count.Count = 34;
         SceneManager.sceneLoaded -= Win;
     }
 
@@ -38,7 +38,7 @@ public class SceneLoad : MonoBehaviour
     {
         //勝った場合
         var Count = GameObject.FindWithTag("GameController").GetComponent<AdventureScript>();
-        Count.Count = 43;
+        Count.Count = 35;
         SceneManager.sceneLoaded -= Lose;
     }
 
