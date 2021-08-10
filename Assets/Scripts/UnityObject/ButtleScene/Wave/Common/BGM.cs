@@ -35,6 +35,18 @@ public class BGM : MonoBehaviour
         }
     }
 
+    public void Pause(bool enabled)
+    {
+        if(enabled)
+        {
+            audioSource.Pause();
+        }
+        else
+        {
+            audioSource.Play();
+        }
+    }
+
     public void Stop()
     {
         audioSource.Stop();

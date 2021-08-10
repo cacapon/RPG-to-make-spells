@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "900956444786",
+    "firebase_url": "https://jp-co-amazingengine-magicle-default-rtdb.firebaseio.com",
+    "project_id": "jp-co-amazingengine-magicle",
+    "storage_bucket": "jp-co-amazingengine-magicle.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900956444786:android:6f0344b6d59f89a3670aeb",
+        "android_client_info": {
+          "package_name": "jp.co.amazingengine.Magicle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "900956444786-h8edd0n6vpic4tp1vofcq5pq3sn0guvm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "jp.co.amazingengine.Magicle",
+            "certificate_hash": "f07f4a03baa010ba8cbd9441d7b9412123a467a4"
+          }
+        },
+        {
+          "client_id": "900956444786-beeed50gokoeipqrc7p3vafns39h52me.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAg3fk6M5hEXsUDhLSFzN5W9Tra-PV4sTg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "900956444786-beeed50gokoeipqrc7p3vafns39h52me.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "900956444786-ogptu194j538ioep8f1jik7jgpsta8ir.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "jp.co.amazingengine.Magicle"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

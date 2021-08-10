@@ -22,5 +22,8 @@ public class PlayerData : ScriptableObject
     public float MaxMP;
     [NonSerialized]
     public float CurrentMP;
-    public List<Magic> book;
+    public List<Magic> Book;
+    public int Gold;
+    public Dictionary<string,int> Inventory;
+
 }

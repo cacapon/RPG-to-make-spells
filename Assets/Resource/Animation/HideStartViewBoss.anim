@@ -531,6 +531,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 2
     messageOptions: 0
+  - time: 0.016666668
+    functionName: DisablePauseButton
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1
     functionName: PlaySE
     data: 
@@ -546,7 +553,7 @@ AnimationClip:
     intParameter: 2
     messageOptions: 0
   - time: 2.9833333
-    functionName: EnableUseTap
+    functionName: EnablePauseButton
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -558,4 +565,11 @@ AnimationClip:
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 2
+    messageOptions: 0
+  - time: 2.9833333
+    functionName: EnableUseTap
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
     messageOptions: 0
