@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
 public class AdventureScript : MonoBehaviour, IFlick, ITap
 {
     [Multiline(8)] [SerializeField] private List<string> Quotes;
@@ -441,7 +440,7 @@ public class AdventureScript : MonoBehaviour, IFlick, ITap
         switch (type)
         {
             case BookType.Thunder:
-                playerData.book = new List<Magic>(){
+                playerData.Book = new List<Magic>(){
                     new Magic(){
                         name = "雷おこし",
                         Type = Magic.eMagicType.DAMAGE,
@@ -469,7 +468,7 @@ public class AdventureScript : MonoBehaviour, IFlick, ITap
                 };
                 break;
             case BookType.Fire:
-                playerData.book = new List<Magic>(){
+                playerData.Book = new List<Magic>(){
                     new Magic(){
                         name = "ファイアバレット",
                         Type = Magic.eMagicType.DAMAGE,
@@ -497,7 +496,7 @@ public class AdventureScript : MonoBehaviour, IFlick, ITap
                 };
                 break;
             case BookType.Ice:
-                playerData.book = new List<Magic>(){
+                playerData.Book = new List<Magic>(){
                     new Magic(){
                         name = "つらら　くずし",
                         Type = Magic.eMagicType.DAMAGE,

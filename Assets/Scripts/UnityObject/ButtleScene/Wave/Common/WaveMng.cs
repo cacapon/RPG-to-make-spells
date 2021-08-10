@@ -9,6 +9,8 @@ public class WaveMng : MonoBehaviour
 
     public float GameSpeed { get => gameSpeed;}
 
+    private bool isPause = false;
+
     [SerializeField] private AnimationStartViewScript Animation;
 
     [SerializeField] Dataset dataset;
@@ -20,7 +22,7 @@ public class WaveMng : MonoBehaviour
     {
         STARTVIEW,
         MAINVIEW,
-        PAUSEVIEW, // TODO
+        PAUSEVIEW,
         CONTINUEVIEW, //TODO
         CLEARVIEW,
     }
@@ -33,9 +35,25 @@ public class WaveMng : MonoBehaviour
 
     internal void GameClear()
     {
-        DictView[eViewName.CONTINUEVIEW].SetActive(false); //自分、敵の同士討ちなら勝利にする為、gameOver画面を向こうにする。
+        DictView[eViewName.CONTINUEVIEW].SetActive(false); //自分、敵の同士討ちなら勝利にする為、gameOver画面を無効にする。
         DictView[eViewName.CLEARVIEW].SetActive(true);
         gameSpeed = 0f;
+    }
+
+    internal bool Pause()
+    {
+        isPause = !isPause;
+        if(isPause)
+        {
+            DictView[eViewName.PAUSEVIEW].SetActive(true);
+            gameSpeed = 0f;
+        }
+        else
+        {
+            DictView[eViewName.PAUSEVIEW].SetActive(false);
+            gameSpeed = 1f;
+        }
+        return isPause;
     }
 
     private void Awake()

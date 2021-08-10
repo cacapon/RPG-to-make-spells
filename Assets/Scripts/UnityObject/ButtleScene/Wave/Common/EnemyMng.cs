@@ -7,17 +7,15 @@ public class EnemyMng : MonoBehaviour
 {
     [SerializeField] Dataset dataset;
 
-    [SerializeField]
-    private GameObject EField;
-    [SerializeField]
-    private GameObject EPrefub;
-
-    [SerializeField]
-    private GameMng GMng;
+    [SerializeField] private GameObject EField;
+    [SerializeField] private GameObject EPrefub;
+    [SerializeField] private GameMng GMng;
+    [SerializeField] GameObject PauseMask;
 
     private GameObject TargetObj = null;
 
     private UniObjEnemy TargetObjScript = null;
+
 
     private float eTimer;
     public float ETimer{get{return eTimer;}}
@@ -160,5 +158,12 @@ public class EnemyMng : MonoBehaviour
         eTimer = GMng.WMng.GameSpeed * GMng.EnemyAttackDefaultSpeed * Time.deltaTime;
     }
 
+    #endregion
+
+    #region PauseButton関連
+    public void PauseButtonEnabled(bool enable)
+    {
+        PauseMask.SetActive(!enable);
+    }
     #endregion
 }

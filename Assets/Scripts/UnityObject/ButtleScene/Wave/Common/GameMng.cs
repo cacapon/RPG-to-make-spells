@@ -13,6 +13,8 @@ public class GameMng : MonoBehaviour {
     public BGM BGM;
     public Jingle Jingle;
 
+    public SoundEffect SE;
+
     private void Awake() {
         gameClearFlg = false;
         BGM.Play(BGM.eBGMName.BUTTLE1);
@@ -33,6 +35,20 @@ public class GameMng : MonoBehaviour {
         else{
             //クリア
             GameClear();
+        }
+    }
+
+    public void Pause()
+    {
+        if(WMng.Pause())
+        {
+            BGM.Pause(true);
+            SE.PlayOneShot(SoundEffect.eSEName.PAUSE_ON);
+        }
+        else
+        {
+            BGM.Pause(false);
+            SE.PlayOneShot(SoundEffect.eSEName.PAUSE_OFF);
         }
     }
 

@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main/Title.unity
     guid: f9eedb146fa1e3a4da172026c6aecbdd
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Main/Menu.unity
     guid: 594911939fc745b429a39b31ca47a507
   - enabled: 0
@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main/Adventure/Adv_Scene1.unity
     guid: d79d68ffe74277f46acff4b9977c7fc8
+  - enabled: 1
+    path: Assets/Scenes/Main/BookEdit.unity
+    guid: 0798fd7cb87127247be0502e3900a5a6
   m_configObjects: {}

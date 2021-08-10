@@ -13,6 +13,14 @@ public class SceneLoad : MonoBehaviour
         TxNowLoading.SetActive(true);
         SceneManager.LoadScene(NextSceneName);
     }
+
+    public void LoadMenu()
+    {
+        TxNowLoading.SetActive(true);
+        SceneManager.sceneLoaded += GotoMenu;
+        SceneManager.LoadScene(NextSceneName);
+
+    }
     public void LoadNextSceneWin()
     {
         TxNowLoading.SetActive(true);
@@ -26,19 +34,24 @@ public class SceneLoad : MonoBehaviour
         SceneManager.LoadScene(NextSceneName);
     }
 
+    public void GotoMenu(Scene next, LoadSceneMode mode)
+    {
+        var x = GameObject.FindWithTag("Init").GetComponent<MenuInit>();
+        x.SetInitMenu("Main");
+        SceneManager.sceneLoaded -= GotoMenu;
+    }
+
     private void Win(Scene next, LoadSceneMode mode)
     {
-        //勝った場合
-        var Count = GameObject.FindWithTag("GameController").GetComponent<AdventureScript>();
-        Count.Count = 34;
+        var x = GameObject.FindWithTag("Init").GetComponent<MenuInit>();
+        x.SetInitMenu("Result");
         SceneManager.sceneLoaded -= Win;
     }
 
     private void Lose(Scene next, LoadSceneMode mode)
     {
-        //勝った場合
-        var Count = GameObject.FindWithTag("GameController").GetComponent<AdventureScript>();
-        Count.Count = 35;
+        var x = GameObject.FindWithTag("Init").GetComponent<MenuInit>();
+        x.SetInitMenu("Quest");
         SceneManager.sceneLoaded -= Lose;
     }
 

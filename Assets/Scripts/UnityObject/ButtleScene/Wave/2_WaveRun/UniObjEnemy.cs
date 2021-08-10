@@ -54,6 +54,7 @@ public class UniObjEnemy : MonoBehaviour,ITap
 
     IEnumerator DamageAnimation(Magic magic)
     {
+        EMng.PauseButtonEnabled(false);
         //呪文のエフェクト
         SpellAnimation.PlayAnimation(magic);
         yield return new WaitForAnimation(SpellAnimation.SpellAnimator,0);
@@ -68,6 +69,8 @@ public class UniObjEnemy : MonoBehaviour,ITap
             yield return new WaitForSeconds(0.2f);
             EMng.RemoveEnemy(gameObject);
         }
+        EMng.PauseButtonEnabled(true);
+
     }
 
     public void Tap()

@@ -6,6 +6,8 @@ public class AnimationStartViewScript : MonoBehaviour
 {
     [SerializeField] private TouchEvent TouchTarget;
 
+    [SerializeField] private GameObject PauseButtonMask;
+
     [SerializeField] private BGM BGM;
 
     [SerializeField] private SoundEffect SE;
@@ -29,6 +31,15 @@ public class AnimationStartViewScript : MonoBehaviour
     public void DisableUseTap()
     {
         TouchTarget.SwitchUseTap(false);
+    }
+
+    public void EnablePauseButton()
+    {
+        PauseButtonMask.SetActive(false);
+    }
+    public void DisablePauseButton()
+    {
+        PauseButtonMask.SetActive(true);
     }
 
     public void StartBGM(BGM.eBGMName bgmName)
