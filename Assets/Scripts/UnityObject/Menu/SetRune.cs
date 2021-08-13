@@ -73,6 +73,16 @@ public class SetRune : MonoBehaviour
         targetCount.text = count.ToString();
     }
 
+    public void ReLoad()
+    {
+        foreach (Transform child in gameObject.transform)
+        {
+            //削除する
+            Destroy(child.gameObject);
+        }
+        Start();
+    }
+
 }
 
 [Serializable]
