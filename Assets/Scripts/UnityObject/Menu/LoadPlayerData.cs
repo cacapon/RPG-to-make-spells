@@ -6,7 +6,7 @@ using System.Linq;
 
 public class LoadPlayerData : MonoBehaviour
 {
-    DatabaseReference reference;
+    [SerializeField] FireBaseRTDB fireBaseRTDB;
 
     private PlayerData pData;
     private string PlayerID = "PlayerID";
@@ -15,8 +15,6 @@ public class LoadPlayerData : MonoBehaviour
 
     void Awake()
     {
-        //Firebaseのデータベースにアクセスするために必要な初期化処理
-        reference = FirebaseDatabase.DefaultInstance.RootReference;
         pData = PlayerData.CreateInstance<PlayerData>();
         Load();
     }
@@ -28,11 +26,11 @@ public class LoadPlayerData : MonoBehaviour
     private async void Load()
     {
         string pid = PlayerPrefs.GetString(PlayerID);
-        var playerData    = await reference.Child("PlayerDB").Child(pid).GetValueAsync();
-        var inventoryData = await reference.Child("InventoryDB").Child(pid).GetValueAsync();
+        var playerData    = await fireBaseRTDB.Reference.Child("PlayerDB").Child(pid).GetValueAsync();
+        var inventoryData = await fireBaseRTDB.Reference.Child("InventoryDB").Child(pid).GetValueAsync();
 
-        Dictionary<string, int> pDataDict   = ConvertDict(playerData.Value);
-        Dictionary<string, int> invDataDict = ConvertDict(inventoryData.Value);
+        Dictionary<string, int> pDataDict   = ConvertDict.ValueInt(playerData.Value);
+        Dictionary<string, int> invDataDict = ConvertDict.ValueInt(inventoryData.Value);
 
         pData.InitHP = pDataDict["HP"];
         pData.InitMP = pDataDict["MP"];
@@ -40,11 +38,4 @@ public class LoadPlayerData : MonoBehaviour
         pData.Inventory = invDataDict;
         pData.Book = new List<Magic>();
     }
-
-    private Dictionary<string,int> ConvertDict(object value)
-    {
-        Dictionary<string, int> returnDict = (value as Dictionary<string, object>).ToDictionary(k => k.Key, k => Convert.ToInt32(k.Value));
-        return returnDict;
-    }
-
 }
