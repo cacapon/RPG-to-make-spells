@@ -8,14 +8,12 @@ public class LoadPlayerData : MonoBehaviour
 {
     [SerializeField] FireBaseRTDB fireBaseRTDB;
 
-    private PlayerData pData;
+    public PlayerData PData;
     private string PlayerID = "PlayerID";
-
-    public PlayerData PData { get => pData; }
 
     void Awake()
     {
-        pData = PlayerData.CreateInstance<PlayerData>();
+        //PData = PlayerData.CreateInstance<PlayerData>();
         Load();
     }
 
@@ -32,10 +30,10 @@ public class LoadPlayerData : MonoBehaviour
         Dictionary<string, int> pDataDict   = ConvertDict.ValueInt(playerData.Value);
         Dictionary<string, int> invDataDict = ConvertDict.ValueInt(inventoryData.Value);
 
-        pData.InitHP = pDataDict["HP"];
-        pData.InitMP = pDataDict["MP"];
-        pData.Gold   = pDataDict["Gold"];
-        pData.Inventory = invDataDict;
-        pData.Book = new List<Magic>();
+        PData.InitHP = pDataDict["HP"];
+        PData.InitMP = pDataDict["MP"];
+        PData.Gold   = pDataDict["Gold"];
+        PData.Inventory = invDataDict;
+        PData.Book = new List<Magic>();
     }
 }

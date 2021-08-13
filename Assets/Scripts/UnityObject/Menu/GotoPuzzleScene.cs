@@ -3,22 +3,19 @@ using UnityEngine.SceneManagement;
 
 public class GotoPuzzleScene : MonoBehaviour
 {
-    //[SerializeField] PlayerData playerData;
-    //[SerializeField] ButtleSceneData buttleSceneData;
+    [SerializeField] PlayerData playerData;
 
     public void Load()
     {
         SceneManager.LoadScene("BookEdit");
-        //SceneManager.sceneLoaded += DataSet;
+        SceneManager.sceneLoaded += DataSet;
     }
 
-    /*
     private void DataSet(Scene next, LoadSceneMode mode)
     {
-        Debug.Log("DataSet run.");
-        var dataSet = GameObject.FindWithTag("DataSet").GetComponent<Dataset>();
-        dataSet.Initialize(playerData, buttleSceneData);
+        var dataSet = GameObject.FindWithTag("DataSet").GetComponent<BookEditDataSet>();
+        dataSet.Initialize(playerData);
         SceneManager.sceneLoaded -= DataSet;
     }
-    */
+
 }

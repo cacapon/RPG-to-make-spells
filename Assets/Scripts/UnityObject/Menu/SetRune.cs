@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 public class SetRune : MonoBehaviour
 {
     [SerializeField] GameObject RunePrefub;
-    [SerializeField] LoadPlayerData loadPlayerData;
+    [SerializeField] PlayerData PData;
     [SerializeField] FireBaseRTDB fireBaseRTDB;
 
     private Image targetBaseImage;
@@ -22,7 +22,7 @@ public class SetRune : MonoBehaviour
 
     void Start()
     {
-        foreach (string RuneID in loadPlayerData.PData.Inventory.Keys)
+        foreach (string RuneID in PData.Inventory.Keys)
         {
             SetInventoryData(RuneID);
         }
@@ -43,7 +43,7 @@ public class SetRune : MonoBehaviour
 
         SetBaseImage(rune, runeInstance.PieceID);
         SetSocketandPlug(pieceInstance, rune);
-        SetCount(rune, loadPlayerData.PData.Inventory[runeID]);
+        SetCount(rune, PData.Inventory[runeID]);
 
     }
 
