@@ -15,6 +15,7 @@ public class SetRune : MonoBehaviour
     private Image targetBaseImage;
     private RectTransform targetSocketRect;
     private RectTransform targetPlugRect;
+    private Text targetCount;
 
     private DataSnapshot RuneData;
     private DataSnapshot PieceData;
@@ -42,6 +43,7 @@ public class SetRune : MonoBehaviour
 
         SetBaseImage(rune, runeInstance.PieceID);
         SetSocketandPlug(pieceInstance, rune);
+        SetCount(rune, loadPlayerData.PData.Inventory[runeID]);
 
     }
 
@@ -64,6 +66,13 @@ public class SetRune : MonoBehaviour
 
         targetBaseImage.sprite = Resources.Load<Sprite>($"Inventory/{name}");
     }
+    private void SetCount(GameObject rune, int count)
+    {
+        targetCount = rune.transform.GetChild(3).GetComponent<Text>();
+
+        targetCount.text = count.ToString();
+    }
+
 }
 
 [Serializable]
