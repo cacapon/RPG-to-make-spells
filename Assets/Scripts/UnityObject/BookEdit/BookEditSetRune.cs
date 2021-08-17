@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
 
-public class SetRune : MonoBehaviour
+public class BookEditSetRune : MonoBehaviour
 {
     [SerializeField] GameObject RunePrefub;
     [SerializeField] PlayerData PData;
@@ -19,6 +19,7 @@ public class SetRune : MonoBehaviour
 
     private DataSnapshot RuneData;
     private DataSnapshot PieceData;
+    private RuneData runeData;
 
     void Start()
     {
@@ -31,15 +32,20 @@ public class SetRune : MonoBehaviour
     {
         string runejson = await fireBaseRTDB.GetRuneDataToJson(runeID);
         Rune runeInstance = JsonUtility.FromJson<Rune>(runejson);
+        runeInstance.RuneID = runeID;
 
         string piecejson = await fireBaseRTDB.GetPieceDataToJson(runeInstance.PieceID);
         Piece pieceInstance = JsonUtility.FromJson<Piece>(piecejson);
+        pieceInstance.PieceID = runeInstance.PieceID;
 
         GameObject rune = Instantiate(RunePrefub);
 
         rune.transform.SetParent(gameObject.transform);
         rune.transform.localPosition = Vector3.zero;
         rune.transform.localScale = Vector3.one;
+
+        runeData = rune.GetComponent<RuneData>();
+        runeData.Init(runeInstance,pieceInstance);
 
         SetBaseImage(rune, runeInstance.PieceID);
         SetSocketandPlug(pieceInstance, rune);
