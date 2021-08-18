@@ -8,12 +8,19 @@ public class PieceCommand : MonoBehaviour
     [SerializeField] private PlayerData PData;
     [SerializeField] private StageTile stageTile;
     [SerializeField] private StageTile HoldTile;
-
     [SerializeField] private StageData Hold;
+
+    enum eMoveVector
+    {
+        Up,
+        Down,
+        Left,
+        Right
+    }
 
     public void BringFromInventory(Rune rune, Piece piece)
     {
-        if(PData.Inventory[rune.RuneID] == 0)
+        if (PData.Inventory[rune.RuneID] == 0)
         {
             return;
         }
@@ -37,7 +44,7 @@ public class PieceCommand : MonoBehaviour
             }
         }
 
-        foreach(Vector2Int pos in piece.Shape)
+        foreach (Vector2Int pos in piece.Shape)
         {
             piecedata[pos.y][pos.x] = (CellType)piece.Color;
         }
@@ -45,4 +52,48 @@ public class PieceCommand : MonoBehaviour
         return piecedata;
     }
 
+
+    private void Move(eMoveVector vec)
+    {
+        //Down
+        //Holdの上段に一つ追加
+        //Holdの下段を一つ削除
+        switch (vec)
+        {
+            case eMoveVector.Up:
+                Hold.Up();
+                break;
+            case eMoveVector.Down:
+                Hold.Down();
+                break;
+            case eMoveVector.Right:
+                Hold.Right();
+                break;
+            case eMoveVector.Left:
+                Hold.Left();
+                break;
+            default:
+                break;
+        }
+
+        HoldTile.SetStageTile();
+
+    }
+
+    public void MoveUp()
+    {
+        Move(eMoveVector.Up);
+    }
+    public void MoveDown()
+    {
+        Move(eMoveVector.Down);
+    }
+    public void MoveLeft()
+    {
+        Move(eMoveVector.Left);
+    }
+    public void MoveRight()
+    {
+        Move(eMoveVector.Right);
+    }
 }
