@@ -96,4 +96,9 @@ public class PieceCommand : MonoBehaviour
     {
         Move(eMoveVector.Right);
     }
+
+    public void debug()
+    {
+        Debug.Log("Hold Taped");
+    }
 }
