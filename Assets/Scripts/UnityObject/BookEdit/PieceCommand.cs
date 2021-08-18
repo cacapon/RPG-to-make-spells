@@ -17,12 +17,9 @@ public class PieceCommand : MonoBehaviour
         {
             return;
         }
-        Debug.Log($"{rune.RuneID}:{PData.Inventory[rune.RuneID]}");
         PData.Inventory[rune.RuneID] -= 1;
-        Debug.Log($"{rune.RuneID}:{PData.Inventory[rune.RuneID]}");
         List<List<CellType>> piecedata = MakePiece(piece);
         Hold.SetCell(piecedata);
-        Debug.Log(Hold.ShowStageData());
 
         HoldTile.SetStageTile();
     }

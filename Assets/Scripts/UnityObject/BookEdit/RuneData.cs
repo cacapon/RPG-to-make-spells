@@ -26,7 +26,6 @@ public class RuneData : MonoBehaviour,IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Tap Inventory");
         pieceCommand.BringFromInventory(Runedata,Piecedata);
     }
 }
