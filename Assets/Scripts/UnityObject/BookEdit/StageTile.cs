@@ -16,6 +16,10 @@ public class StageTile : MonoBehaviour
         Mytilemap = GetComponent<Tilemap>();
     }
 
+    private void Start() {
+        SetStageTile();
+    }
+
     public void SetStageTile()
     {
         for (int v = 0; v < StageSize; v++)

@@ -8,9 +8,15 @@ class StageData : MonoBehaviour
     static private int stageSize = 7;
     public List<List<(Guid,CellType)>> Stage;
 
+    [SerializeField] bool isStage;
+
     private void Awake()
     {
         Init();
+        if(isStage)
+        {
+            SetStartAndEndCell();
+        }
     }
 
     public void Init()
@@ -25,6 +31,12 @@ class StageData : MonoBehaviour
                 Stage[i].Add((Guid.Empty,CellType.None));
             }
         }
+    }
+
+    public void SetStartAndEndCell()
+    {
+        Stage[0][0] = (Guid.NewGuid(),CellType.Green);
+        Stage[stageSize-1][stageSize-1] = (Guid.NewGuid(),CellType.Red);
     }
     public string ShowStageData()
     {
