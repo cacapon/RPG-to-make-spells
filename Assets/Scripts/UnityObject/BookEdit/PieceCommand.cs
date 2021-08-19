@@ -10,8 +10,10 @@ public class PieceCommand : MonoBehaviour
     [SerializeField] private StageTile stageTile;
     [SerializeField] private StageTile HoldTile;
     [SerializeField] private StageData Hold;
-
     [SerializeField] private StageData Stage;
+
+    [SerializeField] private GameObject HoldTapPanel;
+    [SerializeField] private GameObject StageTapPanel;
 
     enum eMoveVector
     {
@@ -32,6 +34,7 @@ public class PieceCommand : MonoBehaviour
 
         HoldTile.SetStageTile();
         bookEditSetRune.ReLoad();
+        SwitchTapPanel(true);
     }
 
     private List<List<CellType>> MakePiece(Piece piece)
@@ -55,6 +58,20 @@ public class PieceCommand : MonoBehaviour
         return piecedata;
     }
 
+    private void SwitchTapPanel(bool enableHold)
+    {
+        if(enableHold)
+        {
+            HoldTapPanel.SetActive(true);
+            StageTapPanel.SetActive(false);
+        }
+        else
+        {
+            HoldTapPanel.SetActive(false);
+            StageTapPanel.SetActive(true);
+        }
+    }
+
     public void Put()
     {
         if (Hold.isDeplicated(Stage.Stage)){return;}
@@ -62,6 +79,7 @@ public class PieceCommand : MonoBehaviour
         stageTile.SetStageTile();
         Hold.Init();
         HoldTile.SetStageTile();
+        SwitchTapPanel(false);
     }
 
     private void Move(eMoveVector vec)
