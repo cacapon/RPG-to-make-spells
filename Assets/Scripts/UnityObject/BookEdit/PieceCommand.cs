@@ -85,6 +85,7 @@ public class PieceCommand : MonoBehaviour
     public void Holdon(Vector2Int targetpos)
     {
         if (!Hold.isEmpty()){return;}
+        if (Stage.isEmpty(targetpos)){return;}
 
         //指定のステージのブロックをホールドに移す
         Hold.Stage = Stage.Holdon(targetpos);

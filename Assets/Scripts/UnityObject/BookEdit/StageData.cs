@@ -75,6 +75,13 @@ class StageData : MonoBehaviour
         return true;
     }
 
+    public bool isEmpty(Vector2Int pos)
+    {
+        if( Stage[pos.y][pos.x].Item2 != CellType.None){ return false; }
+
+        return true;
+    }
+
     public bool isDeplicated(List<List<(Guid,CellType)>> anotherStage)
     {
         //対象のセルがどちらもNone以外のセルの場合Trueとする
