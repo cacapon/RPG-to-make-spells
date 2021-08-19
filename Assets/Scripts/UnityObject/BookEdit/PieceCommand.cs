@@ -82,6 +82,17 @@ public class PieceCommand : MonoBehaviour
         SwitchTapPanel(false);
     }
 
+    public void Holdon(Vector2Int targetpos)
+    {
+        if (!Hold.isEmpty()){return;}
+
+        //指定のステージのブロックをホールドに移す
+        Hold.Stage = Stage.Holdon(targetpos);
+        stageTile.SetStageTile();
+        HoldTile.SetStageTile();
+        SwitchTapPanel(true);
+    }
+
     private void Move(eMoveVector vec)
     {
         //Down
@@ -124,10 +135,5 @@ public class PieceCommand : MonoBehaviour
     public void MoveRight()
     {
         Move(eMoveVector.Right);
-    }
-
-    public void debug()
-    {
-        Debug.Log("Hold Taped");
     }
 }
