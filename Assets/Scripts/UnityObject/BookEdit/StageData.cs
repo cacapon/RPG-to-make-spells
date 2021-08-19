@@ -9,6 +9,11 @@ class StageData : MonoBehaviour
 
     private void Awake()
     {
+        Init();
+    }
+
+    public void Init()
+    {
         Stage = new List<List<CellType>>();
 
         for (int i = 0; i < stageSize; i++)
@@ -63,6 +68,51 @@ class StageData : MonoBehaviour
             Row.Add(CellType.None);
         }
         Stage.Insert(0, Row);
+    }
+
+    public bool isEmpty()
+    {
+        for (int v = 0; v < Stage.Count; v++)
+        {
+            for (int h = 0; h < Stage[v].Count; h++)
+            {
+                if( Stage[v][h] != CellType.None){ return false; }
+            }
+        }
+        return true;
+    }
+
+    public bool isDeplicated(List<List<CellType>> anotherStage)
+    {
+        //対象のセルがどちらもNone以外のセルの場合Trueとする
+        for (int v = 0; v < Stage.Count; v++)
+        {
+            for (int h = 0; h < Stage[v].Count; h++)
+            {
+                if( Stage[v][h]         != CellType.None &&
+                    anotherStage[v][h]  != CellType.None)
+                    {
+                        Debug.Log("Deplicated");
+                        return true;
+                    }
+            }
+        }
+
+        return false;
+    }
+
+    public void Put(List<List<CellType>> anotherStage)
+    {
+        for (int v = 0; v < Stage.Count; v++)
+        {
+            for (int h = 0; h < Stage[v].Count; h++)
+            {
+                if( anotherStage[v][h]  != CellType.None)
+                {
+                    Stage[v][h] = anotherStage[v][h];
+                }
+            }
+        }
     }
 
     public void Up()

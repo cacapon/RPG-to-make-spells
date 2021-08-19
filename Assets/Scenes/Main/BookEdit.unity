@@ -1425,10 +1425,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372a17d9414520148820b10c0cafac83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bookEditSetRune: {fileID: 1553783527}
   PData: {fileID: 11400000, guid: bfa672c1de7cdaf4f88998ca5cec6709, type: 2}
   stageTile: {fileID: 227752935}
   HoldTile: {fileID: 1295729627}
   Hold: {fileID: 1657700612}
+  Stage: {fileID: 555935525}
 --- !u!1 &1577697699
 GameObject:
   m_ObjectHideFlags: 0
@@ -1858,11 +1860,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1795024116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b571ac98ae8a8ae4599b7ff934a9ba31, type: 3}
+  m_Script: {fileID: 11500000, guid: b2352868b66519f4585d677eccded09f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pieceCommand: {fileID: 1553783530}
   distance: 40
+  taptime: 0.3
 --- !u!114 &1795024119
 MonoBehaviour:
   m_ObjectHideFlags: 0

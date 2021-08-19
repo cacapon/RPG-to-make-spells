@@ -5,10 +5,13 @@ using UnityEngine.Tilemaps;
 
 public class PieceCommand : MonoBehaviour
 {
+    [SerializeField] private BookEditSetRune bookEditSetRune;
     [SerializeField] private PlayerData PData;
     [SerializeField] private StageTile stageTile;
     [SerializeField] private StageTile HoldTile;
     [SerializeField] private StageData Hold;
+
+    [SerializeField] private StageData Stage;
 
     enum eMoveVector
     {
@@ -20,15 +23,15 @@ public class PieceCommand : MonoBehaviour
 
     public void BringFromInventory(Rune rune, Piece piece)
     {
-        if (PData.Inventory[rune.RuneID] == 0)
-        {
-            return;
-        }
+        if (!Hold.isEmpty()){ return; }
+        if (PData.Inventory[rune.RuneID] == 0){ return; }
+
         PData.Inventory[rune.RuneID] -= 1;
         List<List<CellType>> piecedata = MakePiece(piece);
         Hold.SetCell(piecedata);
 
         HoldTile.SetStageTile();
+        bookEditSetRune.ReLoad();
     }
 
     private List<List<CellType>> MakePiece(Piece piece)
@@ -52,6 +55,14 @@ public class PieceCommand : MonoBehaviour
         return piecedata;
     }
 
+    public void Put()
+    {
+        if (Hold.isDeplicated(Stage.Stage)){return;}
+        Stage.Put(Hold.Stage);
+        stageTile.SetStageTile();
+        Hold.Init();
+        HoldTile.SetStageTile();
+    }
 
     private void Move(eMoveVector vec)
     {

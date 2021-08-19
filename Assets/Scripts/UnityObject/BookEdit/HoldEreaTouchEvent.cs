@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class HoldEreaDragAndDrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class HoldEreaTouchEvent : MonoBehaviour, IDragHandler, IBeginDragHandler, IPointerDownHandler,IPointerUpHandler
 {
     [SerializeField] private PieceCommand pieceCommand;
     [SerializeField] private float distance = 40.0f;
+    [SerializeField] private float taptime;
     private Vector2 prevPos;
+
+    private float timer = 0f;
     public void OnBeginDrag(PointerEventData eventData)
     {
         prevPos = eventData.position;
@@ -37,7 +40,18 @@ public class HoldEreaDragAndDrop : MonoBehaviour, IDragHandler, IBeginDragHandle
         }
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    public void OnPointerDown(PointerEventData eventData)
     {
+        timer = Time.time;
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        if(Time.time - timer < taptime)
+        {
+            Debug.Log("taped");
+            pieceCommand.Put();
+        }
+        timer = 0f;
     }
 }
