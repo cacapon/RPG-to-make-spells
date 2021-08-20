@@ -1647,6 +1647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c07887db6b18d34394754914ec073fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStage: 1
 --- !u!1 &573926198
 GameObject:
   m_ObjectHideFlags: 0
@@ -5272,6 +5273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c07887db6b18d34394754914ec073fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStage: 0
 --- !u!1 &1681289892
 GameObject:
   m_ObjectHideFlags: 0
@@ -5854,7 +5856,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pieceCommand: {fileID: 1553783530}
-  distance: 40
+  distance: 35
   taptime: 0.3
 --- !u!114 &1795024119
 MonoBehaviour:
