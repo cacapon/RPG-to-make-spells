@@ -41,6 +41,7 @@ public class PieceCommand : MonoBehaviour
     {
         List<List<CellType>> piecedata = new List<List<CellType>>();
 
+        //ピースのサイズ領域の準備
         for (int i = 0; i < piece.ShapeSize.y; i++)
         {
             piecedata.Add(new List<CellType>());
@@ -50,10 +51,15 @@ public class PieceCommand : MonoBehaviour
             }
         }
 
+        //色を付ける
         foreach (Vector2Int pos in piece.Shape)
         {
             piecedata[pos.y][pos.x] = (CellType)piece.Color;
         }
+
+        //接続部分の色を変える
+        piecedata[piece.Plug.y][piece.Plug.x] = CellType.NonConnect;
+        piecedata[piece.Socket.y][piece.Socket.x] = CellType.NonConnect;
 
         return piecedata;
     }
