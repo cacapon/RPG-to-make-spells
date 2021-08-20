@@ -35,8 +35,8 @@ class StageData : MonoBehaviour
 
     public void SetStartAndEndCell()
     {
-        Stage[0][0] = (Guid.NewGuid(),CellType.Green);
-        Stage[stageSize-1][stageSize-1] = (Guid.NewGuid(),CellType.Red);
+        Stage[0][0] = (Guid.NewGuid(),CellType.Start);
+        Stage[stageSize-1][stageSize-1] = (Guid.NewGuid(),CellType.End);
     }
     public string ShowStageData()
     {

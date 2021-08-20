@@ -1,9 +1,11 @@
 public enum CellType
     {
         None,
-        Green,
-        Red,
+        Start,
+        End,
         Cyan,
         Magenta,
         Yellow,
+        NonConnect,
+        Connect
     }
