@@ -30,15 +30,29 @@ public class PieceCommand : MonoBehaviour
         if (PData.Inventory[rune.RuneID] == 0){ return; }
 
         PData.Inventory[rune.RuneID] -= 1;
-        List<List<Cell>> piecedata = MakePiece(piece);
-        Hold.SetCell(piecedata);
+        List<List<Cell>> piecedata = MakePiece(piece,rune.RuneID);
+        Hold.SetCell(piecedata,rune.RuneID);
 
         HoldTile.SetStageTile();
         bookEditSetRune.ReLoad();
         SwitchTapPanel(true);
     }
 
-    private List<List<Cell>> MakePiece(Piece piece)
+    public void PutInInventory()
+    {
+        Debug.Log("run put in inventory");
+        string targetRuneid = Hold.GetRuneID();
+        if(targetRuneid == ""){return;} //検知したピースのRuneIDがない場合は実行しない
+
+
+        Hold.Init();
+        HoldTile.SetStageTile();
+        PData.Inventory[targetRuneid] += 1;
+        bookEditSetRune.ReLoad();
+        SwitchTapPanel(false);
+    }
+
+    private List<List<Cell>> MakePiece(Piece piece, string runeid)
     {
         List<List<Cell>> piecedata = new List<List<Cell>>();
         Guid instantId = Guid.NewGuid();
@@ -56,12 +70,12 @@ public class PieceCommand : MonoBehaviour
         //色を付ける
         foreach (Vector2Int pos in piece.Shape)
         {
-            piecedata[pos.y][pos.x].Set(instantId,(CellType)piece.Color);
+            piecedata[pos.y][pos.x].Set(instantId,runeid,(CellType)piece.Color);
         }
 
         //接続部分の色を変える
-        piecedata[piece.Plug.y][piece.Plug.x].Set(instantId,CellType.NonConnect);
-        piecedata[piece.Socket.y][piece.Socket.x].Set(instantId,CellType.NonConnect);
+        piecedata[piece.Plug.y][piece.Plug.x].Set(instantId,runeid,CellType.NonConnect);
+        piecedata[piece.Socket.y][piece.Socket.x].Set(instantId,runeid,CellType.NonConnect);
 
         return piecedata;
     }

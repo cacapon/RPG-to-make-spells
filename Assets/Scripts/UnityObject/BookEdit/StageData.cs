@@ -52,13 +52,13 @@ class StageData : MonoBehaviour
         return stagestring;
     }
 
-    public void SetCell(List<List<Cell>> piecedata)
+    public void SetCell(List<List<Cell>> piecedata, string runeId)
     {
         for (int v = 0; v < piecedata.Count; v++)
         {
             for (int h = 0; h < piecedata[v].Count; h++)
             {
-                Stage[v][h].Set(piecedata[v][h].Cellid, piecedata[v][h].CellType);
+                Stage[v][h].Set(piecedata[v][h].Cellid, runeId, piecedata[v][h].CellType);
             }
         }
     }
@@ -214,4 +214,19 @@ class StageData : MonoBehaviour
         }
     }
 
+    public string GetRuneID()
+    {
+        for (int v = 0; v < Stage.Count; v++)
+        {
+            if(Stage[v].All(value => value.RuneId == ""))
+            {
+                continue;
+            }
+            else
+            {
+                return Stage[v].Find(value => value.RuneId != "").RuneId;
+            }
+        }
+        return "";
+    }
 }
