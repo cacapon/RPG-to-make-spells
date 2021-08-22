@@ -6,7 +6,7 @@ using UnityEngine;
 class StageData : MonoBehaviour
 {
     static private int stageSize = 7;
-    public List<List<(Guid,CellType)>> Stage;
+    public List<List<Cell>> Stage;
 
     [SerializeField] bool isStage;
 
@@ -21,22 +21,22 @@ class StageData : MonoBehaviour
 
     public void Init()
     {
-        Stage = new List<List<(Guid,CellType)>>();
+        Stage = new List<List<Cell>>();
 
         for (int i = 0; i < stageSize; i++)
         {
-            Stage.Add(new List<(Guid,CellType)>());
+            Stage.Add(new List<Cell>());
             for (int j = 0; j < stageSize; j++)
             {
-                Stage[i].Add((Guid.Empty,CellType.None));
+                Stage[i].Add(new Cell());
             }
         }
     }
 
     public void SetStartAndEndCell()
     {
-        Stage[0][0] = (Guid.NewGuid(),CellType.Start);
-        Stage[stageSize-1][stageSize-1] = (Guid.NewGuid(),CellType.End);
+        Stage[0][0].Set(Guid.NewGuid(),CellType.Start);
+        Stage[stageSize-1][stageSize-1].Set(Guid.NewGuid(),CellType.End);
     }
     public string ShowStageData()
     {
@@ -45,21 +45,20 @@ class StageData : MonoBehaviour
         {
             for (int j = 0; j < Stage[i].Count; j++)
             {
-                stagestring += (int)Stage[i][j].Item2;
+                stagestring += (int)Stage[i][j].Show();
             }
             stagestring += "\n";
         }
         return stagestring;
     }
 
-    public void SetCell(List<List<CellType>> piecedata)
+    public void SetCell(List<List<Cell>> piecedata)
     {
-        Guid instantid = Guid.NewGuid();
         for (int v = 0; v < piecedata.Count; v++)
         {
             for (int h = 0; h < piecedata[v].Count; h++)
             {
-                Stage[v][h] = (instantid,piecedata[v][h]);
+                Stage[v][h].Set(piecedata[v][h].Cellid, piecedata[v][h].CellType);
             }
         }
     }
@@ -69,7 +68,7 @@ class StageData : MonoBehaviour
         {
             for (int h = 0; h < Stage[v].Count; h++)
             {
-                if( Stage[v][h].Item2 != CellType.None){ return false; }
+                if( !Stage[v][h].isEmpty){ return false; }
             }
         }
         return true;
@@ -77,20 +76,20 @@ class StageData : MonoBehaviour
 
     public bool isEmpty(Vector2Int pos)
     {
-        if( Stage[pos.y][pos.x].Item2 != CellType.None){ return false; }
+        if( !Stage[pos.y][pos.x].isEmpty){ return false; }
 
         return true;
     }
 
-    public bool isDeplicated(List<List<(Guid,CellType)>> anotherStage)
+    public bool isDeplicated(List<List<Cell>> anotherStage)
     {
         //対象のセルがどちらもNone以外のセルの場合Trueとする
         for (int v = 0; v < Stage.Count; v++)
         {
             for (int h = 0; h < Stage[v].Count; h++)
             {
-                if( Stage[v][h].Item2         != CellType.None &&
-                    anotherStage[v][h].Item2  != CellType.None)
+                if( !Stage[v][h].isEmpty &&
+                    !anotherStage[v][h].isEmpty)
                     {
                         Debug.Log("Deplicated");
                         return true;
@@ -101,13 +100,13 @@ class StageData : MonoBehaviour
         return false;
     }
 
-    public void Put(List<List<(Guid,CellType)>> anotherStage)
+    public void Put(List<List<Cell>> anotherStage)
     {
         for (int v = 0; v < Stage.Count; v++)
         {
             for (int h = 0; h < Stage[v].Count; h++)
             {
-                if( anotherStage[v][h].Item2  != CellType.None)
+                if( !anotherStage[v][h].isEmpty)
                 {
                     Stage[v][h] = anotherStage[v][h];
                 }
@@ -115,24 +114,24 @@ class StageData : MonoBehaviour
         }
     }
 
-    public List<List<(Guid,CellType)>> Holdon(Vector2Int pos)
+    public List<List<Cell>> Holdon(Vector2Int pos)
     {
-        Guid targetGuid = Stage[pos.y][pos.x].Item1;
-        List<List<(Guid,CellType)>> targetErea = new List<List<(Guid, CellType)>>();
+        Guid targetGuid = Stage[pos.y][pos.x].Cellid;
+        List<List<Cell>> targetErea = new List<List<Cell>>();
 
         for (int v = 0; v < Stage.Count; v++)
         {
-            targetErea.Add(new List<(Guid, CellType)>());
+            targetErea.Add(new List<Cell>());
             for (int h = 0; h < Stage[v].Count; h++)
             {
-                if( Stage[v][h].Item1  == targetGuid)
+                if( Stage[v][h].Cellid == targetGuid)
                 {
                     targetErea[v].Add(Stage[v][h]);
-                    Stage[v][h] = (Guid.Empty,CellType.None);
+                    Stage[v][h] = new Cell();
                 }
                 else
                 {
-                    targetErea[v].Add((Guid.Empty,CellType.None));
+                    targetErea[v].Add(new Cell());
                 }
             }
         }
@@ -143,19 +142,16 @@ class StageData : MonoBehaviour
     public void Up()
     {
         //最上段に何かしらのピースがある場合は実行しない
-        if (Stage[0].Any(value => value.Item2 != CellType.None))
-        {
-            return;
-        }
+        if (Stage[0].Any( value => !value.isEmpty )){ return; }
 
         //最上段を削除
         Stage.RemoveAt(0);
 
         //空の行を作成し、最下段に追加
-        List<(Guid,CellType)> Row = new List<(Guid,CellType)>();
+        List<Cell> Row = new List<Cell>();
         for (int rowIndex = 0; rowIndex < stageSize; rowIndex++)
         {
-            Row.Add((Guid.Empty,CellType.None));
+            Row.Add(new Cell());
         }
         Stage.Add(Row);
     }
@@ -163,7 +159,7 @@ class StageData : MonoBehaviour
     public void Down()
     {
         //最下段に何かしらのピースがある場合は実行しない
-        if (Stage[stageSize - 1].Any(value => value.Item2 != CellType.None))
+        if (Stage[stageSize - 1].Any(value => !value.isEmpty ))
         {
             return;
         }
@@ -172,10 +168,10 @@ class StageData : MonoBehaviour
         Stage.RemoveAt(stageSize - 1);
 
         //空の列を作成し、最上段に追加
-        List<(Guid,CellType)> Row = new List<(Guid,CellType)>();
+        List<Cell> Row = new List<Cell>();
         for (int rowIndex = 0; rowIndex < stageSize; rowIndex++)
         {
-            Row.Add((Guid.Empty,CellType.None));
+            Row.Add(new Cell());
         }
         Stage.Insert(0, Row);
     }
@@ -185,7 +181,7 @@ class StageData : MonoBehaviour
         //右端列に何かピースがある場合は実行しない。
         for (int ColumnIndex = 0; ColumnIndex < stageSize; ColumnIndex++)
         {
-            if (Stage[ColumnIndex][stageSize -1].Item2 != CellType.None)
+            if (!Stage[ColumnIndex][stageSize -1].isEmpty)
             {
                 return;
             }
@@ -195,7 +191,7 @@ class StageData : MonoBehaviour
         for (int ColumnIndex = 0; ColumnIndex < stageSize; ColumnIndex++)
         {
             Stage[ColumnIndex].RemoveAt(stageSize - 1);
-            Stage[ColumnIndex].Insert(0, (Guid.Empty,CellType.None));
+            Stage[ColumnIndex].Insert(0, new Cell());
         }
     }
 
@@ -204,7 +200,7 @@ class StageData : MonoBehaviour
         //左端列に何かピースがある場合は実行しない。
         for (int ColumnIndex = 0; ColumnIndex < stageSize; ColumnIndex++)
         {
-            if (Stage[ColumnIndex][0].Item2 != CellType.None)
+            if (!Stage[ColumnIndex][0].isEmpty)
             {
                 return;
             }
@@ -214,7 +210,7 @@ class StageData : MonoBehaviour
         for (int ColumnIndex = 0; ColumnIndex < stageSize; ColumnIndex++)
         {
             Stage[ColumnIndex].RemoveAt(0);
-            Stage[ColumnIndex].Add((Guid.Empty, CellType.None));
+            Stage[ColumnIndex].Add(new Cell());
         }
     }
 

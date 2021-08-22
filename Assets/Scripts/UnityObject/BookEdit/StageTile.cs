@@ -26,7 +26,7 @@ public class StageTile : MonoBehaviour
         {
             for (int h = 0; h < StageSize; h++)
             {
-                Mytilemap.SetTile(new Vector3Int(v, -h, 0), tiles[(int)stagedata.Stage[h][v].Item2]);
+                Mytilemap.SetTile(new Vector3Int(v, -h, 0), tiles[(int)stagedata.Stage[h][v].Show()]);
             }
         }
     }

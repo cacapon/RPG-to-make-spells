@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,7 +30,7 @@ public class PieceCommand : MonoBehaviour
         if (PData.Inventory[rune.RuneID] == 0){ return; }
 
         PData.Inventory[rune.RuneID] -= 1;
-        List<List<CellType>> piecedata = MakePiece(piece);
+        List<List<Cell>> piecedata = MakePiece(piece);
         Hold.SetCell(piecedata);
 
         HoldTile.SetStageTile();
@@ -37,29 +38,30 @@ public class PieceCommand : MonoBehaviour
         SwitchTapPanel(true);
     }
 
-    private List<List<CellType>> MakePiece(Piece piece)
+    private List<List<Cell>> MakePiece(Piece piece)
     {
-        List<List<CellType>> piecedata = new List<List<CellType>>();
+        List<List<Cell>> piecedata = new List<List<Cell>>();
+        Guid instantId = Guid.NewGuid();
 
         //ピースのサイズ領域の準備
         for (int i = 0; i < piece.ShapeSize.y; i++)
         {
-            piecedata.Add(new List<CellType>());
+            piecedata.Add(new List<Cell>());
             for (int j = 0; j < piece.ShapeSize.x; j++)
             {
-                piecedata[i].Add(CellType.None);
+                piecedata[i].Add(new Cell());
             }
         }
 
         //色を付ける
         foreach (Vector2Int pos in piece.Shape)
         {
-            piecedata[pos.y][pos.x] = (CellType)piece.Color;
+            piecedata[pos.y][pos.x].Set(instantId,(CellType)piece.Color);
         }
 
         //接続部分の色を変える
-        piecedata[piece.Plug.y][piece.Plug.x] = CellType.NonConnect;
-        piecedata[piece.Socket.y][piece.Socket.x] = CellType.NonConnect;
+        piecedata[piece.Plug.y][piece.Plug.x].Set(instantId,CellType.NonConnect);
+        piecedata[piece.Socket.y][piece.Socket.x].Set(instantId,CellType.NonConnect);
 
         return piecedata;
     }

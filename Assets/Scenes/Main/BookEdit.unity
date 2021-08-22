@@ -689,6 +689,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4b6d42d9bb7d55d428abe750f63eeb55, type: 2}
   - {fileID: 11400000, guid: 2518f625b64babd4eb4be8f1169b6e10, type: 2}
   - {fileID: 11400000, guid: 6b737dd1904627e4785299b0e35a5258, type: 2}
+  - {fileID: 11400000, guid: ce3b56bc70265cd45aaa2140dac427a7, type: 2}
+  - {fileID: 11400000, guid: 3c2275d4eabde44468bc6fe3c01485ea, type: 2}
   stagedata: {fileID: 555935525}
 --- !u!1 &230876412
 GameObject:
@@ -4140,6 +4142,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4b6d42d9bb7d55d428abe750f63eeb55, type: 2}
   - {fileID: 11400000, guid: 2518f625b64babd4eb4be8f1169b6e10, type: 2}
   - {fileID: 11400000, guid: 6b737dd1904627e4785299b0e35a5258, type: 2}
+  - {fileID: 11400000, guid: ce3b56bc70265cd45aaa2140dac427a7, type: 2}
+  - {fileID: 11400000, guid: 3c2275d4eabde44468bc6fe3c01485ea, type: 2}
   stagedata: {fileID: 1657700612}
 --- !u!114 &1295729628
 MonoBehaviour:
