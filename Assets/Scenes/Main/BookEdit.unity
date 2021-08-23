@@ -6351,6 +6351,7 @@ MonoBehaviour:
   HoldTapPanel: {fileID: 1795024116}
   StageTapPanel: {fileID: 1045010526}
   CellCommand: {fileID: 137136668}
+  ConnectButton: {fileID: 423668548}
   ConnectCommand: {fileID: 103282190}
   connectList: {fileID: 542807772}
 --- !u!1 &1574761653

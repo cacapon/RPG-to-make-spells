@@ -19,6 +19,7 @@ public class PieceCommand : MonoBehaviour
     [SerializeField] private GameObject HoldTapPanel;
     [SerializeField] private GameObject StageTapPanel;
     [SerializeField] private GameObject CellCommand;
+    [SerializeField] private GameObject ConnectButton;
 
     [SerializeField] private GameObject ConnectCommand;
     [SerializeField] private ConnectList connectList;
@@ -141,6 +142,8 @@ public class PieceCommand : MonoBehaviour
 
         //位置調整
         CellCommand.SetActive(true);
+        ConnectButton.SetActive(Stage.Stage[pos.y][pos.x].IsConnectCell);
+
         RectTransform rectTransform = CellCommand.GetComponent<RectTransform>();
         rectTransform.anchoredPosition =  new Vector2(pos.x*16,-pos.y*16);
         CellCommandPos = pos;
