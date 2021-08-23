@@ -38,6 +38,10 @@ public class PieceCommand : MonoBehaviour
         if (!Hold.isEmpty()){ return; }
         if (PData.Inventory[rune.RuneID] == 0){ return; }
 
+        CellCommand.SetActive(false);
+        ConnectCommand.SetActive(false);
+
+
         PData.Inventory[rune.RuneID] -= 1;
         List<List<Cell>> piecedata = MakePiece(piece,rune.RuneID);
         Hold.SetCell(piecedata,rune.RuneID);
