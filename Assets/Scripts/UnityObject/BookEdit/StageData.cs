@@ -35,8 +35,8 @@ class StageData : MonoBehaviour
 
     public void SetStartAndEndCell()
     {
-        Stage[0][0].Set(Guid.NewGuid(),CellType.Start);
-        Stage[stageSize-1][stageSize-1].Set(Guid.NewGuid(),CellType.End);
+        Stage[0][0].Set(Guid.NewGuid(),"START",CellType.Start,true);
+        Stage[stageSize-1][stageSize-1].Set(Guid.NewGuid(),"END",CellType.End,true);
     }
     public string ShowStageData()
     {
@@ -58,7 +58,7 @@ class StageData : MonoBehaviour
         {
             for (int h = 0; h < piecedata[v].Count; h++)
             {
-                Stage[v][h].Set(piecedata[v][h].Cellid, runeId, piecedata[v][h].CellType);
+                Stage[v][h].Set(piecedata[v][h].Cellid, runeId, piecedata[v][h].CellType,piecedata[v][h].IsConnectCell);
             }
         }
     }

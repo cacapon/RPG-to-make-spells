@@ -9,6 +9,8 @@ public class Cell
 
     CellType cellType;
 
+    bool isConnectCell;
+
     public Cell()
     {
         cellid = Guid.Empty;
@@ -16,18 +18,22 @@ public class Cell
         runeId = "";
     }
 
-    public void Set(Guid id, CellType celltype)
-    {
-        cellid = id;
-        cellType = celltype;
-    }
-
     public void Set(Guid instantid, string runeid, CellType celltype)
     {
         cellid = instantid;
         runeId = runeid;
         cellType = celltype;
+        isConnectCell = false;
     }
+
+    public void Set(Guid instantid, string runeid, CellType celltype, bool isconnectcell)
+    {
+        cellid = instantid;
+        runeId = runeid;
+        cellType = celltype;
+        this.isConnectCell = isconnectcell;
+    }
+
 
 
     public CellType Show()
@@ -39,4 +45,5 @@ public class Cell
     public Guid Cellid { get => cellid;}
     public CellType CellType { get => cellType;}
     public string RuneId { get => runeId;}
+    public bool IsConnectCell { get => isConnectCell;}
 }
