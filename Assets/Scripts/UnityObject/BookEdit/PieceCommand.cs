@@ -154,6 +154,12 @@ public class PieceCommand : MonoBehaviour
         CellCommand.SetActive(false);
     }
 
+    public void HideConnectCommand()
+    {
+        ConnectCommand.SetActive(false);
+    }
+
+
     public void Put()
     {
         if (Hold.isDeplicated(Stage.Stage)){return;}
