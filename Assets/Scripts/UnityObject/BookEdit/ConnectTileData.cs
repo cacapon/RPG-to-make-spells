@@ -89,6 +89,48 @@ class ConnectTileData : MonoBehaviour
         }
     }
 
+    public void DisConnect(List<List<Cell>> stagedata)
+    {
+        for (int v = 0; v < stagedata.Count; v++)
+        {
+            for (int h = 0; h < stagedata[v].Count; h++)
+            {
+                if(TileData[v][h] == eVector.None)
+                {
+                    continue;
+                }
+                if(stagedata[v][h].CellType != CellType.None)
+                {
+                    eVector vec = TileData[v][h];
+
+                    //接続元を解除
+                    TileData[v][h] = eVector.None;
+
+                    //接続先の接続も解除
+                    switch(vec)
+                    {
+                        case eVector.Up:
+                            TileData[v - 1][h] = eVector.None;
+                            break;
+                        case eVector.Down:
+                            TileData[v + 1][h] = eVector.None;
+                            break;
+                        case eVector.Left:
+                            TileData[v][h - 1] = eVector.None;
+                            break;
+                        case eVector.Right:
+                            TileData[v][h + 1] = eVector.None;
+                            break;
+                        case eVector.None:
+                            throw new Exception("想定外のエラー");
+                        default:
+                            throw new Exception("想定外のエラー");
+                    }
+                }
+            }
+        }
+    }
+
     public void ResetConnectCell(Vector2Int pos)
     {
         TileData[pos.y][pos.x] = eVector.None;

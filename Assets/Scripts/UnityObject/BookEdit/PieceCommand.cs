@@ -146,33 +146,37 @@ public class PieceCommand : MonoBehaviour
     {
         CellCommand.SetActive(false);
         ConnectCommand.SetActive(true);
+        RectTransform rectTransform = ConnectCommand.GetComponent<RectTransform>();
+        rectTransform.anchoredPosition =  new Vector2(CellCommandPos.x*16,-CellCommandPos.y*16);
+
     }
 
     public void Holdon()
     {
         //CellCommandからの実行用
+        HoldonCommon(CellCommandPos);
 
-        if (!Hold.isEmpty()){return;}
-        if (Stage.isEmpty(CellCommandPos)){return;}
-
-        //指定のステージのブロックをホールドに移す
-        Hold.Stage = Stage.Holdon(CellCommandPos);
-        stageTile.SetStageTile();
-        HoldTile.SetStageTile();
-        SwitchTapPanel(true);
         CellCommand.SetActive(false);
     }
 
     public void Holdon(Vector2Int targetpos)
     {
+        HoldonCommon(targetpos);
+    }
+
+    private void HoldonCommon(Vector2Int pos)
+    {
         if (!Hold.isEmpty()){return;}
-        if (Stage.isEmpty(targetpos)){return;}
+        if (Stage.isEmpty(pos)){return;}
 
         //指定のステージのブロックをホールドに移す
-        Hold.Stage = Stage.Holdon(targetpos);
+        Hold.Stage = Stage.Holdon(pos);
         stageTile.SetStageTile();
         HoldTile.SetStageTile();
+        ConnectTileData.DisConnect(Hold.Stage);
+        connectTile.SetConnectTile();
         SwitchTapPanel(true);
+
     }
 
     private void Move(eVector vec)
@@ -220,10 +224,6 @@ public class PieceCommand : MonoBehaviour
     {
         if(Stage.Stage[targetpos.y][targetpos.x].IsConnectCell)
         {
-            connectList.Add(
-                Stage.Stage[CellCommandPos.y][CellCommandPos.x].RuneId,
-                Stage.Stage[targetpos.y][targetpos.x].RuneId);
-
             ConnectTileData.SetConnectCell(CellCommandPos,targetpos);
             connectTile.SetConnectTile();
         }
