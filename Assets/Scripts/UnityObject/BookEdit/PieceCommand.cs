@@ -100,8 +100,23 @@ public class PieceCommand : MonoBehaviour
         }
 
         //接続部分の色を変える
-        piecedata[piece.Plug.y][piece.Plug.x].Set(instantId,runeid,CellType.NonConnect,true);
-        piecedata[piece.Socket.y][piece.Socket.x].Set(instantId,runeid,CellType.NonConnect,true);
+        switch((CellType)piece.Color)
+        {
+            case CellType.Cyan:
+                piecedata[piece.Plug.y][piece.Plug.x].Set(instantId,runeid,CellType.CyanConnect,true);
+                piecedata[piece.Socket.y][piece.Socket.x].Set(instantId,runeid,CellType.CyanConnect,true);
+                break;
+            case CellType.Magenta:
+                piecedata[piece.Plug.y][piece.Plug.x].Set(instantId,runeid,CellType.MagentaConnect,true);
+                piecedata[piece.Socket.y][piece.Socket.x].Set(instantId,runeid,CellType.MagentaConnect,true);
+                break;
+            case CellType.Yellow:
+                piecedata[piece.Plug.y][piece.Plug.x].Set(instantId,runeid,CellType.YellowConnect,true);
+                piecedata[piece.Socket.y][piece.Socket.x].Set(instantId,runeid,CellType.YellowConnect,true);
+                break;
+            default:
+                throw new Exception("想定外の色が選択されました");
+        }
 
         return piecedata;
     }

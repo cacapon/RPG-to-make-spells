@@ -6,6 +6,7 @@ public enum CellType
         Cyan,
         Magenta,
         Yellow,
-        NonConnect,
-        Connect
+        CyanConnect,
+        MagentaConnect,
+        YellowConnect,
     }
