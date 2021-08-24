@@ -56,8 +56,15 @@ public class PieceCommand : MonoBehaviour
 
     public void BringFromInventory(Rune rune, Piece piece)
     {
-        if (!Hold.isEmpty()){ return; }
+        string targetRuneid = Hold.GetRuneID();
+        if(targetRuneid == "START" || targetRuneid == "END"){return;}
         if (PData.Inventory[rune.RuneID] == 0){ return; }
+
+        if (!Hold.isEmpty())
+        {
+            PutInInventory(false);
+        }
+
 
         CellCommand.SetActive(false);
         ConnectCommand.SetActive(false);
@@ -72,7 +79,7 @@ public class PieceCommand : MonoBehaviour
         SwitchTapPanel(true);
     }
 
-    public void PutInInventory()
+    public void PutInInventory(bool reload=true)
     {
         Debug.Log("run put in inventory");
         string targetRuneid = Hold.GetRuneID();
@@ -82,8 +89,12 @@ public class PieceCommand : MonoBehaviour
         Hold.Init();
         HoldTile.SetStageTile();
         PData.Inventory[targetRuneid] += 1;
-        bookEditSetRune.ReLoad();
         SwitchTapPanel(false);
+
+        if(reload)
+        {
+            bookEditSetRune.ReLoad();
+        }
     }
 
     public void PutInInventoryFromCommand()
