@@ -140,6 +140,8 @@ public class PieceCommand : MonoBehaviour
     {
         if (Stage.isEmpty(pos)){return;}
 
+        HideConnectCommand();
+
         //位置調整
         CellCommand.SetActive(true);
         ConnectButton.SetActive(Stage.Stage[pos.y][pos.x].IsConnectCell);
