@@ -34,6 +34,26 @@ public class PieceCommand : MonoBehaviour
         Right
     }
 
+    public void Magicle()
+    {
+        //StageのinstanceID、RuneIDと、接続部分から接続しているピースのリストを取得
+        connectList.Reset();
+        connectList.SearchConnect(Stage,ConnectTileData);
+
+        if(connectList.ChainCheck())
+        {
+            List<Magic> Book = new List<Magic>();
+            Magic2 magic = new Magic2();
+            foreach (var chain in connectList.CList)
+            {
+                //magic.ConvertMagic();
+            }
+        }
+
+        //コネクトのリスト一覧から
+        Debug.Log(connectList.Show());
+    }
+
     public void BringFromInventory(Rune rune, Piece piece)
     {
         if (!Hold.isEmpty()){ return; }
@@ -116,7 +136,7 @@ public class PieceCommand : MonoBehaviour
                 piecedata[piece.Socket.y][piece.Socket.x].Set(instantId,runeid,CellType.YellowConnect,true);
                 break;
             default:
-                throw new Exception("想定外の色が選択されました");
+                throw new Exception($"想定外の色が選択されました:{piece.Color}");
         }
 
         return piecedata;

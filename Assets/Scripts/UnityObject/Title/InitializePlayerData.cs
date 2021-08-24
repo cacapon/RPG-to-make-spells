@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using Firebase.Database;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public class InitializePlayerData : MonoBehaviour
 {
@@ -61,7 +62,19 @@ public class InitializePlayerData : MonoBehaviour
                 });
         await reference.Child("InventoryDB").Child(pid).SetValueAsync(new Dictionary<string, int>()
         {
-            {"R_DMG_5_000_000_C",1}
+            {"FIRE_5_000_000_M",1},
+            {"ICE_5_000_001_C",1},
+            {"THUNDER_5_000_002_Y",1},
+            {"FIRE_5_001_003_M",1},
+            {"ICE_5_001_004_C",1},
+            {"THUNDER_5_001_005_Y",1},
+            {"ME_4_000_000_C",1},
+            {"ME_4_001_000_M",1},
+            {"ME_4_002_000_Y",1},
+            {"MULTI_3_000_000_C",1},
+            {"MULTI_3_002_000_M",1},
+            {"MULTI_3_004_000_Y",1},
+            {"REVERCE_5_000_000_C",5},
         });
         Debug.Log("IDをDBへセーブしました");
     }

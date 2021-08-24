@@ -57,11 +57,14 @@ public class BookEditSetRune : MonoBehaviour
     {
         Vector2 basePivot = new Vector2(0, 1);
 
+        Vector2 Socket = new Vector2(pieceInstance.Socket.x * -1, pieceInstance.Socket.y);
+        Vector2 Plug = new Vector2(pieceInstance.Plug.x * -1, pieceInstance.Plug.y);
+
         targetSocketRect = rune.transform.GetChild(1).GetComponent<RectTransform>();
-        targetSocketRect.pivot = basePivot + pieceInstance.Socket;
+        targetSocketRect.pivot = basePivot + Socket;
 
         targetPlugRect = rune.transform.GetChild(2).GetComponent<RectTransform>();
-        targetPlugRect.pivot = basePivot + pieceInstance.Plug;
+        targetPlugRect.pivot = basePivot + Plug;
     }
 
     private void SetBaseImage(GameObject rune, string pieceID)
