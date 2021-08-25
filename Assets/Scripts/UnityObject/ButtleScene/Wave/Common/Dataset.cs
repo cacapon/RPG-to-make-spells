@@ -1,9 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 public class Dataset : MonoBehaviour
 {
     [SerializeField] private ButtleSceneData buttleSceneData;
     [SerializeField] private PlayerData playerData;
+    [SerializeField] private Text StageTitle;
 
     #region ButtleSceneData
     public float CurrentWaveCount { get => buttleSceneData.CurrentWaveCount; set => buttleSceneData.CurrentWaveCount = value; }
@@ -27,10 +30,11 @@ public class Dataset : MonoBehaviour
     public PlayerData PlayerData { get => playerData;}
     #endregion
 
-    public void Initialize(PlayerData pData, ButtleSceneData bsData)
+    public void Initialize(PlayerData pData, ButtleSceneData bsData, string stagetitle)
     {
         playerData = pData;
         buttleSceneData = bsData;
+        StageTitle.text = stagetitle;
     }
 
 }

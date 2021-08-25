@@ -548,7 +548,7 @@ public class AdventureScript : MonoBehaviour, IFlick, ITap
     private void DataSet(Scene next, LoadSceneMode mode)
     {
         var dataSet = GameObject.FindWithTag("DataSet").GetComponent<Dataset>();
-        dataSet.Initialize(playerData, buttleSceneData);
+        dataSet.Initialize(playerData, buttleSceneData,"");
         SceneManager.sceneLoaded -= DataSet;
     }
 

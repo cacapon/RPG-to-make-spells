@@ -4654,6 +4654,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttleSceneData: {fileID: 11400000, guid: 01e8764ee79a7604185058c6764cec87, type: 2}
   playerData: {fileID: 11400000, guid: 767c84328a1d8d24c9029c43829e4026, type: 2}
+  StageTitle: {fileID: 1990841084}
 --- !u!4 &284515469
 Transform:
   m_ObjectHideFlags: 0

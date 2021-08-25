@@ -1,8 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class PieceCommand : MonoBehaviour
 {
@@ -23,6 +22,8 @@ public class PieceCommand : MonoBehaviour
 
     [SerializeField] private GameObject ConnectCommand;
     [SerializeField] private ConnectList connectList;
+
+    [SerializeField] private Text WindowMessage;
 
     private Vector2Int CellCommandPos;
 
@@ -65,6 +66,7 @@ public class PieceCommand : MonoBehaviour
             PutInInventory(false);
         }
 
+        WindowMessage.text = rune.Description(rune.Type);
 
         CellCommand.SetActive(false);
         ConnectCommand.SetActive(false);
@@ -83,7 +85,11 @@ public class PieceCommand : MonoBehaviour
     {
         Debug.Log("run put in inventory");
         string targetRuneid = Hold.GetRuneID();
-        if(targetRuneid == "START" || targetRuneid == "END"){return;} //検知したピースがスタートかENDの場合は実行しない
+        if(targetRuneid == "START" || targetRuneid == "END")
+        {
+            WindowMessage.text = "このルーンはインベントリに\nしまう事ができません";
+            return;
+        } //検知したピースがスタートかENDの場合は実行しない
 
 
         Hold.Init();
@@ -95,15 +101,13 @@ public class PieceCommand : MonoBehaviour
         {
             bookEditSetRune.ReLoad();
         }
+        WindowMessage.text = "インベントリにしまいました";
     }
 
     public void PutInInventoryFromCommand()
     {
         if( Stage.Stage[CellCommandPos.y][CellCommandPos.x].RuneId == "START" ||
-            Stage.Stage[CellCommandPos.y][CellCommandPos.x].RuneId == "END")
-        {
-            return;
-        }
+            Stage.Stage[CellCommandPos.y][CellCommandPos.x].RuneId == "END"){return;}
 
         Holdon(CellCommandPos);
         PutInInventory();
@@ -201,6 +205,8 @@ public class PieceCommand : MonoBehaviour
         Hold.Init();
         HoldTile.SetStageTile();
         SwitchTapPanel(false);
+        WindowMessage.text = "ルーンを置きました";
+
     }
 
     public void ShowConnectCommand()
@@ -209,6 +215,8 @@ public class PieceCommand : MonoBehaviour
         ConnectCommand.SetActive(true);
         RectTransform rectTransform = ConnectCommand.GetComponent<RectTransform>();
         rectTransform.anchoredPosition =  new Vector2(CellCommandPos.x*16,-CellCommandPos.y*16);
+
+        WindowMessage.text = "出っ張りがあるルーン同士で\nルーンをつなぐことができます";
 
     }
 
@@ -289,6 +297,8 @@ public class PieceCommand : MonoBehaviour
             connectTile.SetConnectTile();
         }
         ConnectCommand.SetActive(false);
+        WindowMessage.text = "ルーンをつなぎました";
+
     }
 
     public void ConnectUp()

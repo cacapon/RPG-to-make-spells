@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 520ceb6d171bc76448ff397ed35a7573, type: 3}
+  m_Name: TestPlayer
+  m_EditorClassIdentifier: 
+  myName: 
+  InitHP: 200
+  InitMP: 50
+  MPSpeed: 3
+  Book:
+  - name: "\u3064\u3089\u3089\u3000\u304F\u305A\u3057"
+    Type: 1
+    Target: 1
+    Effect: 2
+    SpendMP: 5
+    Power: 5
+  - name: "\u30D5\u30A1\u30A4\u30A2\u30D0\u30EC\u30C3\u30C8"
+    Type: 1
+    Target: 1
+    Effect: 0
+    SpendMP: 15
+    Power: 10
+  - name: "\u96F7\u304A\u3053\u3057"
+    Type: 1
+    Target: 1
+    Effect: 3
+    SpendMP: 20
+    Power: 35
+  - name: "\u3075\u3076\u304D"
+    Type: 1
+    Target: 2
+    Effect: 2
+    SpendMP: 10
+    Power: 5
+  - name: "\u30D0\u30FC\u30F3\u3000\u30E9\u30A4\u30F3"
+    Type: 1
+    Target: 2
+    Effect: 0
+    SpendMP: 30
+    Power: 10
+  - name: "\u88C1\u304D\u306E\u96F7"
+    Type: 1
+    Target: 2
+    Effect: 3
+    SpendMP: 40
+    Power: 35
+  - name: "\u30D2\u30FC\u30EB"
+    Type: 0
+    Target: 0
+    Effect: 1
+    SpendMP: 15
+    Power: 40
+  Gold: 500
