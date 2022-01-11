@@ -10,7 +10,7 @@ public class TestInventorySystem : MonoBehaviour
 {
     [SerializeField] private TextAsset Jsonfile;
     [SerializeField] private Text TxtDirPath; // パス表示部分
-    [SerializeField] private GameObject InventoryItemsObj; //TODO:後で自動で割り振れるようにしたい
+    [SerializeField] private GameObject InventoryItemsObj;
     [SerializeField] private List<Sprite> sprites; //TODO:使いまわしに向かない　一枚の絵から自動で分割したい　eImageTypeとインスペクタの位置を合わせる事
 
 
@@ -84,10 +84,6 @@ public class TestInventorySystem : MonoBehaviour
         {
             TapParts(sender.name);
         }
-        // TODO:タップされたオブジェクトからタイプを取得する
-        //オブジェクトのタイプがディレクトリならTapDirectoryを
-        //オブジェクトのタイプがパーツならTapPartsを
-        //TapParts() //TODO;
     }
 
     private bool IsDirectory(string name)
