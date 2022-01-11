@@ -10,11 +10,12 @@ public class TestInventorySystem : MonoBehaviour
 {
     [SerializeField] private TextAsset Jsonfile;
     [SerializeField] private Text TxtDirPath; // パス表示部分
-    [SerializeField] private List<GameObject> InventoryItemsObj; //TODO:後で自動で割り振れるようにしたい
+    [SerializeField] private GameObject InventoryItemsObj; //TODO:後で自動で割り振れるようにしたい
     [SerializeField] private List<Sprite> sprites; //TODO:使いまわしに向かない　一枚の絵から自動で分割したい　eImageTypeとインスペクタの位置を合わせる事
 
-    private Dictionary<eImageType,Sprite> spriteDict;
 
+    private List<GameObject> InventoryItemObjList;
+    private Dictionary<eImageType,Sprite> spriteDict;
     private InventoryItem[] InventoryItems;
     private List<Text> names;
 
@@ -47,7 +48,17 @@ public class TestInventorySystem : MonoBehaviour
         names = new List<Text>();
         images = new List<Image>();
 
-        foreach (var item in InventoryItemsObj)
+        // 子オブジェクトを列挙する
+        // 子オブジェクトを返却する配列作成
+        InventoryItemObjList = new List<GameObject>();
+
+        // 子オブジェクトを順番に配列に格納
+        foreach (Transform child in InventoryItemsObj.transform)
+        {
+            InventoryItemObjList.Add(child.gameObject);
+        }
+
+        foreach (var item in InventoryItemObjList)
         {
             Text itemnameobj = item.transform.GetChild(0).GetComponent<Text>();
             Image itemImage = item.GetComponent<Image>();
@@ -133,7 +144,7 @@ public class TestInventorySystem : MonoBehaviour
         IEnumerable<InventoryItem> testWhere = InventoryItems.Where(o => o.path == string.Join("/", path));
 
         // 一度全て非表示にする
-        foreach (var item in InventoryItemsObj)
+        foreach (var item in InventoryItemObjList)
         {
             item.SetActive(false);
         }
@@ -143,8 +154,8 @@ public class TestInventorySystem : MonoBehaviour
         foreach (var item in testWhere)
         {
             //TODO:JSONとオブジェクトを紐づける
-            InventoryItemsObj[i].SetActive(true);
-            InventoryItemsObj[i].name = item.name;
+            InventoryItemObjList[i].SetActive(true);
+            InventoryItemObjList[i].name = item.name;
 
             names[i].text = item.name;
             images[i].sprite = spriteDict[item.image];
