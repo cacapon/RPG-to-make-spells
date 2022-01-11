@@ -96,19 +96,16 @@ public class TestInventorySystem : MonoBehaviour
     public void TapHomeButton()
     {
         ChangeDirectory("//");
-        ListSegments();
     }
 
     public void TapUpButton()
     {
         ChangeDirectory("..");
-        ListSegments();
     }
 
     private void TapDirectory(string nextpath)
     {
         ChangeDirectory(nextpath);
-        ListSegments();
     }
 
     private void TapParts(string partsName)

@@ -6310,14 +6310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Jsonfile: {fileID: 4900000, guid: 5660efdf1b1290b41b039f6f25ec6add, type: 3}
   TxtDirPath: {fileID: 1847235542}
-  InventoryItemsObj:
-  - {fileID: 1681506996}
-  - {fileID: 1484863951}
-  - {fileID: 658010247}
-  - {fileID: 791316163}
-  - {fileID: 609566451}
-  - {fileID: 1325207031}
-  - {fileID: 1019773387}
+  InventoryItemsObj: {fileID: 1362319970}
   sprites:
   - {fileID: 21300000, guid: 21cc754119d87a941b3cb5fe669c19c9, type: 3}
   - {fileID: -285850100067813292, guid: 95d110ae652ff604bbca0ee166a15995, type: 3}
