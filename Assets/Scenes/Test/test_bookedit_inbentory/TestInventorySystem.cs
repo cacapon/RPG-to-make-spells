@@ -15,9 +15,6 @@ public class TestInventorySystem : MonoBehaviour
     private List<GameObject> InventoryItemObjList;
     private Dictionary<eImageType,Sprite> spriteDict;
     private InventoryItem[] InventoryItems;
-    private List<Text> names;
-
-    private List<Image> images;
     private List<string> path = new List<string>() { "~" }; //最長半角16文字まで
 
     // Start is called before the first frame update
@@ -43,8 +40,6 @@ public class TestInventorySystem : MonoBehaviour
 
     private void GetInventoryObj()
     {
-        names = new List<Text>();
-        images = new List<Image>();
 
         // 子オブジェクトを列挙する
         // 子オブジェクトを返却する配列作成
@@ -60,8 +55,6 @@ public class TestInventorySystem : MonoBehaviour
         {
             Text itemnameobj = item.transform.GetChild(0).GetComponent<Text>();
             Image itemImage = item.GetComponent<Image>();
-            names.Add(itemnameobj);
-            images.Add(itemImage);
         }
     }
 
@@ -147,12 +140,12 @@ public class TestInventorySystem : MonoBehaviour
         int i = 0;
         foreach (var item in testWhere)
         {
-            //TODO:JSONとオブジェクトを紐づける
             InventoryItemObjList[i].SetActive(true);
             InventoryItemObjList[i].name = item.name;
 
-            names[i].text = item.name;
-            images[i].sprite = spriteDict[item.image];
+            InventoryItemObjList[i].transform.GetChild(0).GetComponent<Text>().text = item.name;
+            InventoryItemObjList[i].GetComponent<Image>().sprite = spriteDict[item.image];
+
             Debug.Log($"{item.path} {item.name} {item.type} {item.image}");
             i++;
         }
