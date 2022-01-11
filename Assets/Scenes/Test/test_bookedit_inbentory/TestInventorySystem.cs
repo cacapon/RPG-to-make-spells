@@ -151,16 +151,6 @@ public class TestInventorySystem : MonoBehaviour
         }
     }
 
-    private Sprite SetSprite(eImageType type)
-    {
-        switch(type)
-        {
-            case eImageType.directory:
-                return sprites[0];
-        }
-        return sprites[0];
-    }
-
     private void ChangeDirectory(string next_path)
     {
         // パスを変更する
