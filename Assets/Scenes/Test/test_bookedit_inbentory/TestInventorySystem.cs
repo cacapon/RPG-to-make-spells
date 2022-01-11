@@ -8,10 +8,9 @@ using UnityEngine.UI;
 
 public class TestInventorySystem : MonoBehaviour
 {
+    [SerializeField] private TextAsset Jsonfile;
     [SerializeField] private Text TxtDirPath; // パス表示部分
-
     [SerializeField] private List<GameObject> InventoryItemsObj; //TODO:後で自動で割り振れるようにしたい
-
     [SerializeField] private List<Sprite> sprites; //TODO:使いまわしに向かない　一枚の絵から自動で分割したい　eImageTypeとインスペクタの位置を合わせる事
 
     private Dictionary<eImageType,Sprite> spriteDict;
@@ -59,7 +58,7 @@ public class TestInventorySystem : MonoBehaviour
 
     private void InitJsonData()
     {
-        string json = File.ReadAllText(@"D:\Ddrv_WS\RPG-to-make-spells\Assets\Scenes\Test\test_bookedit_inbentory\DATA\testdata.json"); //TODO:決め打ちになっているので変えたい
+        string json = Jsonfile.text;
         InventoryItems = JsonHelper.FromJson<InventoryItem>(json);
     }
 

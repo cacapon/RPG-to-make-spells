@@ -6308,6 +6308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e1522dad1a23b4cb53d2229df101f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Jsonfile: {fileID: 4900000, guid: 5660efdf1b1290b41b039f6f25ec6add, type: 3}
   TxtDirPath: {fileID: 1847235542}
   InventoryItemsObj:
   - {fileID: 1681506996}
