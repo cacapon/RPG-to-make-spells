@@ -9,6 +9,7 @@ public class TestInventorySystem : MonoBehaviour
     [SerializeField] private TextAsset Jsonfile;
     [SerializeField] private Text TxtDirPath; // パス表示部分
     [SerializeField] private GameObject InventoryItemsObj;
+    [SerializeField] private GameObject DandDObj;
     [SerializeField] private List<Sprite> sprites; //TODO:使いまわしに向かない　一枚の絵から自動で分割したい　eImageTypeとインスペクタの位置を合わせる事
 
 
@@ -111,7 +112,7 @@ public class TestInventorySystem : MonoBehaviour
     private void TapParts(string partsName)
     {
         //ステージにパーツを置く
-        //TODO
+        Instantiate(DandDObj,Vector3.zero,Quaternion.identity,this.transform.parent);
         Debug.Log(partsName);
     }
 
