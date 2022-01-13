@@ -6,15 +6,18 @@ using UnityEngine.EventSystems;
 public class TestDragAndDrop : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     private Canvas canvas;
+    private CanvasGroup CanvasGroup;
     private RectTransform rectTransform;
 
     private void Awake() {
         rectTransform = GetComponent<RectTransform>();
         canvas = transform.parent.GetComponent<Canvas>(); // HACK:親がcanvasであること
+        CanvasGroup = GetComponent<CanvasGroup>();
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
         Debug.Log("OnBegin");
+        CanvasGroup.blocksRaycasts = false;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -26,6 +29,7 @@ public class TestDragAndDrop : MonoBehaviour, IPointerDownHandler, IDragHandler,
     public void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log("OnEnd");
+        CanvasGroup.blocksRaycasts = true;
     }
 
     public void OnPointerDown(PointerEventData eventData)
