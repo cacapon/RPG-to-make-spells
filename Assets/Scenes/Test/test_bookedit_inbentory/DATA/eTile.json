@@ -1,0 +1,9 @@
+[
+  { "ID": "Color_0", "eTile": "None" },
+  { "ID": "Color_1", "eTile": "BLUE" },
+  { "ID": "Color_2", "eTile": "BLUE_PLUS" },
+  { "ID": "Color_3", "eTile": "RED" },
+  { "ID": "Color_4", "eTile": "RED_PLUS" },
+  { "ID": "Color_5", "eTile": "YELLOW" },
+  { "ID": "Color_6", "eTile": "YELLOW_PLUS" }
+]

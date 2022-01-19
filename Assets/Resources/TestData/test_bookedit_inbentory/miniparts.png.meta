@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 59fc82b2d5f81ed42b60d8e64257ba5c
+guid: 325460d3d46b62e4e96f0a478b22be99
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -200,6 +200,39 @@ TextureImporter:
   - first:
       213: 3047956009595834031
     second: miniparts_65
+  - first:
+      213: -4205051550074166789
+    second: miniparts_66
+  - first:
+      213: -4520718268123785626
+    second: miniparts_67
+  - first:
+      213: -4332778379912125832
+    second: miniparts_68
+  - first:
+      213: 2678231208293279152
+    second: miniparts_69
+  - first:
+      213: -2473113765792624857
+    second: miniparts_70
+  - first:
+      213: 3034673669338537834
+    second: miniparts_71
+  - first:
+      213: 5038546721674886971
+    second: miniparts_72
+  - first:
+      213: -2661445444449113298
+    second: miniparts_73
+  - first:
+      213: -6584316834200929881
+    second: miniparts_74
+  - first:
+      213: 7334570266124293478
+    second: miniparts_75
+  - first:
+      213: 8606009188526969285
+    second: miniparts_76
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -329,7 +362,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 100
+        y: 120
         width: 20
         height: 20
       alignment: 0
@@ -349,7 +382,7 @@ TextureImporter:
       name: miniparts_1
       rect:
         serializedVersion: 2
-        x: 20
+        x: 0
         y: 100
         width: 20
         height: 20
@@ -370,7 +403,7 @@ TextureImporter:
       name: miniparts_2
       rect:
         serializedVersion: 2
-        x: 40
+        x: 20
         y: 100
         width: 20
         height: 20
@@ -391,7 +424,7 @@ TextureImporter:
       name: miniparts_3
       rect:
         serializedVersion: 2
-        x: 60
+        x: 40
         y: 100
         width: 20
         height: 20
@@ -412,7 +445,7 @@ TextureImporter:
       name: miniparts_4
       rect:
         serializedVersion: 2
-        x: 80
+        x: 60
         y: 100
         width: 20
         height: 20
@@ -433,7 +466,7 @@ TextureImporter:
       name: miniparts_5
       rect:
         serializedVersion: 2
-        x: 100
+        x: 80
         y: 100
         width: 20
         height: 20
@@ -454,7 +487,7 @@ TextureImporter:
       name: miniparts_6
       rect:
         serializedVersion: 2
-        x: 120
+        x: 100
         y: 100
         width: 20
         height: 20
@@ -475,7 +508,7 @@ TextureImporter:
       name: miniparts_7
       rect:
         serializedVersion: 2
-        x: 140
+        x: 120
         y: 100
         width: 20
         height: 20
@@ -496,7 +529,7 @@ TextureImporter:
       name: miniparts_8
       rect:
         serializedVersion: 2
-        x: 160
+        x: 140
         y: 100
         width: 20
         height: 20
@@ -517,7 +550,7 @@ TextureImporter:
       name: miniparts_9
       rect:
         serializedVersion: 2
-        x: 180
+        x: 160
         y: 100
         width: 20
         height: 20
@@ -538,7 +571,7 @@ TextureImporter:
       name: miniparts_10
       rect:
         serializedVersion: 2
-        x: 200
+        x: 180
         y: 100
         width: 20
         height: 20
@@ -559,8 +592,8 @@ TextureImporter:
       name: miniparts_11
       rect:
         serializedVersion: 2
-        x: 0
-        y: 80
+        x: 200
+        y: 100
         width: 20
         height: 20
       alignment: 0
@@ -580,7 +613,7 @@ TextureImporter:
       name: miniparts_12
       rect:
         serializedVersion: 2
-        x: 20
+        x: 0
         y: 80
         width: 20
         height: 20
@@ -601,7 +634,7 @@ TextureImporter:
       name: miniparts_13
       rect:
         serializedVersion: 2
-        x: 40
+        x: 20
         y: 80
         width: 20
         height: 20
@@ -622,7 +655,7 @@ TextureImporter:
       name: miniparts_14
       rect:
         serializedVersion: 2
-        x: 60
+        x: 40
         y: 80
         width: 20
         height: 20
@@ -643,7 +676,7 @@ TextureImporter:
       name: miniparts_15
       rect:
         serializedVersion: 2
-        x: 80
+        x: 60
         y: 80
         width: 20
         height: 20
@@ -664,7 +697,7 @@ TextureImporter:
       name: miniparts_16
       rect:
         serializedVersion: 2
-        x: 100
+        x: 80
         y: 80
         width: 20
         height: 20
@@ -685,7 +718,7 @@ TextureImporter:
       name: miniparts_17
       rect:
         serializedVersion: 2
-        x: 120
+        x: 100
         y: 80
         width: 20
         height: 20
@@ -706,7 +739,7 @@ TextureImporter:
       name: miniparts_18
       rect:
         serializedVersion: 2
-        x: 140
+        x: 120
         y: 80
         width: 20
         height: 20
@@ -727,7 +760,7 @@ TextureImporter:
       name: miniparts_19
       rect:
         serializedVersion: 2
-        x: 160
+        x: 140
         y: 80
         width: 20
         height: 20
@@ -748,7 +781,7 @@ TextureImporter:
       name: miniparts_20
       rect:
         serializedVersion: 2
-        x: 180
+        x: 160
         y: 80
         width: 20
         height: 20
@@ -769,7 +802,7 @@ TextureImporter:
       name: miniparts_21
       rect:
         serializedVersion: 2
-        x: 200
+        x: 180
         y: 80
         width: 20
         height: 20
@@ -790,8 +823,8 @@ TextureImporter:
       name: miniparts_22
       rect:
         serializedVersion: 2
-        x: 0
-        y: 60
+        x: 200
+        y: 80
         width: 20
         height: 20
       alignment: 0
@@ -811,7 +844,7 @@ TextureImporter:
       name: miniparts_23
       rect:
         serializedVersion: 2
-        x: 20
+        x: 0
         y: 60
         width: 20
         height: 20
@@ -832,7 +865,7 @@ TextureImporter:
       name: miniparts_24
       rect:
         serializedVersion: 2
-        x: 40
+        x: 20
         y: 60
         width: 20
         height: 20
@@ -853,7 +886,7 @@ TextureImporter:
       name: miniparts_25
       rect:
         serializedVersion: 2
-        x: 60
+        x: 40
         y: 60
         width: 20
         height: 20
@@ -874,7 +907,7 @@ TextureImporter:
       name: miniparts_26
       rect:
         serializedVersion: 2
-        x: 80
+        x: 60
         y: 60
         width: 20
         height: 20
@@ -895,7 +928,7 @@ TextureImporter:
       name: miniparts_27
       rect:
         serializedVersion: 2
-        x: 100
+        x: 80
         y: 60
         width: 20
         height: 20
@@ -916,7 +949,7 @@ TextureImporter:
       name: miniparts_28
       rect:
         serializedVersion: 2
-        x: 120
+        x: 100
         y: 60
         width: 20
         height: 20
@@ -937,7 +970,7 @@ TextureImporter:
       name: miniparts_29
       rect:
         serializedVersion: 2
-        x: 140
+        x: 120
         y: 60
         width: 20
         height: 20
@@ -958,7 +991,7 @@ TextureImporter:
       name: miniparts_30
       rect:
         serializedVersion: 2
-        x: 160
+        x: 140
         y: 60
         width: 20
         height: 20
@@ -979,7 +1012,7 @@ TextureImporter:
       name: miniparts_31
       rect:
         serializedVersion: 2
-        x: 180
+        x: 160
         y: 60
         width: 20
         height: 20
@@ -1000,7 +1033,7 @@ TextureImporter:
       name: miniparts_32
       rect:
         serializedVersion: 2
-        x: 200
+        x: 180
         y: 60
         width: 20
         height: 20
@@ -1021,8 +1054,8 @@ TextureImporter:
       name: miniparts_33
       rect:
         serializedVersion: 2
-        x: 0
-        y: 40
+        x: 200
+        y: 60
         width: 20
         height: 20
       alignment: 0
@@ -1042,7 +1075,7 @@ TextureImporter:
       name: miniparts_34
       rect:
         serializedVersion: 2
-        x: 20
+        x: 0
         y: 40
         width: 20
         height: 20
@@ -1063,7 +1096,7 @@ TextureImporter:
       name: miniparts_35
       rect:
         serializedVersion: 2
-        x: 40
+        x: 20
         y: 40
         width: 20
         height: 20
@@ -1084,7 +1117,7 @@ TextureImporter:
       name: miniparts_36
       rect:
         serializedVersion: 2
-        x: 60
+        x: 40
         y: 40
         width: 20
         height: 20
@@ -1105,7 +1138,7 @@ TextureImporter:
       name: miniparts_37
       rect:
         serializedVersion: 2
-        x: 80
+        x: 60
         y: 40
         width: 20
         height: 20
@@ -1126,7 +1159,7 @@ TextureImporter:
       name: miniparts_38
       rect:
         serializedVersion: 2
-        x: 100
+        x: 80
         y: 40
         width: 20
         height: 20
@@ -1147,7 +1180,7 @@ TextureImporter:
       name: miniparts_39
       rect:
         serializedVersion: 2
-        x: 120
+        x: 100
         y: 40
         width: 20
         height: 20
@@ -1168,7 +1201,7 @@ TextureImporter:
       name: miniparts_40
       rect:
         serializedVersion: 2
-        x: 140
+        x: 120
         y: 40
         width: 20
         height: 20
@@ -1189,7 +1222,7 @@ TextureImporter:
       name: miniparts_41
       rect:
         serializedVersion: 2
-        x: 160
+        x: 140
         y: 40
         width: 20
         height: 20
@@ -1210,7 +1243,7 @@ TextureImporter:
       name: miniparts_42
       rect:
         serializedVersion: 2
-        x: 180
+        x: 160
         y: 40
         width: 20
         height: 20
@@ -1231,7 +1264,7 @@ TextureImporter:
       name: miniparts_43
       rect:
         serializedVersion: 2
-        x: 200
+        x: 180
         y: 40
         width: 20
         height: 20
@@ -1252,8 +1285,8 @@ TextureImporter:
       name: miniparts_44
       rect:
         serializedVersion: 2
-        x: 0
-        y: 20
+        x: 200
+        y: 40
         width: 20
         height: 20
       alignment: 0
@@ -1273,7 +1306,7 @@ TextureImporter:
       name: miniparts_45
       rect:
         serializedVersion: 2
-        x: 20
+        x: 0
         y: 20
         width: 20
         height: 20
@@ -1294,7 +1327,7 @@ TextureImporter:
       name: miniparts_46
       rect:
         serializedVersion: 2
-        x: 40
+        x: 20
         y: 20
         width: 20
         height: 20
@@ -1315,7 +1348,7 @@ TextureImporter:
       name: miniparts_47
       rect:
         serializedVersion: 2
-        x: 60
+        x: 40
         y: 20
         width: 20
         height: 20
@@ -1336,7 +1369,7 @@ TextureImporter:
       name: miniparts_48
       rect:
         serializedVersion: 2
-        x: 80
+        x: 60
         y: 20
         width: 20
         height: 20
@@ -1357,7 +1390,7 @@ TextureImporter:
       name: miniparts_49
       rect:
         serializedVersion: 2
-        x: 100
+        x: 80
         y: 20
         width: 20
         height: 20
@@ -1378,7 +1411,7 @@ TextureImporter:
       name: miniparts_50
       rect:
         serializedVersion: 2
-        x: 120
+        x: 100
         y: 20
         width: 20
         height: 20
@@ -1399,7 +1432,7 @@ TextureImporter:
       name: miniparts_51
       rect:
         serializedVersion: 2
-        x: 140
+        x: 120
         y: 20
         width: 20
         height: 20
@@ -1420,7 +1453,7 @@ TextureImporter:
       name: miniparts_52
       rect:
         serializedVersion: 2
-        x: 160
+        x: 140
         y: 20
         width: 20
         height: 20
@@ -1441,7 +1474,7 @@ TextureImporter:
       name: miniparts_53
       rect:
         serializedVersion: 2
-        x: 180
+        x: 160
         y: 20
         width: 20
         height: 20
@@ -1462,7 +1495,7 @@ TextureImporter:
       name: miniparts_54
       rect:
         serializedVersion: 2
-        x: 200
+        x: 180
         y: 20
         width: 20
         height: 20
@@ -1483,8 +1516,8 @@ TextureImporter:
       name: miniparts_55
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 200
+        y: 20
         width: 20
         height: 20
       alignment: 0
@@ -1504,7 +1537,7 @@ TextureImporter:
       name: miniparts_56
       rect:
         serializedVersion: 2
-        x: 20
+        x: 0
         y: 0
         width: 20
         height: 20
@@ -1525,7 +1558,7 @@ TextureImporter:
       name: miniparts_57
       rect:
         serializedVersion: 2
-        x: 40
+        x: 20
         y: 0
         width: 20
         height: 20
@@ -1546,7 +1579,7 @@ TextureImporter:
       name: miniparts_58
       rect:
         serializedVersion: 2
-        x: 60
+        x: 40
         y: 0
         width: 20
         height: 20
@@ -1567,7 +1600,7 @@ TextureImporter:
       name: miniparts_59
       rect:
         serializedVersion: 2
-        x: 80
+        x: 60
         y: 0
         width: 20
         height: 20
@@ -1588,7 +1621,7 @@ TextureImporter:
       name: miniparts_60
       rect:
         serializedVersion: 2
-        x: 100
+        x: 80
         y: 0
         width: 20
         height: 20
@@ -1609,7 +1642,7 @@ TextureImporter:
       name: miniparts_61
       rect:
         serializedVersion: 2
-        x: 120
+        x: 100
         y: 0
         width: 20
         height: 20
@@ -1630,7 +1663,7 @@ TextureImporter:
       name: miniparts_62
       rect:
         serializedVersion: 2
-        x: 140
+        x: 120
         y: 0
         width: 20
         height: 20
@@ -1651,7 +1684,7 @@ TextureImporter:
       name: miniparts_63
       rect:
         serializedVersion: 2
-        x: 160
+        x: 140
         y: 0
         width: 20
         height: 20
@@ -1672,7 +1705,7 @@ TextureImporter:
       name: miniparts_64
       rect:
         serializedVersion: 2
-        x: 180
+        x: 160
         y: 0
         width: 20
         height: 20
@@ -1693,7 +1726,7 @@ TextureImporter:
       name: miniparts_65
       rect:
         serializedVersion: 2
-        x: 200
+        x: 180
         y: 0
         width: 20
         height: 20
@@ -1706,6 +1739,27 @@ TextureImporter:
       bones: []
       spriteID: fae0afa87d38c4a20800000000000000
       internalID: 3047956009595834031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: miniparts_66
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf1af9ff4e7a4a5c0800000000000000
+      internalID: -4205051550074166789
       vertices: []
       indices: 
       edges: []
