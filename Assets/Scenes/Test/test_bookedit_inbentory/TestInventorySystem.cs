@@ -86,6 +86,21 @@ public class TestInventorySystem : MonoBehaviour, IDropHandler
         }
     }
 
+    private InventoryItem GetInventoryItem(string name)
+    {
+        //nameからJsonを問い合わせて一致するInventyを返す
+        IEnumerable<InventoryItem> DirWhere = InventoryItems.Where(o => o.name == name);
+
+        foreach (InventoryItem item in DirWhere)
+        {
+            // HACK:先頭だけ取り出したいけどIEnumerableの先頭の取り出し方が分からないので、Foreachで取り出しています。
+            return item;
+        }
+
+        // 上手くヒットしない場合はエラーにする
+        throw new ArgumentException();
+    }
+
     private bool IsDirectory(string name)
     {
         //nameからJsonを問い合わせてtypeがディレクトリならTrueを返す
@@ -120,8 +135,9 @@ public class TestInventorySystem : MonoBehaviour, IDropHandler
     private void TapParts(string partsName)
     {
         //ステージにパーツを置く
-        Instantiate(DandDObj, Vector3.zero, Quaternion.identity, this.transform.parent);
-        Debug.Log(partsName);
+        GameObject instance_obj = Instantiate(DandDObj, Vector3.zero, Quaternion.identity, this.transform.parent);
+        InventoryItem item = GetInventoryItem(partsName);
+        instance_obj.GetComponent<TestMoveInventoryImage>().SetData(spriteDict[item.icon], item); // HACK:あまり美しくない
     }
 
 
@@ -189,6 +205,7 @@ public class TestInventorySystem : MonoBehaviour, IDropHandler
         Debug.Log("Ondrop");
         if (eventData.pointerDrag != null)
         {
+            //TODO:戻されたパーツのアイコンを有効化したい
             Destroy(eventData.pointerDrag);
         }
     }
