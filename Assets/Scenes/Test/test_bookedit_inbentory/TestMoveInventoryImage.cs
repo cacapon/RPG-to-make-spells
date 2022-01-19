@@ -5,19 +5,19 @@ using UnityEngine.UI;
 
 public class TestMoveInventoryImage : MonoBehaviour
 {
+    private InventoryItem myItem;
     private Image myImage;
-    private eTile Mytyle;
-    private Vector2Int[] myShape;
+    public InventoryItem MyItem { get => myItem; }
 
-    private void Awake() {
+    private void Awake()
+    {
         myImage = this.GetComponent<Image>();
     }
 
     public void SetData(Sprite sprite, InventoryItem item)
     {
         myImage.sprite = sprite;
-        Mytyle = item.tile;
-        myShape = item.shape;
+        myItem = item;
     }
 
 }

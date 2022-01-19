@@ -75,7 +75,6 @@ public class TestInventorySystem : MonoBehaviour, IDropHandler
 
     public void TapItem(Button sender)
     {
-
         if (IsDirectory(sender.name))
         {
             TapDirectory(sender.name);
@@ -134,9 +133,12 @@ public class TestInventorySystem : MonoBehaviour, IDropHandler
 
     private void TapParts(string partsName)
     {
+        InventoryItem item = GetInventoryItem(partsName);
+        if (!item.useItem) { return; }
+
         //ステージにパーツを置く
         GameObject instance_obj = Instantiate(DandDObj, Vector3.zero, Quaternion.identity, this.transform.parent);
-        InventoryItem item = GetInventoryItem(partsName);
+        item.useItem = false;
         instance_obj.GetComponent<TestMoveInventoryImage>().SetData(spriteDict[item.icon], item); // HACK:あまり美しくない
     }
 
@@ -205,7 +207,8 @@ public class TestInventorySystem : MonoBehaviour, IDropHandler
         Debug.Log("Ondrop");
         if (eventData.pointerDrag != null)
         {
-            //TODO:戻されたパーツのアイコンを有効化したい
+            //戻されたパーツのアイコンを再度押せるようにしてから動かせるイメージを削除
+            eventData.pointerDrag.GetComponent<TestMoveInventoryImage>().MyItem.useItem = true;
             Destroy(eventData.pointerDrag);
         }
     }
@@ -225,7 +228,7 @@ public class InventoryItemJson
 
 public class InventoryItem
 {
-
+    public bool useItem = true;
     public string path;
     public string name;
     public eIcon icon;
