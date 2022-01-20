@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+
 
 public class TestBookEditStageManager : MonoBehaviour
 {
@@ -8,41 +8,105 @@ public class TestBookEditStageManager : MonoBehaviour
     // TODO: 持ち上げステージを準備 7x7
 
     private int STAGE_SIZE = 7;
-    private List<List<eTile>> SetStage;
-    private List<List<eTile>> HoldStage;
+    private eTile[,] Stage;
+    private eTile[,] HoldStage;
 
     private void Awake()
     {
-        InitStage();
+        Stage = InitStage();
+        HoldStage = InitStage();
     }
-    private void InitStage()
+
+    private eTile[,] InitStage()
     {
-        SetStage = new List<List<eTile>>();
-        HoldStage = new List<List<eTile>>();
+        eTile[,] tmpStage = new eTile[STAGE_SIZE, STAGE_SIZE];
+
         for (int height = 0; height < STAGE_SIZE; height++)
         {
-            List<eTile> Row = new List<eTile>();
             for (int width = 0; width < STAGE_SIZE; width++)
             {
-                Row.Add(eTile.None);
+                tmpStage[height, width] = eTile.None;
             }
-            SetStage.Add(new List<eTile>(Row));
-            HoldStage.Add(new List<eTile>(Row));
+        }
+        return tmpStage;
+    }
+
+    public void SetHoldStage(Vector2Int[] shape, eTile tile)
+    {
+        // shapeを中心(3,3)に合わせて置いていきます
+        Vector2Int[] centerShape = SetSenter(shape);
+
+        HoldStage = InitStage();
+
+        foreach (Vector2Int cell in centerShape)
+        {
+            Debug.Log(cell);
+            //セルに情報を置いていきます。
+            HoldStage[cell.y, cell.x] = tile;
         }
     }
 
-    private void TestShow(List<List<eTile>> stage)
+    private Vector2Int[] SetSenter(Vector2Int[] shape)
     {
-        foreach(var row in stage)
+        // Shapeの最大値が次の場合、xとyそれぞれの基準点を次の通りにします
+        //      1 -> 3
+        //      2 -> 3
+        //      3 -> 2
+        //      4 -> 2
+        Vector2Int maxVec = GetMaxVec(shape);
+        Vector2Int centerPos = new Vector2Int(GetCenterPos(maxVec.x), GetCenterPos(maxVec.y));
+        Vector2Int[] centerShape = new Vector2Int[shape.Length];
+        Array.Copy(shape, centerShape, shape.Length);
+
+        for (int i = 0; i < centerShape.Length; i++)
+        {
+            centerShape[i].x += centerPos.x;
+            centerShape[i].y += centerPos.y;
+        }
+
+        return centerShape;
+
+    }
+
+    private static int GetCenterPos(int max)
+    {
+        switch (max)
+        {
+            case 1:
+            case 2:
+                return 3;
+            case 3:
+            case 4:
+                return 2;
+            default:
+                throw new ArgumentException($"maxの値は1~4を想定しています maxVec:{max}");
+        }
+    }
+
+    private static Vector2Int GetMaxVec(Vector2Int[] shape)
+    {
+        Vector2Int maxVec = Vector2Int.zero;
+        foreach (Vector2Int cellPos in shape)
+        {
+            maxVec = Vector2Int.Max(maxVec, cellPos);
+        }
+
+        maxVec += Vector2Int.one;
+
+        return maxVec;
+    }
+
+    private void TestShow(eTile[,] stage)
+    {
+        for (int height = 0; height < STAGE_SIZE; height++)
         {
             string show_str = "";
-            foreach(var cell in row)
+            for (int width = 0; width < STAGE_SIZE; width++)
             {
-                show_str += cell.ToString();
+                show_str += stage[height, width].ToString();
             }
             Debug.Log(show_str);
         }
         Debug.Log("");
     }
-
 }
