@@ -11,6 +11,7 @@ public class TestInventorySystem : MonoBehaviour, IDropHandler
     [SerializeField] private Text TxtDirPath; // パス表示部分
     [SerializeField] private GameObject InventoryItemsObj;
     [SerializeField] private GameObject DandDObj;
+    [SerializeField] private TestBookEditStageManager bookEditStgMng;
 
     private List<GameObject> InventoryItemObjList;
     private Dictionary<eIcon, Sprite> spriteDict;
@@ -137,9 +138,8 @@ public class TestInventorySystem : MonoBehaviour, IDropHandler
         if (!item.useItem) { return; }
 
         //ステージにパーツを置く
-        GameObject instance_obj = Instantiate(DandDObj, Vector3.zero, Quaternion.identity, this.transform.parent);
         item.useItem = false;
-        instance_obj.GetComponent<TestMoveInventoryImage>().SetData(spriteDict[item.icon], item); // HACK:あまり美しくない
+        bookEditStgMng.SetHoldStage(item.shape,item.tile);
     }
 
 
@@ -204,13 +204,14 @@ public class TestInventorySystem : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log("Ondrop");
-        if (eventData.pointerDrag != null)
-        {
-            //戻されたパーツのアイコンを再度押せるようにしてから動かせるイメージを削除
-            eventData.pointerDrag.GetComponent<TestMoveInventoryImage>().MyItem.useItem = true;
-            Destroy(eventData.pointerDrag);
-        }
+        // TODO: imageを消したため、現在機能してません。
+        // Debug.Log("Ondrop");
+        // if (eventData.pointerDrag != null)
+        // {
+        //     //戻されたパーツのアイコンを再度押せるようにしてから動かせるイメージを削除
+        //     eventData.pointerDrag.GetComponent<TestMoveInventoryImage>().MyItem.useItem = true;
+        //     Destroy(eventData.pointerDrag);
+        // }
     }
 }
 

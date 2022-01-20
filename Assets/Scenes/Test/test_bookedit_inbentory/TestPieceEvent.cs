@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TestPieceEvent : MonoBehaviour,IPointerEnterHandler, IPointerExitHandler
+public class TestPieceEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private eTile myTile;
     private Sprite[] tiles;
@@ -13,15 +13,15 @@ public class TestPieceEvent : MonoBehaviour,IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        myTile = eTile.YELLOW_PLUS;
-        myImage.sprite = tiles[((int)myTile)];
+        //myTile = eTile.YELLOW_PLUS;
+        //myImage.sprite = tiles[((int)myTile)];
 
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        myTile = eTile.None;
-        myImage.sprite = tiles[((int)myTile)];
+        // myTile = eTile.None;
+        // myImage.sprite = tiles[((int)myTile)];
     }
 
     // Start is called before the first frame update

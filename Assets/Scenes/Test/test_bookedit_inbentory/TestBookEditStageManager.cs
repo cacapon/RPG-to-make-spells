@@ -11,6 +11,8 @@ public class TestBookEditStageManager : MonoBehaviour
     private eTile[,] Stage;
     private eTile[,] HoldStage;
 
+    public int GetStageSize { get => STAGE_SIZE; }
+
     private void Awake()
     {
         Stage = InitStage();
@@ -29,6 +31,12 @@ public class TestBookEditStageManager : MonoBehaviour
             }
         }
         return tmpStage;
+    }
+
+    public eTile[,] GetStage(bool isHold)
+    {
+        if(isHold){ return HoldStage; }
+        else      { return Stage;     }
     }
 
     public void SetHoldStage(Vector2Int[] shape, eTile tile)

@@ -2923,6 +2923,7 @@ GameObject:
   - component: {fileID: 1002655198}
   - component: {fileID: 1002655197}
   - component: {fileID: 1002655200}
+  - component: {fileID: 1002655201}
   m_Layer: 5
   m_Name: PieceErea
   m_TagString: Untagged
@@ -3072,6 +3073,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 228fd77bda0b3b748b2b5321d4e32d0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1002655201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002655195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3be4a884c974f64a96f015209520cb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testBookEditStageManager: {fileID: 1002655200}
+  blinkSpeed: 2.5
 --- !u!1001 &1009497460
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7169,6 +7184,7 @@ MonoBehaviour:
   TxtDirPath: {fileID: 1847235542}
   InventoryItemsObj: {fileID: 1362319970}
   DandDObj: {fileID: 3815943649068774765, guid: df61a4ab3151b324c92a87e74bda70c9, type: 3}
+  bookEditStgMng: {fileID: 1002655200}
 --- !u!1 &1972557646
 GameObject:
   m_ObjectHideFlags: 0
@@ -7917,7 +7933,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2025910013560985378, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: m_Name
-      value: Piece
+      value: Piece (0)
       objectReference: {fileID: 0}
     - target: {fileID: 2025910013560985379, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: m_Pivot.x
