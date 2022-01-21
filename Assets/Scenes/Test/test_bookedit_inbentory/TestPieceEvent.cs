@@ -6,10 +6,15 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TestPieceEvent : MonoBehaviour, IPointerEnterHandler
+public class TestPieceEvent : MonoBehaviour, IPointerEnterHandler,IPointerClickHandler
 {
     [SerializeField] private TestBookEditStageManager testBookEditStageManager;
     private int myIndex;
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        testBookEditStageManager.PutHoldParts();
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {

@@ -42,11 +42,51 @@ public class TestBookEditStageManager : MonoBehaviour
         else { return Stage; }
     }
 
+    public void PutHoldParts()
+    {
+        //Holdしているパーツを置きます。
+        if (!HoldParts.IsActive) { return; }    // Holdしてなかったら実行しない
+        if (IsOverlapping()) { return; }        // 重複している個所があったら実行しない
+
+
+        //Holdから転記していく
+        for (int height = 0; height < STAGE_SIZE; height++)
+        {
+            for (int width = 0; width < STAGE_SIZE; width++)
+            {
+                if(HoldStage[height,width] != eTile.None)
+                {
+                    Stage[height,width] = HoldStage[height,width];
+                }
+            }
+        }
+
+        HoldParts.ReSetParts(); //置いたのでホールドパーツをリセットする
+        //TODO: インベントリのボタンを再有効化する必要がある→どこでやる？
+    }
+
+    private bool IsOverlapping()
+    {
+        // 重なってたらtrue,それ以外はFalseを返します。
+        for (int height = 0; height < STAGE_SIZE; height++)
+        {
+            for (int width = 0; width < STAGE_SIZE; width++)
+            {
+                // Hold
+                if (HoldStage[height, width] != eTile.None && Stage[height, width] != eTile.None)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public void MoveHoldStage(Vector2Int centerPos)
     {
         // TODO:範囲外の場合動かないために操作性が悪い。範囲外の場合でも動かせる方向には動かせるようにしたい。
         // HoldPartsに何も設置されてなかったら何もしない
-        if(!HoldParts.IsActive){ return; }
+        if (!HoldParts.IsActive) { return; }
         // shapeを中心に合わせて置いていきます
         Vector2Int[] shapePos = SetSenter(HoldParts.MyShape, centerPos);
 
@@ -184,8 +224,15 @@ class Parts
         myShape = shape;
         myTile = tile;
     }
+    public void ReSetParts()
+    {
+        isActive = false;
+        myShape = null;
+        myTile = eTile.None;
+    }
+
 
     public Vector2Int[] MyShape { get => myShape; }
     public eTile MyTile { get => myTile; }
-    public bool IsActive { get => isActive;}
+    public bool IsActive { get => isActive; }
 }
