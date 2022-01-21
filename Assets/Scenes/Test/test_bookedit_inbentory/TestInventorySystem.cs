@@ -140,6 +140,8 @@ public class TestInventorySystem : MonoBehaviour, IDropHandler
         //ステージにパーツを置く
         item.useItem = false;
         bookEditStgMng.SetHoldStage(item.shape,item.tile);
+
+        ListSegments();
     }
 
 
@@ -167,6 +169,7 @@ public class TestInventorySystem : MonoBehaviour, IDropHandler
             InventoryItemObjList[i].SetActive(true);
             InventoryItemObjList[i].name = item.name;
 
+            InventoryItemObjList[i].GetComponent<Button>().interactable = item.useItem;             //インベントリアイテム有効化設定
             InventoryItemObjList[i].transform.GetChild(0).GetComponent<Text>().text = item.name;
             InventoryItemObjList[i].GetComponent<Image>().sprite = spriteDict[item.icon];
 
