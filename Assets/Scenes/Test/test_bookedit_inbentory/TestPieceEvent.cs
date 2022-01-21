@@ -1,35 +1,32 @@
+using System;
+using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TestPieceEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class TestPieceEvent : MonoBehaviour, IPointerEnterHandler
 {
-    private eTile myTile;
-    private Sprite[] tiles;
-
-    private Image myImage;
+    [SerializeField] private TestBookEditStageManager testBookEditStageManager;
+    private int myIndex;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        //myTile = eTile.YELLOW_PLUS;
-        //myImage.sprite = tiles[((int)myTile)];
-
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        // myTile = eTile.None;
-        // myImage.sprite = tiles[((int)myTile)];
+        //番号から(-3,-3)~(3,3)の座標がどこかを取得する
+        //取得した座標を現在の中心としてBookEtidStageManagerに返す
+        testBookEditStageManager.MoveHoldStage(GetPos());
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        myTile = eTile.None;
-        myImage = GetComponent<Image>();
-        tiles = Resources.LoadAll<Sprite>("TestData/test_bookedit_inbentory/Tiles16x16");
+        myIndex = Convert.ToInt32(Regex.Match(gameObject.name, @"\d+").Value);
     }
 
+    private Vector2Int GetPos()
+    {
+        int size = testBookEditStageManager.GetStageSize;
+        return new Vector2Int(myIndex % size , myIndex / size);
+    }
 }

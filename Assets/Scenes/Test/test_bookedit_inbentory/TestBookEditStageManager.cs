@@ -11,12 +11,15 @@ public class TestBookEditStageManager : MonoBehaviour
     private eTile[,] Stage;
     private eTile[,] HoldStage;
 
+    private Parts HoldParts;
+
     public int GetStageSize { get => STAGE_SIZE; }
 
     private void Awake()
     {
         Stage = InitStage();
         HoldStage = InitStage();
+        HoldParts = new Parts();
     }
 
     private eTile[,] InitStage()
@@ -35,14 +38,47 @@ public class TestBookEditStageManager : MonoBehaviour
 
     public eTile[,] GetStage(bool isHold)
     {
-        if(isHold){ return HoldStage; }
-        else      { return Stage;     }
+        if (isHold) { return HoldStage; }
+        else { return Stage; }
+    }
+
+    public void MoveHoldStage(Vector2Int centerPos)
+    {
+        // TODO:範囲外の場合動かないために操作性が悪い。範囲外の場合でも動かせる方向には動かせるようにしたい。
+        // HoldPartsに何も設置されてなかったら何もしない
+        if(!HoldParts.IsActive){ return; }
+        // shapeを中心に合わせて置いていきます
+        Vector2Int[] shapePos = SetSenter(HoldParts.MyShape, centerPos);
+
+        //範囲外対策 7x7なら(0,0)~(6,6)までに制限
+        Vector2Int minPos = GetMinVec(shapePos);
+        Vector2Int maxPos = GetMaxVec(shapePos);
+
+        Debug.Log($"min:{minPos} max:{maxPos}");
+
+        if (minPos.x <= 0 || minPos.y <= 0 ||
+            maxPos.x > STAGE_SIZE || maxPos.y > STAGE_SIZE)
+        {
+            //範囲外なので何もしない
+            return;
+        }
+
+        HoldStage = InitStage();
+
+        foreach (Vector2Int cell in shapePos)
+        {
+            //セルに情報を置いていきます。
+            HoldStage[cell.y, cell.x] = HoldParts.MyTile;
+        }
+
     }
 
     public void SetHoldStage(Vector2Int[] shape, eTile tile)
     {
         // shapeを中心(3,3)に合わせて置いていきます
-        Vector2Int[] centerShape = SetSenter(shape);
+        HoldParts.SetParts(shape, tile);
+
+        Vector2Int[] centerShape = SetSenter(shape, new Vector2Int(3, 3));
 
         HoldStage = InitStage();
 
@@ -54,38 +90,40 @@ public class TestBookEditStageManager : MonoBehaviour
         }
     }
 
-    private Vector2Int[] SetSenter(Vector2Int[] shape)
+    private Vector2Int[] SetSenter(Vector2Int[] shape, Vector2Int centerPos)
     {
-        // Shapeの最大値が次の場合、xとyそれぞれの基準点を次の通りにします
-        //      1 -> 3
-        //      2 -> 3
-        //      3 -> 2
-        //      4 -> 2
+        // Shapeの最大値が次の場合、中心位置はcenterPosに対してxとyそれぞれの基準点を追加したものになります
+        // x,yの基準点は以下の通り
+        //      1 -> 0
+        //      2 -> 0
+        //      3 -> -1
+        //      4 -> -1
+
         Vector2Int maxVec = GetMaxVec(shape);
-        Vector2Int centerPos = new Vector2Int(GetCenterPos(maxVec.x), GetCenterPos(maxVec.y));
+        Vector2Int basicPos = new Vector2Int(GetBasicPos(maxVec.x), GetBasicPos(maxVec.y));
         Vector2Int[] centerShape = new Vector2Int[shape.Length];
         Array.Copy(shape, centerShape, shape.Length);
 
         for (int i = 0; i < centerShape.Length; i++)
         {
-            centerShape[i].x += centerPos.x;
-            centerShape[i].y += centerPos.y;
+            centerShape[i].x += centerPos.x + basicPos.x;
+            centerShape[i].y += centerPos.y + basicPos.y;
         }
 
         return centerShape;
 
     }
 
-    private static int GetCenterPos(int max)
+    private static int GetBasicPos(int max)
     {
         switch (max)
         {
             case 1:
             case 2:
-                return 3;
+                return 0;
             case 3:
             case 4:
-                return 2;
+                return -1;
             default:
                 throw new ArgumentException($"maxの値は1~4を想定しています maxVec:{max}");
         }
@@ -104,6 +142,21 @@ public class TestBookEditStageManager : MonoBehaviour
         return maxVec;
     }
 
+    private static Vector2Int GetMinVec(Vector2Int[] shape)
+    {
+        Vector2Int minVec = new Vector2Int(255, 255); //255は暫定値
+        foreach (Vector2Int cellPos in shape)
+        {
+            minVec = Vector2Int.Min(minVec, cellPos);
+        }
+
+        minVec += Vector2Int.one;
+
+        return minVec;
+    }
+
+
+
     private void TestShow(eTile[,] stage)
     {
         for (int height = 0; height < STAGE_SIZE; height++)
@@ -117,4 +170,22 @@ public class TestBookEditStageManager : MonoBehaviour
         }
         Debug.Log("");
     }
+}
+
+class Parts
+{
+    bool isActive = false;
+    Vector2Int[] myShape;
+    eTile myTile;
+
+    public void SetParts(Vector2Int[] shape, eTile tile)
+    {
+        isActive = true;
+        myShape = shape;
+        myTile = tile;
+    }
+
+    public Vector2Int[] MyShape { get => myShape; }
+    public eTile MyTile { get => myTile; }
+    public bool IsActive { get => isActive;}
 }
