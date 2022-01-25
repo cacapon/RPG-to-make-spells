@@ -84,24 +84,13 @@ public class TestBookEditStageManager : MonoBehaviour
 
     public void MoveHoldStage(Vector2Int centerPos)
     {
-        // TODO:範囲外の場合動かないために操作性が悪い。範囲外の場合でも動かせる方向には動かせるようにしたい。
-        // HoldPartsに何も設置されてなかったら何もしない
-        if (!HoldParts.IsActive) { return; }
-        // shapeを中心に合わせて置いていきます
-        Vector2Int[] shapePos = SetSenter(HoldParts.MyShape, centerPos);
+        // 触ったブロックを中心にして持ち上げているパーツを動かします。
 
-        //範囲外対策 7x7なら(0,0)~(6,6)までに制限
-        Vector2Int minPos = GetMinVec(shapePos);
-        Vector2Int maxPos = GetMaxVec(shapePos);
+        if (!HoldParts.IsActive) { return; }    // HoldPartsに何も設置されてなかったら何もしない
 
-        Debug.Log($"min:{minPos} max:{maxPos}");
 
-        if (minPos.x <= 0 || minPos.y <= 0 ||
-            maxPos.x > STAGE_SIZE || maxPos.y > STAGE_SIZE)
-        {
-            //範囲外なので何もしない
-            return;
-        }
+        // shapeをポインターに合わせてあるステージを中心に合わせて置いていきます
+        Vector2Int[] shapePos = FixBorderPos(SetSenter(HoldParts.MyShape, centerPos));
 
         HoldStage = InitStage();
 
@@ -111,6 +100,43 @@ public class TestBookEditStageManager : MonoBehaviour
             HoldStage[cell.y, cell.x] = HoldParts.MyTile;
         }
 
+    }
+
+    private Vector2Int[] FixBorderPos(Vector2Int[] shapePos)
+    {
+        //範囲外対策 境界の外にあるデータを境界内まで戻す。
+
+        Vector2Int minPos = GetMinVec(shapePos);
+        Vector2Int maxPos = GetMaxShape(shapePos) - Vector2Int.one; // shapeを(-1,-1)した値がmaxPosになるため
+
+        //ずらす移動量を決める
+        Vector2Int fixPos = GetFixPos(minPos,maxPos);
+
+        for (int i = 0; i < shapePos.Length; i++)
+        {
+            Debug.Log($"{i+1};{shapePos[i]}");
+            shapePos[i] += fixPos;
+        }
+
+        return shapePos;
+    }
+
+    private Vector2Int GetFixPos(Vector2Int shapeMinPos, Vector2Int shapeMaxPos)
+    {
+        //(0,0)~(stage.x-1,stage.y-1)の範囲に収まるよう移動量を求めます
+        Vector2Int fixPos = Vector2Int.zero;
+        Vector2Int stageRangeMin = Vector2Int.zero;
+        Vector2Int stageRangeMax = new Vector2Int(STAGE_SIZE,STAGE_SIZE) - Vector2Int.one;
+
+        //minPos < 0
+        //maxPos >= STAGE_SIZE
+
+        if(shapeMinPos.x < stageRangeMin.x){ fixPos.x = stageRangeMin.x - shapeMinPos.x; }
+        if(shapeMinPos.y < stageRangeMin.y){ fixPos.y = stageRangeMin.y - shapeMinPos.y; }
+        if(shapeMaxPos.x >= stageRangeMax.x){ fixPos.x = stageRangeMax.x - shapeMaxPos.x; }
+        if(shapeMaxPos.y >= stageRangeMax.y){ fixPos.y = stageRangeMax.y - shapeMaxPos.y; }
+
+        return fixPos;
     }
 
     public void SetHoldStage(Vector2Int[] shape, eTile tile)
@@ -132,15 +158,10 @@ public class TestBookEditStageManager : MonoBehaviour
 
     private Vector2Int[] SetSenter(Vector2Int[] shape, Vector2Int centerPos)
     {
-        // Shapeの最大値が次の場合、中心位置はcenterPosに対してxとyそれぞれの基準点を追加したものになります
-        // x,yの基準点は以下の通り
-        //      1 -> 0
-        //      2 -> 0
-        //      3 -> -1
-        //      4 -> -1
+        //中心の座標に合わせたshapeの座標を返します。
 
-        Vector2Int maxVec = GetMaxVec(shape);
-        Vector2Int basicPos = new Vector2Int(GetBasicPos(maxVec.x), GetBasicPos(maxVec.y));
+        Vector2Int maxShape = GetMaxShape(shape);
+        Vector2Int basicPos = new Vector2Int(GetBasicPos(maxShape.x), GetBasicPos(maxShape.y));
         Vector2Int[] centerShape = new Vector2Int[shape.Length];
         Array.Copy(shape, centerShape, shape.Length);
 
@@ -154,9 +175,17 @@ public class TestBookEditStageManager : MonoBehaviour
 
     }
 
-    private static int GetBasicPos(int max)
+    private static int GetBasicPos(int maxShape)
     {
-        switch (max)
+        // 形の大きさから基準点中心地点を求めます
+        // 大きさに対する基準点は以下の通り
+        // [大きさ] -> [基準点]
+        // 1 -> 0
+        // 2 -> 0
+        // 3 -> -1
+        // 4 -> -1
+
+        switch (maxShape)
         {
             case 1:
             case 2:
@@ -165,32 +194,31 @@ public class TestBookEditStageManager : MonoBehaviour
             case 4:
                 return -1;
             default:
-                throw new ArgumentException($"maxの値は1~4を想定しています maxVec:{max}");
+                throw new ArgumentException($"maxの値は1~4を想定しています maxVec:{maxShape}");
         }
     }
 
-    private static Vector2Int GetMaxVec(Vector2Int[] shape)
+    private static Vector2Int GetMaxShape(Vector2Int[] shape)
     {
+        //与えられたShapeの大きさを取得します
         Vector2Int maxVec = Vector2Int.zero;
         foreach (Vector2Int cellPos in shape)
         {
             maxVec = Vector2Int.Max(maxVec, cellPos);
         }
 
-        maxVec += Vector2Int.one;
+        maxVec += Vector2Int.one; // 取得したのは0基準の座標なので＋１して大きさを取得できるようにしています
 
         return maxVec;
     }
 
-    private static Vector2Int GetMinVec(Vector2Int[] shape)
+private static Vector2Int GetMinVec(Vector2Int[] shape)
     {
         Vector2Int minVec = new Vector2Int(255, 255); //255は暫定値
         foreach (Vector2Int cellPos in shape)
         {
             minVec = Vector2Int.Min(minVec, cellPos);
         }
-
-        minVec += Vector2Int.one;
 
         return minVec;
     }
