@@ -139,7 +139,7 @@ public class TestInventorySystem : MonoBehaviour, IDropHandler
 
         //ステージにパーツを置く
         item.useItem = false;
-        bookEditStgMng.SetHoldStage(item.shape,item.tile);
+        bookEditStgMng.SetHoldStage(item.shape, item.tile);
 
         ListSegments();
     }
@@ -226,7 +226,7 @@ public class InventoryItemJson
     public string name;
     public string icon;
     public string tile;
-    public Vector2Int[] shape; //TODO 今は直打ち　名前から変換できるようにしたい ex: "I2" -> [{"x":0,"y":0},{"x":0,"y":1}]
+    public string shape;
 
 }
 
@@ -245,7 +245,40 @@ public class InventoryItem
         this.name = jsondata.name;
         this.icon = (eIcon)Enum.Parse(typeof(eIcon), jsondata.icon);
         this.tile = (eTile)Enum.Parse(typeof(eTile), jsondata.tile);
-        this.shape = jsondata.shape;
+        this.shape = ConvertShape((eShape)Enum.Parse(typeof(eShape), jsondata.shape));
+    }
+
+    private Vector2Int[] ConvertShape(eShape shapeid)
+    {
+        switch (shapeid)
+        {
+            case eShape.None:
+                return new Vector2Int[] {}; //directoryなど形が必要がないものはNoneとして扱う
+            case eShape.DOT1:
+                return new Vector2Int[] { new Vector2Int(0, 0) };
+            case eShape.I2:
+                return new Vector2Int[] { new Vector2Int(0, 0), new Vector2Int(0, 1) };
+            case eShape.I3:
+                return new Vector2Int[] { new Vector2Int(0, 0), new Vector2Int(0, 1), new Vector2Int(0, 2) };
+            case eShape.L3:
+                return new Vector2Int[] { new Vector2Int(0, 0), new Vector2Int(1, 0), new Vector2Int(0, 1) };
+            case eShape.O4:
+                return new Vector2Int[] { new Vector2Int(0, 0), new Vector2Int(0, 1), new Vector2Int(1, 0), new Vector2Int(1, 1) };
+            case eShape.T4:
+                return new Vector2Int[] { new Vector2Int(0, 0), new Vector2Int(0, 1), new Vector2Int(1, 1), new Vector2Int(0, 2) };
+            case eShape.I4:
+                return new Vector2Int[] { new Vector2Int(0, 0), new Vector2Int(0, 1), new Vector2Int(0, 2), new Vector2Int(0, 3) };
+            case eShape.L4:
+                return new Vector2Int[] { new Vector2Int(0, 0), new Vector2Int(0, 1), new Vector2Int(0, 2), new Vector2Int(1, 2) };
+            case eShape.J4:
+                return new Vector2Int[] { new Vector2Int(1, 0), new Vector2Int(1, 1), new Vector2Int(0, 2), new Vector2Int(1, 2) };
+            case eShape.Z4:
+                return new Vector2Int[] { new Vector2Int(1, 0), new Vector2Int(0, 1), new Vector2Int(1, 1), new Vector2Int(2, 0) };
+            case eShape.S4:
+                return new Vector2Int[] { new Vector2Int(0, 0), new Vector2Int(0, 1), new Vector2Int(1, 1), new Vector2Int(2, 1) };
+            default:
+                throw new ArgumentException($"想定外の値:{shapeid}");
+        }
     }
 }
 
@@ -331,4 +364,21 @@ public enum eTile
     RED_PLUS,
     YELLOW,
     YELLOW_PLUS,
+}
+
+[Serializable]
+public enum eShape
+{
+    None,
+    DOT1,
+    I2,
+    I3,
+    L3,
+    O4,
+    T4,
+    I4,
+    L4,
+    J4,
+    Z4,
+    S4
 }

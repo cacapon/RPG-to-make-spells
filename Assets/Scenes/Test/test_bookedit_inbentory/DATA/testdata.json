@@ -4,55 +4,55 @@
         "name": "dir1",
         "icon": "directory",
         "tile": "None",
-        "shape": []
+        "shape": "None"
     },
     {
         "path": "~",
         "name": "test",
         "icon": "T4_B",
         "tile": "BLUE",
-        "shape": [{"x":0,"y":0},{"x":0,"y":1},{"x":1,"y":1},{"x":0,"y":2}]
+        "shape": "T4"
     },
     {
         "path": "~",
         "name": "test2",
         "icon": "J4_R_PLUS",
         "tile": "RED_PLUS",
-        "shape": [{"x":1,"y":0},{"x":1,"y":1},{"x":0,"y":2},{"x":1,"y":2}]
+        "shape": "J4"
     },
     {
         "path": "~",
         "name": "test3",
         "icon": "DOT1_Y",
         "tile": "YELLOW",
-        "shape": [{"x":0,"y":0}]
+        "shape": "DOT1"
     },
     {
         "path": "~/dir1",
         "name": "dir2",
         "icon": "directory",
         "tile": "None",
-        "shape": []
+        "shape": "None"
     },
     {
         "path": "~/dir1",
         "name": "test4",
         "icon": "O4_B_PLUS",
         "tile": "BLUE_PLUS",
-        "shape": [{"x":0,"y":0},{"x":0,"y":1},{"x":1,"y":0},{"x":1,"y":1}]
+        "shape": "O4"
     },
     {
         "path": "~/dir1",
         "name": "test5",
         "icon": "I2_Y_PLUS",
         "tile": "YELLOW_PLUS",
-        "shape":  [{"x":0,"y":0},{"x":0,"y":1}]
+        "shape": "I2"
     },
     {
         "path": "~/dir1/dir2",
         "name": "test6",
         "icon": "L3_R",
         "tile": "RED",
-        "shape": [{"x":0,"y":0},{"x":1,"y":0},{"x":0,"y":1}]
+        "shape": "L3"
     }
 ]

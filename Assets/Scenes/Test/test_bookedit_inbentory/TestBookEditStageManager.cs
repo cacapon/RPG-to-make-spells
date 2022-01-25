@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class TestBookEditStageManager : MonoBehaviour
 {
-    // TODO: 配置ステージを準備     7x7
-    // TODO: 持ち上げステージを準備 7x7
+    //TODO:データは一つのクラスにまとめてアクセスできる形の方が扱いやすいかも？
 
     private int STAGE_SIZE = 7;
     private StageTile[,] Stage;
