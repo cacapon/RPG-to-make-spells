@@ -38,8 +38,8 @@ public class TestDrawStage : MonoBehaviour
 
     private void DrawTiles()
     {
-        eTile[,] holdStage = testBookEditStageManager.GetStage(true);
-        eTile[,] groundStage = testBookEditStageManager.GetStage(false);
+        var holdStage = testBookEditStageManager.GetStage(true);
+        var groundStage = testBookEditStageManager.GetStage(false);
 
         // 持ち上げと設置ステージを交互に描画する　→　点滅
         for (int height = 0; height < testBookEditStageManager.GetStageSize; height++)
@@ -48,15 +48,15 @@ public class TestDrawStage : MonoBehaviour
             {
                 int stageIndex = height * testBookEditStageManager.GetStageSize + width;
 
-                if (holdStage[height, width] != eTile.None)
+                if (holdStage[height, width].MyTile != eTile.None)
                 {
                     //点滅して描く
-                    DrawBlinkingTile(stageIndex, holdStage[height,width] ,groundStage[height,width]);
+                    DrawBlinkingTile(stageIndex, holdStage[height,width].MyTile ,groundStage[height,width].MyTile);
                 }
                 else
                 {
                     //設置済みのタイルだけ描く
-                    stageTiles[stageIndex].sprite = tilePallets[(int)groundStage[height, width]];
+                    stageTiles[stageIndex].sprite = tilePallets[(int)groundStage[height, width].MyTile];
                 }
             }
         }

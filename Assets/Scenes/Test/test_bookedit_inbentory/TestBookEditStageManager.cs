@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -8,12 +9,14 @@ public class TestBookEditStageManager : MonoBehaviour
     // TODO: 持ち上げステージを準備 7x7
 
     private int STAGE_SIZE = 7;
-    private eTile[,] Stage;
-    private eTile[,] HoldStage;
+    private StageTile[,] Stage;
+    private StageTile[,] HoldStage;
 
     private Parts HoldParts;
 
     public int GetStageSize { get => STAGE_SIZE; }
+
+    public bool IsHoldUp { get => HoldParts.IsActive; }
 
     private void Awake()
     {
@@ -22,24 +25,112 @@ public class TestBookEditStageManager : MonoBehaviour
         HoldParts = new Parts();
     }
 
-    private eTile[,] InitStage()
+    private StageTile[,] InitStage()
     {
-        eTile[,] tmpStage = new eTile[STAGE_SIZE, STAGE_SIZE];
+        StageTile[,] tmpStage = new StageTile[STAGE_SIZE, STAGE_SIZE];
 
         for (int height = 0; height < STAGE_SIZE; height++)
         {
             for (int width = 0; width < STAGE_SIZE; width++)
             {
-                tmpStage[height, width] = eTile.None;
+                tmpStage[height, width] = new StageTile();
             }
         }
         return tmpStage;
     }
 
-    public eTile[,] GetStage(bool isHold)
+    public StageTile[,] GetStage(bool isHold)
     {
+        //要修正
         if (isHold) { return HoldStage; }
         else { return Stage; }
+    }
+
+    public void HoldUpParts(Vector2Int targetPos)
+    {
+        //stageからHoldへ持ち上げます。
+        if (HoldParts.IsActive) { return; } //持ち上げ中なら実行しない
+        if (Stage[targetPos.y, targetPos.x].MyTile == eTile.None) { return; } //対象がNoneのエリアでも実行しない
+
+
+        //targetに含まれるユニークIDから持ち上げるパーツの位置を特定する
+
+        Guid targetID = Stage[targetPos.y, targetPos.x].MyUniqueID;
+        Vector2Int[] holdUpPos = GetHoldUpShape(targetPos);
+        eTile tile = Stage[targetPos.y, targetPos.x].MyTile;
+
+        //Stageから転記していく
+        HoldStage = InitStage();
+
+        foreach (Vector2Int cell in holdUpPos)
+        {
+            HoldStage[cell.y, cell.x].MyTile = tile;
+            HoldStage[cell.y, cell.x].MyUniqueID = targetID;
+            Stage[cell.y, cell.x].MyTile = eTile.None;
+            Stage[cell.y, cell.x].MyUniqueID = Guid.Empty;
+        }
+
+        HoldParts.SetParts(holdUpPos, tile, targetID); // XXX: shapeの形状が正しくない
+
+    }
+
+    private Vector2Int[] GetHoldUpShape(Vector2Int targetpos)
+    {
+        Guid targetID = Stage[targetpos.y, targetpos.x].MyUniqueID;
+        List<Vector2Int> tmpShapeList = new List<Vector2Int>() { targetpos };
+        List<Vector2Int> next = new List<Vector2Int>() { targetpos };
+        List<Vector2Int> clear = new List<Vector2Int>() { targetpos };
+
+        Vector2Int searchPos;
+        while (next.Count != 0)
+        {
+            searchPos = next[0];
+            next.RemoveAt(0);
+
+            //条件1 探索済みでない事
+            //条件2 上下左右にtargetIDが含まれること
+            AddShapeList(targetID, tmpShapeList, next, clear, searchPos + Vector2Int.up);
+            AddShapeList(targetID, tmpShapeList, next, clear, searchPos + Vector2Int.down);
+            AddShapeList(targetID, tmpShapeList, next, clear, searchPos + Vector2Int.left);
+            AddShapeList(targetID, tmpShapeList, next, clear, searchPos + Vector2Int.right);
+        }
+
+        return tmpShapeList.ToArray();
+    }
+
+    private void AddShapeList(Guid targetID, List<Vector2Int> tmpShapeList, List<Vector2Int> next, List<Vector2Int> clear, Vector2Int check)
+    {
+        // この関数は以下の機能を有します
+        //  1 対象の座標を探索済みにします
+        //  2 対象の座標のIDがターゲットのIDと同じ場合shapelistと次回の探索候補に追加します
+
+        if (IsOverRange(check)) { return; }   // 範囲外の場合は実行しない
+
+
+        if (!clear.Contains(check))
+        {
+            clear.Add(check);
+            if (Stage[check.y, check.x].MyUniqueID == targetID)
+            {
+                next.Add(check);
+                tmpShapeList.Add(check);
+            }
+        }
+    }
+
+    private bool IsOverRange(Vector2Int pos)
+    {
+        //対象の座標が範囲外かチェックします
+        Vector2Int stageRangeMin = Vector2Int.zero;
+        Vector2Int stageRangeMax = new Vector2Int(STAGE_SIZE, STAGE_SIZE) - Vector2Int.one;
+
+        if (pos.x < stageRangeMin.x || pos.y < stageRangeMin.y ||
+            pos.x > stageRangeMax.x || pos.y > stageRangeMax.y)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     public void PutHoldParts()
@@ -54,9 +145,9 @@ public class TestBookEditStageManager : MonoBehaviour
         {
             for (int width = 0; width < STAGE_SIZE; width++)
             {
-                if(HoldStage[height,width] != eTile.None)
+                if (HoldStage[height, width].MyTile != eTile.None)
                 {
-                    Stage[height,width] = HoldStage[height,width];
+                    Stage[height, width] = HoldStage[height, width];
                 }
             }
         }
@@ -73,7 +164,7 @@ public class TestBookEditStageManager : MonoBehaviour
             for (int width = 0; width < STAGE_SIZE; width++)
             {
                 // Hold
-                if (HoldStage[height, width] != eTile.None && Stage[height, width] != eTile.None)
+                if (HoldStage[height, width].MyTile != eTile.None && Stage[height, width].MyTile != eTile.None)
                 {
                     return true;
                 }
@@ -97,7 +188,8 @@ public class TestBookEditStageManager : MonoBehaviour
         foreach (Vector2Int cell in shapePos)
         {
             //セルに情報を置いていきます。
-            HoldStage[cell.y, cell.x] = HoldParts.MyTile;
+            HoldStage[cell.y, cell.x].MyTile = HoldParts.MyTile;
+            HoldStage[cell.y, cell.x].MyUniqueID = HoldParts.MyUniqueID;
         }
 
     }
@@ -110,11 +202,11 @@ public class TestBookEditStageManager : MonoBehaviour
         Vector2Int maxPos = GetMaxShape(shapePos) - Vector2Int.one; // shapeを(-1,-1)した値がmaxPosになるため
 
         //ずらす移動量を決める
-        Vector2Int fixPos = GetFixPos(minPos,maxPos);
+        Vector2Int fixPos = GetFixPos(minPos, maxPos);
 
         for (int i = 0; i < shapePos.Length; i++)
         {
-            Debug.Log($"{i+1};{shapePos[i]}");
+            Debug.Log($"{i + 1};{shapePos[i]}");
             shapePos[i] += fixPos;
         }
 
@@ -126,15 +218,15 @@ public class TestBookEditStageManager : MonoBehaviour
         //(0,0)~(stage.x-1,stage.y-1)の範囲に収まるよう移動量を求めます
         Vector2Int fixPos = Vector2Int.zero;
         Vector2Int stageRangeMin = Vector2Int.zero;
-        Vector2Int stageRangeMax = new Vector2Int(STAGE_SIZE,STAGE_SIZE) - Vector2Int.one;
+        Vector2Int stageRangeMax = new Vector2Int(STAGE_SIZE, STAGE_SIZE) - Vector2Int.one;
 
         //minPos < 0
         //maxPos >= STAGE_SIZE
 
-        if(shapeMinPos.x < stageRangeMin.x){ fixPos.x = stageRangeMin.x - shapeMinPos.x; }
-        if(shapeMinPos.y < stageRangeMin.y){ fixPos.y = stageRangeMin.y - shapeMinPos.y; }
-        if(shapeMaxPos.x >= stageRangeMax.x){ fixPos.x = stageRangeMax.x - shapeMaxPos.x; }
-        if(shapeMaxPos.y >= stageRangeMax.y){ fixPos.y = stageRangeMax.y - shapeMaxPos.y; }
+        if (shapeMinPos.x < stageRangeMin.x) { fixPos.x = stageRangeMin.x - shapeMinPos.x; }
+        if (shapeMinPos.y < stageRangeMin.y) { fixPos.y = stageRangeMin.y - shapeMinPos.y; }
+        if (shapeMaxPos.x >= stageRangeMax.x) { fixPos.x = stageRangeMax.x - shapeMaxPos.x; }
+        if (shapeMaxPos.y >= stageRangeMax.y) { fixPos.y = stageRangeMax.y - shapeMaxPos.y; }
 
         return fixPos;
     }
@@ -142,7 +234,7 @@ public class TestBookEditStageManager : MonoBehaviour
     public void SetHoldStage(Vector2Int[] shape, eTile tile)
     {
         // shapeを中心(3,3)に合わせて置いていきます
-        HoldParts.SetParts(shape, tile);
+        HoldParts.SetParts(shape, tile, Guid.NewGuid());
 
         Vector2Int[] centerShape = SetSenter(shape, new Vector2Int(3, 3));
 
@@ -152,7 +244,8 @@ public class TestBookEditStageManager : MonoBehaviour
         {
             Debug.Log(cell);
             //セルに情報を置いていきます。
-            HoldStage[cell.y, cell.x] = tile;
+            HoldStage[cell.y, cell.x].MyTile = tile;
+            HoldStage[cell.y, cell.x].MyUniqueID = HoldParts.MyUniqueID;
         }
     }
 
@@ -212,7 +305,7 @@ public class TestBookEditStageManager : MonoBehaviour
         return maxVec;
     }
 
-private static Vector2Int GetMinVec(Vector2Int[] shape)
+    private static Vector2Int GetMinVec(Vector2Int[] shape)
     {
         Vector2Int minVec = new Vector2Int(255, 255); //255は暫定値
         foreach (Vector2Int cellPos in shape)
@@ -245,22 +338,61 @@ class Parts
     bool isActive = false;
     Vector2Int[] myShape;
     eTile myTile;
+    Guid myUniqueID;
 
-    public void SetParts(Vector2Int[] shape, eTile tile)
+    public void SetParts(Vector2Int[] shape, eTile tile, Guid myID)
     {
         isActive = true;
-        myShape = shape;
+        myShape = OrthopaedyShape(shape);
         myTile = tile;
+        myUniqueID = myID;
     }
     public void ReSetParts()
     {
         isActive = false;
         myShape = null;
         myTile = eTile.None;
+        myUniqueID = Guid.Empty;
     }
 
+    private Vector2Int[] OrthopaedyShape(Vector2Int[] shape)
+    {
+        //座標を0基準に整形しなおします。
+        Vector2Int minpos = new Vector2Int(255,255);
+
+        foreach(Vector2Int cell in shape)
+        {
+            minpos.x = Mathf.Min(minpos.x,cell.x);
+            minpos.y = Mathf.Min(minpos.y,cell.y);
+        }
+
+        List<Vector2Int> tmpShape = new List<Vector2Int>();
+
+        foreach(Vector2Int cell in shape)
+        {
+            tmpShape.Add(cell - minpos);
+        }
+
+        return tmpShape.ToArray();
+    }
 
     public Vector2Int[] MyShape { get => myShape; }
     public eTile MyTile { get => myTile; }
     public bool IsActive { get => isActive; }
+    public Guid MyUniqueID { get => myUniqueID; }
+}
+
+public class StageTile
+{
+    eTile myTile;
+    Guid myUniqueID;
+
+    public StageTile()
+    {
+        this.MyTile = eTile.None;
+        this.MyUniqueID = Guid.Empty;
+    }
+
+    public eTile MyTile { get => myTile; set => myTile = value; }
+    public Guid MyUniqueID { get => myUniqueID; set => myUniqueID = value; }
 }

@@ -13,7 +13,16 @@ public class TestPieceEvent : MonoBehaviour, IPointerEnterHandler,IPointerClickH
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        testBookEditStageManager.PutHoldParts();
+        if(testBookEditStageManager.IsHoldUp)
+        {
+            //持ち上げ中の場合
+            testBookEditStageManager.PutHoldParts();
+        }
+        else
+        {
+            //持ち上げ中ではない場合
+            testBookEditStageManager.HoldUpParts(GetPos());
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
