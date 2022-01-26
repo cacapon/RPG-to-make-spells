@@ -308,6 +308,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
       objectReference: {fileID: 1002655200}
@@ -413,6 +417,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
@@ -520,6 +528,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
       objectReference: {fileID: 1002655200}
@@ -620,6 +632,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
@@ -806,6 +822,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
       objectReference: {fileID: 1002655200}
@@ -906,6 +926,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
@@ -1008,6 +1032,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
       objectReference: {fileID: 1002655200}
@@ -1108,6 +1136,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
@@ -1210,6 +1242,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
       objectReference: {fileID: 1002655200}
@@ -1310,6 +1346,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
@@ -1417,6 +1457,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
       objectReference: {fileID: 1002655200}
@@ -1517,6 +1561,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
@@ -1628,6 +1676,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
@@ -1957,6 +2009,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
       objectReference: {fileID: 1002655200}
@@ -2067,6 +2123,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
@@ -2321,6 +2381,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
@@ -2645,6 +2709,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
       objectReference: {fileID: 1002655200}
@@ -2860,6 +2928,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
       objectReference: {fileID: 1002655200}
@@ -2975,6 +3047,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
@@ -3149,6 +3225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 228fd77bda0b3b748b2b5321d4e32d0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 2133847928}
 --- !u!114 &1002655201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3161,7 +3238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3be4a884c974f64a96f015209520cb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testBookEditStageManager: {fileID: 1002655200}
+  data: {fileID: 2133847928}
   blinkSpeed: 2.5
 --- !u!1001 &1009497460
 PrefabInstance:
@@ -3258,6 +3335,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
@@ -3644,6 +3725,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
       objectReference: {fileID: 1002655200}
@@ -3749,6 +3834,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
@@ -3969,6 +4058,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
       objectReference: {fileID: 1002655200}
@@ -4070,6 +4163,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
       objectReference: {fileID: 1002655200}
@@ -4170,6 +4267,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
@@ -4348,6 +4449,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
       objectReference: {fileID: 1002655200}
@@ -4453,6 +4558,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
@@ -4814,6 +4923,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
       objectReference: {fileID: 1002655200}
@@ -4914,6 +5027,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
@@ -5253,6 +5370,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
       objectReference: {fileID: 1002655200}
@@ -5433,6 +5554,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
       objectReference: {fileID: 1002655200}
@@ -5533,6 +5658,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
@@ -5724,6 +5853,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
       objectReference: {fileID: 1002655200}
@@ -5829,6 +5962,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
@@ -6174,6 +6311,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
       objectReference: {fileID: 1002655200}
@@ -6275,6 +6416,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
       objectReference: {fileID: 1002655200}
@@ -6375,6 +6520,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
@@ -6482,6 +6631,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
       objectReference: {fileID: 1002655200}
@@ -6583,6 +6736,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
       objectReference: {fileID: 1002655200}
@@ -6683,6 +6840,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
@@ -6996,6 +7157,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
       objectReference: {fileID: 1002655200}
@@ -7248,6 +7413,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
       objectReference: {fileID: 1002655200}
@@ -7348,10 +7517,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e1522dad1a23b4cb53d2229df101f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Jsonfile: {fileID: 4900000, guid: 5660efdf1b1290b41b039f6f25ec6add, type: 3}
+  data: {fileID: 2133847928}
   TxtDirPath: {fileID: 1847235542}
   InventoryItemsObj: {fileID: 1362319970}
-  DandDObj: {fileID: 3815943649068774765, guid: df61a4ab3151b324c92a87e74bda70c9, type: 3}
   bookEditStgMng: {fileID: 1002655200}
 --- !u!1 &1972557646
 GameObject:
@@ -7581,6 +7749,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
       objectReference: {fileID: 1002655200}
@@ -7687,6 +7859,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
       objectReference: {fileID: 1002655200}
@@ -7787,6 +7963,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
@@ -7894,6 +8074,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
       objectReference: {fileID: 1002655200}
@@ -7994,6 +8178,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
@@ -8111,11 +8299,83 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 
       objectReference: {fileID: 1002655200}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+--- !u!114 &2133847928 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1878876595020006376, guid: 9c6184cadefcd6f418178d128c40f3fd, type: 3}
+  m_PrefabInstance: {fileID: 1878876593189383312}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 521f1d5e6e1b57b498b757ac896ec9a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &1878876593189383312
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1878876595020006375, guid: 9c6184cadefcd6f418178d128c40f3fd, type: 3}
+      propertyPath: m_Name
+      value: DATA
+      objectReference: {fileID: 0}
+    - target: {fileID: 1878876595020006377, guid: 9c6184cadefcd6f418178d128c40f3fd, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1878876595020006377, guid: 9c6184cadefcd6f418178d128c40f3fd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.21176898
+      objectReference: {fileID: 0}
+    - target: {fileID: 1878876595020006377, guid: 9c6184cadefcd6f418178d128c40f3fd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1878876595020006377, guid: 9c6184cadefcd6f418178d128c40f3fd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1878876595020006377, guid: 9c6184cadefcd6f418178d128c40f3fd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1878876595020006377, guid: 9c6184cadefcd6f418178d128c40f3fd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1878876595020006377, guid: 9c6184cadefcd6f418178d128c40f3fd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1878876595020006377, guid: 9c6184cadefcd6f418178d128c40f3fd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1878876595020006377, guid: 9c6184cadefcd6f418178d128c40f3fd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1878876595020006377, guid: 9c6184cadefcd6f418178d128c40f3fd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1878876595020006377, guid: 9c6184cadefcd6f418178d128c40f3fd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9c6184cadefcd6f418178d128c40f3fd, type: 3}
 --- !u!1001 &2025910013072375084
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8211,6 +8471,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 2133847928}
     - target: {fileID: 2111830895548857195, guid: 6cd93df1b4e46354fafd84e2269ce725, type: 3}
       propertyPath: testBookEditStageManager
       value: 

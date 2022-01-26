@@ -1,19 +1,17 @@
 using System;
 using System.Text.RegularExpressions;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class TestPieceEvent : MonoBehaviour, IPointerEnterHandler,IPointerClickHandler
 {
+    public TestBookEditSceneData data;
     [SerializeField] private TestBookEditStageManager testBookEditStageManager;
     private int myIndex;
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(testBookEditStageManager.IsHoldUp)
+        if(data.HoldParts.IsActive)
         {
             //持ち上げ中の場合
             testBookEditStageManager.PutHoldParts();
@@ -40,7 +38,7 @@ public class TestPieceEvent : MonoBehaviour, IPointerEnterHandler,IPointerClickH
 
     private Vector2Int GetPos()
     {
-        int size = testBookEditStageManager.GetStageSize;
+        int size = data.StageSize;
         return new Vector2Int(myIndex % size , myIndex / size);
     }
 }

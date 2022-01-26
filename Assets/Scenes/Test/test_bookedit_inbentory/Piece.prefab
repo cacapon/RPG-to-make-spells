@@ -88,3 +88,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c70d9d915718fee4eba7ae00afbc48a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 1878876595020006376, guid: 9c6184cadefcd6f418178d128c40f3fd, type: 3}
+  testBookEditStageManager: {fileID: 0}

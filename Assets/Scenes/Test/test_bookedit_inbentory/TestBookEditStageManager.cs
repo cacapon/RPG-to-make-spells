@@ -5,77 +5,36 @@ using UnityEngine;
 
 public class TestBookEditStageManager : MonoBehaviour
 {
-    //TODO:データは一つのクラスにまとめてアクセスできる形の方が扱いやすいかも？
-
-    private int STAGE_SIZE = 7;
-    private StageTile[,] Stage;
-    private StageTile[,] HoldStage;
-
-    private Parts HoldParts;
-
-    public int GetStageSize { get => STAGE_SIZE; }
-
-    public bool IsHoldUp { get => HoldParts.IsActive; }
-
-    private void Awake()
-    {
-        Stage = InitStage();
-        HoldStage = InitStage();
-        HoldParts = new Parts();
-    }
-
-    private StageTile[,] InitStage()
-    {
-        StageTile[,] tmpStage = new StageTile[STAGE_SIZE, STAGE_SIZE];
-
-        for (int height = 0; height < STAGE_SIZE; height++)
-        {
-            for (int width = 0; width < STAGE_SIZE; width++)
-            {
-                tmpStage[height, width] = new StageTile();
-            }
-        }
-        return tmpStage;
-    }
-
-    public StageTile[,] GetStage(bool isHold)
-    {
-        //要修正
-        if (isHold) { return HoldStage; }
-        else { return Stage; }
-    }
+    public TestBookEditSceneData data;
 
     public void HoldUpParts(Vector2Int targetPos)
     {
         //stageからHoldへ持ち上げます。
-        if (HoldParts.IsActive) { return; } //持ち上げ中なら実行しない
-        if (Stage[targetPos.y, targetPos.x].MyTile == eTile.None) { return; } //対象がNoneのエリアでも実行しない
-
+        if (data.HoldParts.IsActive) { return; } //持ち上げ中なら実行しない
+        if (data.GroundStage.GetTile(targetPos).MyTile == eTile.None) { return; } //対象がNoneのエリアでも実行しない
 
         //targetに含まれるユニークIDから持ち上げるパーツの位置を特定する
 
-        Guid targetID = Stage[targetPos.y, targetPos.x].MyUniqueID;
+        Guid targetID = data.GroundStage.GetTile(targetPos).MyUniqueID;
         Vector2Int[] holdUpPos = GetHoldUpShape(targetPos);
-        eTile tile = Stage[targetPos.y, targetPos.x].MyTile;
+        eTile tile = data.GroundStage.GetTile(targetPos).MyTile;
 
         //Stageから転記していく
-        HoldStage = InitStage();
+        data.HoldStage.Reset();
 
         foreach (Vector2Int cell in holdUpPos)
         {
-            HoldStage[cell.y, cell.x].MyTile = tile;
-            HoldStage[cell.y, cell.x].MyUniqueID = targetID;
-            Stage[cell.y, cell.x].MyTile = eTile.None;
-            Stage[cell.y, cell.x].MyUniqueID = Guid.Empty;
+            data.HoldStage.TileUpdate(cell, tile, targetID);
+            data.GroundStage.TileUpdate(cell, eTile.None, Guid.Empty);
         }
 
-        HoldParts.SetParts(holdUpPos, tile, targetID); // XXX: shapeの形状が正しくない
+        data.HoldParts.SetParts(holdUpPos, tile, targetID);
 
     }
 
     private Vector2Int[] GetHoldUpShape(Vector2Int targetpos)
     {
-        Guid targetID = Stage[targetpos.y, targetpos.x].MyUniqueID;
+        Guid targetID = data.GroundStage.GetTile(targetpos).MyUniqueID;
         List<Vector2Int> tmpShapeList = new List<Vector2Int>() { targetpos };
         List<Vector2Int> next = new List<Vector2Int>() { targetpos };
         List<Vector2Int> clear = new List<Vector2Int>() { targetpos };
@@ -109,7 +68,7 @@ public class TestBookEditStageManager : MonoBehaviour
         if (!clear.Contains(check))
         {
             clear.Add(check);
-            if (Stage[check.y, check.x].MyUniqueID == targetID)
+            if (data.GroundStage.GetTile(check).MyUniqueID == targetID)
             {
                 next.Add(check);
                 tmpShapeList.Add(check);
@@ -121,7 +80,7 @@ public class TestBookEditStageManager : MonoBehaviour
     {
         //対象の座標が範囲外かチェックします
         Vector2Int stageRangeMin = Vector2Int.zero;
-        Vector2Int stageRangeMax = new Vector2Int(STAGE_SIZE, STAGE_SIZE) - Vector2Int.one;
+        Vector2Int stageRangeMax = new Vector2Int(data.StageSize, data.StageSize) - Vector2Int.one;
 
         if (pos.x < stageRangeMin.x || pos.y < stageRangeMin.y ||
             pos.x > stageRangeMax.x || pos.y > stageRangeMax.y)
@@ -135,35 +94,38 @@ public class TestBookEditStageManager : MonoBehaviour
     public void PutHoldParts()
     {
         //Holdしているパーツを置きます。
-        if (!HoldParts.IsActive) { return; }    // Holdしてなかったら実行しない
+        if (!data.HoldParts.IsActive) { return; }    // Holdしてなかったら実行しない
         if (IsOverlapping()) { return; }        // 重複している個所があったら実行しない
 
 
         //Holdから転記していく
-        for (int height = 0; height < STAGE_SIZE; height++)
+        for (int height = 0; height < data.StageSize; height++)
         {
-            for (int width = 0; width < STAGE_SIZE; width++)
+            for (int width = 0; width < data.StageSize; width++)
             {
-                if (HoldStage[height, width].MyTile != eTile.None)
+                Vector2Int pos = new Vector2Int(width, height);
+                if (data.HoldStage.GetTile(pos).MyTile != eTile.None)
                 {
-                    Stage[height, width] = HoldStage[height, width];
+                    data.GroundStage.TileUpdate(pos, data.HoldStage.GetTile(pos));
                 }
             }
         }
 
-        HoldParts.ReSetParts(); //置いたのでホールドパーツをリセットする
+        data.HoldParts.ReSetParts(); //置いたのでホールドパーツをリセットする
         //TODO: インベントリのボタンを再有効化する必要がある→どこでやる？
     }
 
     private bool IsOverlapping()
     {
         // 重なってたらtrue,それ以外はFalseを返します。
-        for (int height = 0; height < STAGE_SIZE; height++)
+        for (int height = 0; height < data.StageSize; height++)
         {
-            for (int width = 0; width < STAGE_SIZE; width++)
+            for (int width = 0; width < data.StageSize; width++)
             {
                 // Hold
-                if (HoldStage[height, width].MyTile != eTile.None && Stage[height, width].MyTile != eTile.None)
+                Vector2Int pos = new Vector2Int(width, height);
+                if (data.HoldStage.GetTile(pos).MyTile != eTile.None &&
+                    data.GroundStage.GetTile(pos).MyTile != eTile.None)
                 {
                     return true;
                 }
@@ -176,19 +138,18 @@ public class TestBookEditStageManager : MonoBehaviour
     {
         // 触ったブロックを中心にして持ち上げているパーツを動かします。
 
-        if (!HoldParts.IsActive) { return; }    // HoldPartsに何も設置されてなかったら何もしない
+        if (!data.HoldParts.IsActive) { return; }    // HoldPartsに何も設置されてなかったら何もしない
 
 
         // shapeをポインターに合わせてあるステージを中心に合わせて置いていきます
-        Vector2Int[] shapePos = FixBorderPos(SetSenter(HoldParts.MyShape, centerPos));
+        Vector2Int[] shapePos = FixBorderPos(SetSenter(data.HoldParts.MyShape, centerPos));
 
-        HoldStage = InitStage();
+        data.HoldStage.Reset();
 
         foreach (Vector2Int cell in shapePos)
         {
             //セルに情報を置いていきます。
-            HoldStage[cell.y, cell.x].MyTile = HoldParts.MyTile;
-            HoldStage[cell.y, cell.x].MyUniqueID = HoldParts.MyUniqueID;
+            data.HoldStage.TileUpdate(cell,data.HoldParts.MyTile, data.HoldParts.MyUniqueID);
         }
 
     }
@@ -217,10 +178,10 @@ public class TestBookEditStageManager : MonoBehaviour
         //(0,0)~(stage.x-1,stage.y-1)の範囲に収まるよう移動量を求めます
         Vector2Int fixPos = Vector2Int.zero;
         Vector2Int stageRangeMin = Vector2Int.zero;
-        Vector2Int stageRangeMax = new Vector2Int(STAGE_SIZE, STAGE_SIZE) - Vector2Int.one;
+        Vector2Int stageRangeMax = new Vector2Int(data.StageSize, data.StageSize) - Vector2Int.one;
 
         //minPos < 0
-        //maxPos >= STAGE_SIZE
+        //maxPos >= data.StageSize
 
         if (shapeMinPos.x < stageRangeMin.x) { fixPos.x = stageRangeMin.x - shapeMinPos.x; }
         if (shapeMinPos.y < stageRangeMin.y) { fixPos.y = stageRangeMin.y - shapeMinPos.y; }
@@ -233,18 +194,17 @@ public class TestBookEditStageManager : MonoBehaviour
     public void SetHoldStage(Vector2Int[] shape, eTile tile)
     {
         // shapeを中心(3,3)に合わせて置いていきます
-        HoldParts.SetParts(shape, tile, Guid.NewGuid());
+        data.HoldParts.SetParts(shape, tile, Guid.NewGuid());
 
         Vector2Int[] centerShape = SetSenter(shape, new Vector2Int(3, 3));
 
-        HoldStage = InitStage();
+        data.HoldStage.Reset();
 
         foreach (Vector2Int cell in centerShape)
         {
             Debug.Log(cell);
             //セルに情報を置いていきます。
-            HoldStage[cell.y, cell.x].MyTile = tile;
-            HoldStage[cell.y, cell.x].MyUniqueID = HoldParts.MyUniqueID;
+            data.HoldStage.TileUpdate(cell,tile, data.HoldParts.MyUniqueID);
         }
     }
 
@@ -314,84 +274,4 @@ public class TestBookEditStageManager : MonoBehaviour
 
         return minVec;
     }
-
-
-
-    private void TestShow(eTile[,] stage)
-    {
-        for (int height = 0; height < STAGE_SIZE; height++)
-        {
-            string show_str = "";
-            for (int width = 0; width < STAGE_SIZE; width++)
-            {
-                show_str += stage[height, width].ToString();
-            }
-            Debug.Log(show_str);
-        }
-        Debug.Log("");
-    }
-}
-
-class Parts
-{
-    bool isActive = false;
-    Vector2Int[] myShape;
-    eTile myTile;
-    Guid myUniqueID;
-
-    public void SetParts(Vector2Int[] shape, eTile tile, Guid myID)
-    {
-        isActive = true;
-        myShape = OrthopaedyShape(shape);
-        myTile = tile;
-        myUniqueID = myID;
-    }
-    public void ReSetParts()
-    {
-        isActive = false;
-        myShape = null;
-        myTile = eTile.None;
-        myUniqueID = Guid.Empty;
-    }
-
-    private Vector2Int[] OrthopaedyShape(Vector2Int[] shape)
-    {
-        //座標を0基準に整形しなおします。
-        Vector2Int minpos = new Vector2Int(255,255);
-
-        foreach(Vector2Int cell in shape)
-        {
-            minpos.x = Mathf.Min(minpos.x,cell.x);
-            minpos.y = Mathf.Min(minpos.y,cell.y);
-        }
-
-        List<Vector2Int> tmpShape = new List<Vector2Int>();
-
-        foreach(Vector2Int cell in shape)
-        {
-            tmpShape.Add(cell - minpos);
-        }
-
-        return tmpShape.ToArray();
-    }
-
-    public Vector2Int[] MyShape { get => myShape; }
-    public eTile MyTile { get => myTile; }
-    public bool IsActive { get => isActive; }
-    public Guid MyUniqueID { get => myUniqueID; }
-}
-
-public class StageTile
-{
-    eTile myTile;
-    Guid myUniqueID;
-
-    public StageTile()
-    {
-        this.MyTile = eTile.None;
-        this.MyUniqueID = Guid.Empty;
-    }
-
-    public eTile MyTile { get => myTile; set => myTile = value; }
-    public Guid MyUniqueID { get => myUniqueID; set => myUniqueID = value; }
 }
