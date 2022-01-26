@@ -70,6 +70,7 @@ public class TestInventorySystem : MonoBehaviour, IPointerClickHandler
     {
         InventoryItem item = data.InventoryItems.GetInventoryItem(partsName);
         if (!item.useItem) { return; }
+        if (data.HoldParts.IsActive) { return; }
 
         //ステージにパーツを置く
         item.useItem = false;
