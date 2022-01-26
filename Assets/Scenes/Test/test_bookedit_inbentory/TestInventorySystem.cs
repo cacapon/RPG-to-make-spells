@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class TestInventorySystem : MonoBehaviour
+public class TestInventorySystem : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private TestBookEditSceneData data;
     [SerializeField] private Text TxtDirPath; // パス表示部分
@@ -71,7 +73,9 @@ public class TestInventorySystem : MonoBehaviour
 
         //ステージにパーツを置く
         item.useItem = false;
-        bookEditStgMng.SetHoldStage(item.shape, item.tile);
+        Guid id = Guid.NewGuid();
+        data.UsePartsDict.Register(id, item.name);
+        bookEditStgMng.SetHoldStage(item.shape, item.tile, id);
 
         ListSegments();
     }
@@ -113,6 +117,20 @@ public class TestInventorySystem : MonoBehaviour
         // パスを変更する
         data.Path.Add(next_path);
         PrintWorkingDirectory();
+        ListSegments();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (!data.HoldParts.IsActive) { return; } //もってない場合は実行しない
+
+        string partsName = data.UsePartsDict.GetName(data.HoldParts.MyUniqueID);
+        InventoryItem item = data.InventoryItems.GetInventoryItem(partsName);
+
+        item.useItem = true;
+        data.HoldParts.ReSetParts();
+        data.HoldStage.Reset();
+        data.UsePartsDict.UnRegister(partsName);
         ListSegments();
     }
 }

@@ -191,10 +191,10 @@ public class TestBookEditStageManager : MonoBehaviour
         return fixPos;
     }
 
-    public void SetHoldStage(Vector2Int[] shape, eTile tile)
+    public void SetHoldStage(Vector2Int[] shape, eTile tile, Guid id)
     {
         // shapeを中心(3,3)に合わせて置いていきます
-        data.HoldParts.SetParts(shape, tile, Guid.NewGuid());
+        data.HoldParts.SetParts(shape, tile, id);
 
         Vector2Int[] centerShape = SetSenter(shape, new Vector2Int(3, 3));
 

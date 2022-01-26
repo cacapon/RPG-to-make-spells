@@ -14,9 +14,14 @@ public class TestBookEditSceneData : MonoBehaviour
     public Stage HoldStage { get => holdStage; }
     public int StageSize { get => stageSize; }
     public Parts HoldParts { get => holdParts; }
+    public UsePartsDict UsePartsDict { get => usePartsDict; }
 
     public Path Path;
 
+    #endregion
+
+    #region common
+    private UsePartsDict usePartsDict;
     #endregion
 
     #region inventory
@@ -36,6 +41,9 @@ public class TestBookEditSceneData : MonoBehaviour
 
     private void Awake()
     {
+        // common
+        usePartsDict = new UsePartsDict();
+
         // inventory
         InitSpriteDict();
         InitJsonData();
@@ -143,6 +151,38 @@ public class Stage
             myTile = nextTile;
             myUniqueID = nextID;
         }
+    }
+}
+
+public class UsePartsDict
+{
+    Dictionary<Guid, string> useparts;
+
+    public UsePartsDict()
+    {
+        useparts = new Dictionary<Guid, string>();
+    }
+
+    public void Register(Guid id, string partsName)
+    {
+        useparts.Add(id, partsName);
+    }
+
+    public void UnRegister(Guid id)
+    {
+        //idで指定して登録したパーツリストを削除します。
+        useparts.Remove(id);
+    }
+    public void UnRegister(string partsName)
+    {
+        //名前で指定して登録したパーツリストを削除します。
+        Guid partsID = useparts.Where(kv => kv.Value == partsName).First().Key;
+        useparts.Remove(partsID);
+    }
+
+    public string GetName(Guid id)
+    {
+        return useparts[id];
     }
 }
 
